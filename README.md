@@ -1,4 +1,14 @@
 # ZXYZ
 Top-Down 2D Dungeon Crawler
 
-edited from vs code.
+Key Bindings:
+
+W, A, S, D TO MOVE
+
+E TO INTERACT
+
+SPACE TO DASH
+
+ESC TO OPEN PAUSE MENU / SETTINGS
+
+UPDATED BY N.MATTINSON 2MAR24
