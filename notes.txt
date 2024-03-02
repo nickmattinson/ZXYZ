@@ -1,0 +1,7 @@
+color palette:
+#7DF5D1
+#B5938A
+#F5977E
+#87A098
+#75625D
+#2F4B42
