@@ -59,13 +59,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashCounter > 0)
         {
-            dashIcon.interactable = false;
+            //dashIcon.interactable = false;
             dashCounter -= Time.deltaTime;
             if (dashCounter <= 0)
             {
                 activeMoveSpeed = moveSpeed;
                 dashCooldownCounter = dashCooldown;
-                dashIcon.interactable = true;
+                //dashIcon.interactable = true;
             }
         }
         if (dashCooldownCounter > 0)
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get input from both keyboard and controller
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        
+
         // If no input from keyboard, check for controller input
         if (moveInput == Vector2.zero && Gamepad.current != null)
         {
