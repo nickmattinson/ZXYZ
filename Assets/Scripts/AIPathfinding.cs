@@ -8,6 +8,7 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float distanceBetween;
     private float distance;
+    [SerializeField] Rigidbody2D rb2dEnemy;
 
     // Update is called once per frame
     void Update()
@@ -21,6 +22,9 @@ public class AIPathfinding : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        } else {
+            rb2dEnemy.velocity = Vector2.zero;
+            //transform.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }
