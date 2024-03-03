@@ -1,7 +1,7 @@
 color palette:
-#9FB3CA
-#8792A0
-#98C2F5
-#506175
-#26374B
-#122133
+#AEBDCF
+#8393A5 [foreground]
+#A7CEFA [player]
+#4D627A [background]
+#253950 [abyss]
+#0F2033 
