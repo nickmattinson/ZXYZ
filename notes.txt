@@ -1,0 +1,7 @@
+color palette:
+#AEBDCF
+#8393A5 [foreground]
+#A7CEFA [player]
+#4D627A [background]
+#253950 [abyss]
+#0F2033 
