@@ -79617,7 +79617,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 99c53c5b829d3c544a839c72f7785a66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90389,7 +90389,6 @@ GameObject:
   - component: {fileID: 527487616}
   - component: {fileID: 527487615}
   - component: {fileID: 527487619}
-  - component: {fileID: 527487620}
   m_Layer: 6
   m_Name: IntermediateEnemy
   m_TagString: Untagged
@@ -90552,28 +90551,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!195 &527487620
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527487614}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &852242767
 GameObject:
   m_ObjectHideFlags: 0
@@ -90634,7 +90611,6 @@ GameObject:
   - component: {fileID: 887433892}
   - component: {fileID: 887433891}
   - component: {fileID: 887433895}
-  - component: {fileID: 887433896}
   m_Layer: 6
   m_Name: HardEnemy
   m_TagString: Untagged
@@ -90797,28 +90773,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!195 &887433896
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887433890}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1189202193
 GameObject:
   m_ObjectHideFlags: 0
@@ -90832,7 +90786,6 @@ GameObject:
   - component: {fileID: 1189202195}
   - component: {fileID: 1189202194}
   - component: {fileID: 1189202198}
-  - component: {fileID: 1189202199}
   m_Layer: 6
   m_Name: EasyEnemy
   m_TagString: Untagged
@@ -90995,28 +90948,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!195 &1189202199
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189202193}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1790222324
 GameObject:
   m_ObjectHideFlags: 0
@@ -106494,10 +106425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0f4b504ef2d3c4899b274b065baacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 5
   rotationSpeed: 180
   rb2d: {fileID: 1978061565}
-  dashSpeed: 12
+  dashSpeed: 10
   dashLength: 0.5
   dashCooldown: 1.5
   dashIcon: {fileID: 0}
