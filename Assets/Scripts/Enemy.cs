@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -11,6 +13,16 @@ public class Enemy : Entity
     // Update is called once per frame
     void Update()
     {
+        // if (health <= 0)
+        // {
+        //     Die();
+        // }
+    }
 
+    protected override void Die()
+    {
+        Destroy(gameObject);
+        // Implement enemy-specific death behavior here
+        Debug.Log("Enemy died!");
     }
 }
