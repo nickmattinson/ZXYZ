@@ -7,7 +7,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
 
-    [SerializeField] protected string name;
+    //[SerializeField] protected string name;
     [SerializeField] protected int level;
     [SerializeField] protected int health;
     [SerializeField] protected int attack;
