@@ -15,11 +15,13 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= (damage - defense);
-        Debug.Log(name + "'s health is " + health);
-        if (health <= 0)
-        {
-            Die();
+        if(damage > defense){
+            health -= (damage - defense);
+            Debug.Log(name + "'s health is " + health);
+            if (health <= 0)
+            {
+                Die();
+            }
         }
     }
 

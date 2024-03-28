@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class AIPathfinding : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    public Player player; // Reference to the player prefab
     [SerializeField] float speed;
     [SerializeField] float distanceBetween;
     private float distance;
     [SerializeField] Rigidbody2D rb2dEnemy;
 
+    void start()
+    {
+        // Instantiate the player prefab and assign a reference to the instantiated object
+        player = FindObjectOfType<Player>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +27,9 @@ public class AIPathfinding : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
-        } else {
+        }
+        else
+        {
             rb2dEnemy.velocity = Vector2.zero;
             //transform.rotation = Quaternion.Euler(Vector3.zero);
         }

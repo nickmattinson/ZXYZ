@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8981216864285716322}
   - component: {fileID: 2423566743525873356}
   m_Layer: 6
-  m_Name: EasyEnemy
+  m_Name: MediumEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.06132078, g: 1, b: 0.1332982, a: 1}
+  m_Color: {r: 0.7137255, g: 0.47450984, b: 0.23137257, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673267b8ee9be4b4e8c3928f6033c696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  health: 10
-  attack: 5
-  defense: 3
+  level: 2
+  health: 20
+  attack: 8
+  defense: 5
 --- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1219565040742012555, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
-  speed: 1
-  distanceBetween: 8
+  speed: 2
+  distanceBetween: 7
   rb2dEnemy: {fileID: 2423566743525873356}
 --- !u!61 &8981216864285716322
 BoxCollider2D:

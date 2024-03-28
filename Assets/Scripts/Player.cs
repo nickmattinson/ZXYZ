@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Entity {
-
     public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -38,6 +37,6 @@ public class Player : Entity {
         Debug.Log("Player died!");
 
         //here is where we will stop gamethread and show the gameoverscreen.
-        gameManager.gameOver();
+        gameManager.loadGameOver();
     }
 }
