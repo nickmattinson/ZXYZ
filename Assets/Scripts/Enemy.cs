@@ -13,10 +13,7 @@ public class Enemy : Entity
     // Update is called once per frame
     void Update()
     {
-        // if (health <= 0)
-        // {
-        //     Die();
-        // }
+        
     }
 
     protected override void Die()
