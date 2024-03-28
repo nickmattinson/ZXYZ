@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity {
-    public GameManager gameManager;
+public class Player : Entity
+{
+    public StateManager stateManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        stateManager = FindObjectOfType<StateManager>();
     }
 
     // Update is called once per frame
@@ -37,6 +38,6 @@ public class Player : Entity {
         Debug.Log("Player died!");
 
         //here is where we will stop gamethread and show the gameoverscreen.
-        gameManager.loadGameOver();
+        stateManager.loadGameOver();
     }
 }

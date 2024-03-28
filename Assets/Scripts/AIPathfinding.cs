@@ -10,7 +10,7 @@ public class AIPathfinding : MonoBehaviour
     private float distance;
     [SerializeField] Rigidbody2D rb2dEnemy;
 
-    void start()
+    void Start()
     {
         // Instantiate the player prefab and assign a reference to the instantiated object
         player = FindObjectOfType<Player>();

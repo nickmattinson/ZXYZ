@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] List<Transform> enemySpawnPoints;
-    [SerializeField] GameManager gameManager;
+    [SerializeField] StateManager stateManager;
     [SerializeField] List<GameObject> enemies;
 
     protected int numberOfSpawns;
@@ -13,9 +13,9 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        stateManager = FindObjectOfType<StateManager>();
 
-    if (gameManager.gameEnded != true)
+    if (stateManager.gameEnded != true)
         {
             numberOfSpawns = enemySpawnPoints.Count;
             for (int i = 0; i < numberOfSpawns; i++)

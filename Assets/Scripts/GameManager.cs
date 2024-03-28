@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public StateManager stateManager;
     [SerializeField] GameObject player;
-    public bool gameEnded = false;
     protected GameObject backgroundMusic;
     // Start is called before the first frame update
     void Start()
     {
+        stateManager = FindObjectOfType<StateManager>();
         Application.targetFrameRate = 60;
         Instantiate(player, Vector2.zero, Quaternion.identity);
     }
@@ -19,28 +19,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)){
-            loadSettings();
+            stateManager.loadSettings();
         }
     }
 
-    public void loadGame(){
-        SceneManager.LoadScene("Main");
-    }
-
-    public void loadMainMenu(){
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void loadGameOver(){
-        gameEnded = true;
-        SceneManager.LoadScene("GameOver");
-    }
-
-    public void loadSettings(){
-        SceneManager.LoadScene("Settings");
-    }
-
-    public void quitGame(){
-        Application.Quit();
-    }
+    
 }
