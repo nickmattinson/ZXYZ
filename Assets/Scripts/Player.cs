@@ -8,7 +8,11 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
+        Vector2 vector2d = new Vector2();
+        vector2d.x = 0f;
+        vector2d.y = 90f;
         stateManager = FindObjectOfType<StateManager>();
+        this.transform.position = vector2d;
     }
 
     // Update is called once per frame

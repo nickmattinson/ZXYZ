@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861360116138784530}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 90, z: 0}
   m_LocalScale: {x: 1.7159, y: 1.7159, z: 1.7159}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -105,8 +105,7 @@ MonoBehaviour:
   health: 20
   attack: 5
   defense: 5
-  player: {fileID: 861360116138784530}
-  gameManager: {fileID: 7588984441641059872, guid: 7b039ca4fa759334cae95ba0820054d4, type: 3}
+  stateManager: {fileID: 0}
 --- !u!114 &6018516841086903793
 MonoBehaviour:
   m_ObjectHideFlags: 0
