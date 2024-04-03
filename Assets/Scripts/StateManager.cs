@@ -25,7 +25,7 @@ public class StateManager : MonoBehaviour
     public void loadGame()
     {
         if(gameEnded == true) {
-            player.health = 20;
+            player.health = 100;
             gameEnded = false;
         }
         Debug.Log("playing game");
