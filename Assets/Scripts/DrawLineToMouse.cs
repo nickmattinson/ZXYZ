@@ -6,7 +6,7 @@ public class DrawLineToMouse : MonoBehaviour
 {
     public Player player; // Reference to the player's Transform component
     public LineRenderer lineRenderer; // Reference to the LineRenderer component
-    [SerializeField] private float lineDuration = .1f;
+    private float lineDuration = 0.1f;
 
     void Start()
     {
