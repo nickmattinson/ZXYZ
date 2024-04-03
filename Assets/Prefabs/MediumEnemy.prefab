@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   health: 20
-  attack: 6
+  attack: 5
   defense: 5
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
 --- !u!114 &3384500580506265234

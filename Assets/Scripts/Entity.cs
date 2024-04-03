@@ -12,22 +12,27 @@ public class Entity : MonoBehaviour
     public GameObject damageNumberPrefab;
     public void TakeDamage(int damage)
     {
-        if(damage > this.defense){
-            int actualDamage = damage-this.defense;
+        if (damage > defense)
+        {
+            Debug.Log("damage: " + damage + " and defense: " + defense); 
+            int actualDamage = damage - defense;
             health -= (actualDamage);
             // Instantiate damage number prefab at enemy's position
             GameObject damageNumberObj = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity);
-    
-            if(damageNumberPrefab != null){
+
+            if (damageNumberPrefab != null)
+            {
                 // Set the damage value on the damage number
                 DamageNumber damageNumber = damageNumberObj.GetComponent<DamageNumber>();
-                
+
                 damageNumber.SetDamage(actualDamage);
                 if (health <= 0)
                 {
                     Die();
                 }
-            } else {
+            }
+            else
+            {
                 Debug.Log("did not create damage number object.");
             }
         }
