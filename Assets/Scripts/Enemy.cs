@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
-    private NavMeshAgent agent;
-
-    private Transform target;
-
-    public float minSpeed;
-    public float maxSpeed;
-
-    void Start(){ 
-    
-        agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        agent.speed = Random.Range(minSpeed, maxSpeed);
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
-    void Update(){ 
-        agent.destination = target.position;
-    
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    protected override void Die()
+    {
+        Destroy(gameObject);
+        // Implement enemy-specific death behavior here
+        Debug.Log("Enemy died!");
     }
 }
