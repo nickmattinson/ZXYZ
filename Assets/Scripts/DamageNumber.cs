@@ -11,7 +11,7 @@ public class DamageNumber : MonoBehaviour
 
     void Start()
     {
-        //Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
