@@ -7,11 +7,16 @@ public class StateManager : MonoBehaviour
 {
 
     public bool gameEnded = false;
+    [SerializeField] GameObject mainMenuCanvas;
+    [SerializeField] GameObject settingsCanvas;
+    [SerializeField] GameObject gameOverCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        mainMenuCanvas.SetActive(true);
+        settingsCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,23 +27,18 @@ public class StateManager : MonoBehaviour
 
     public void loadGame()
     {
-        SceneManager.LoadScene("Main");
-    }
-
-    public void loadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
+        mainMenuCanvas.SetActive(false);
     }
 
     public void loadGameOver()
     {
         gameEnded = true;
-        SceneManager.LoadScene("GameOver");
+        gameOverCanvas.SetActive(true);
     }
 
     public void loadSettings()
     {
-        SceneManager.LoadScene("Settings");
+        settingsCanvas.SetActive(true);
     }
 
     public void quitGame()
