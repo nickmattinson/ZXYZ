@@ -9,10 +9,12 @@ public class StateManager : MonoBehaviour
     [SerializeField] GameObject mainMenuCanvas;
     [SerializeField] GameObject settingsCanvas;
     [SerializeField] GameObject gameOverCanvas;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<Player>();
         gameEnded = false;
         Time.timeScale = 0f;
         mainMenuCanvas.SetActive(true);
@@ -22,6 +24,10 @@ public class StateManager : MonoBehaviour
 
     public void loadGame()
     {
+        if(gameEnded == true) {
+            player.health = 20;
+            gameEnded = false;
+        }
         Debug.Log("playing game");
         Time.timeScale = 1f;
         mainMenuCanvas.SetActive(false);

@@ -9,12 +9,17 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] float distanceBetween;
     private float distance;
     [SerializeField] Rigidbody2D rb2dEnemy;
+    [SerializeField] float waitTime;
+    private float timer = 0f;
+    private Enemy enemy;
 
     void Start()
     {
+        timer = waitTime;
         player = FindObjectOfType<Player>();
+        enemy = FindObjectOfType<Enemy>();
     }
-    
+
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
@@ -26,6 +31,15 @@ public class AIPathfinding : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            if (timer <= 0)
+            {
+                enemy.attackPlayer();
+                timer = waitTime;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
         }
         else
         {

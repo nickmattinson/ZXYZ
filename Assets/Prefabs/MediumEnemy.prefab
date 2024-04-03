@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   health: 20
-  attack: 8
+  attack: 6
   defense: 5
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
 --- !u!114 &3384500580506265234
@@ -119,8 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1219565040742012555, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
   speed: 2
-  distanceBetween: 7
+  distanceBetween: 6
   rb2dEnemy: {fileID: 2423566743525873356}
+  waitTime: 1
 --- !u!61 &8981216864285716322
 BoxCollider2D:
   m_ObjectHideFlags: 0

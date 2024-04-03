@@ -6,14 +6,14 @@ using TMPro;
 public class Entity : MonoBehaviour
 {
     [SerializeField] protected int level;
-    [SerializeField] protected int health;
+    [SerializeField] public int health;
     [SerializeField] protected int attack;
     [SerializeField] protected int defense;
     public GameObject damageNumberPrefab;
     public void TakeDamage(int damage)
     {
-        if(damage > defense){
-            int actualDamage = damage-defense;
+        if(damage > this.defense){
+            int actualDamage = damage-this.defense;
             health -= (actualDamage);
             // Instantiate damage number prefab at enemy's position
             GameObject damageNumberObj = Instantiate(damageNumberPrefab, transform.position, Quaternion.identity);
