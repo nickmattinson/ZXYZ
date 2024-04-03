@@ -32,9 +32,16 @@ public class Player : Entity
                 if (enemy != null)
                 {
                     // Deal damage to the enemy
+                    Debug.Log("Player's attack is " + attack);
                     enemy.TakeDamage(this.attack);
                 }
             }
+        }
+    }
+
+    public void ActivatePowerUp(string powerUp){
+        if(powerUp == "AttackUp"){
+            this.attack += 3;
         }
     }
     protected override void Die()
@@ -44,4 +51,6 @@ public class Player : Entity
         //here is where we will stop gamethread and show the gameoverscreen.
         stateManager.loadGameOver();
     }
+
+    
 }

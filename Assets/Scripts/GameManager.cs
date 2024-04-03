@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         mediumTutorialEnemyv2.x = -5f;
         mediumTutorialEnemyv2.y = 42f;
         medium2TutorialEnemyv2.x = 5f;
+        medium2TutorialEnemyv2.y = 42f;
         Instantiate(easyTutorialEnemy, easyTutorialEnemyv2, Quaternion.identity);
         Instantiate(mediumTutorialEnemy, mediumTutorialEnemyv2, Quaternion.identity);
         Instantiate(medium2TutorialEnemy, medium2TutorialEnemyv2, Quaternion.identity);
@@ -32,10 +33,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             stateManager.loadSettings();
         }
     }
 
-    
+
 }
