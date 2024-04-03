@@ -4,7 +4,6 @@ using TMPro;
 public class DamageNumber : MonoBehaviour
 {
     [SerializeField] float floatSpeed = 1f; // Speed at which the damage number floats up
-    //[SerializeField] float fadeSpeed = 1f; // Speed at which the damage number fades out
     [SerializeField] float lifeTime = 1f; // Time before the damage number disappears
     private float timer = 0f;
     public TextMeshPro damageText;
@@ -21,7 +20,6 @@ public class DamageNumber : MonoBehaviour
 
         // Fade out the damage number
         float alpha = Mathf.Lerp(1f, 0f, timer / lifeTime);
-        //damageText.color = new Color(damageText.color.r, damageText.color.g, damageText.color.b, alpha);
         
         // Update timer
         timer += Time.deltaTime;

@@ -4,30 +4,27 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //declare variables
+    // Declare variables
     [SerializeField] int moveSpeed;
     [SerializeField] float rotationSpeed;
     private Vector2 moveInput;
-
-    //smooth player movement variables
+    // Smooth player movement variables
     [SerializeField] private Rigidbody2D rb2d;
     private float activeMoveSpeed;
     private Vector2 smoothMoveInput;
     private Vector2 movementInputSmoothVelocity;
-
-    //dash variables
+    // Dash variables
     [SerializeField] float dashSpeed;
     [SerializeField] float dashLength;
     [SerializeField] float dashCooldown;
+    [SerializeField] Button dashIcon;
     private float dashCounter;
     private float dashCooldownCounter;
-    [SerializeField] Button dashIcon;
 
     private void Start()
     {
         activeMoveSpeed = moveSpeed;
     }
-
     private void FixedUpdate()
     {
         move();
@@ -35,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         rotateTowardsMouse();
         checkDash();
     }
-
     private void move()
     {
         moveInput = GetMoveInput();
@@ -49,14 +45,12 @@ public class PlayerMovement : MonoBehaviour
             rb2d.velocity = Vector2.zero;
         }
     }
-
     private void checkDash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             dash();
         }
-
         if (dashCounter > 0)
         {
             //dashIcon.interactable = false;
@@ -73,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
             dashCooldownCounter -= Time.deltaTime;
         }
     }
-
     private void dash()
     {
         if (dashCooldownCounter <= 0 && dashCounter <= 0)
@@ -82,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
             dashCounter = dashLength;
         }
     }
-
     private Vector2 GetMoveInput()
     {
         // Get input from both keyboard and controller
@@ -95,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
         }
         return moveInput;
     }
-
     private void rotateTowardsMouse()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -103,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
-
     private void rotateTowardsControllerInput()
     {
         Vector2 rotationInput = GetRotationInput();
@@ -114,7 +104,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-
     private Vector2 GetRotationInput()
     {
         // Get input from both keyboard and controller

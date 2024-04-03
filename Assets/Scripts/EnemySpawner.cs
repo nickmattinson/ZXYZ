@@ -7,10 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<Transform> enemySpawnPoints;
     [SerializeField] StateManager stateManager;
     [SerializeField] List<GameObject> enemies;
-
     protected int numberOfSpawns;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
@@ -29,11 +27,5 @@ public class EnemySpawner : MonoBehaviour
                 Debug.Log("Enemy created");
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

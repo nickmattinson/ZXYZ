@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public StateManager stateManager;
     [SerializeField] GameObject player;
     protected GameObject backgroundMusic;
-    // Start is called before the first frame update
+    
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
         Instantiate(medium2TutorialEnemy, medium2TutorialEnemyv2, Quaternion.identity);
         Instantiate(player, Vector2.zero, Quaternion.identity);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -38,6 +37,4 @@ public class GameManager : MonoBehaviour
             stateManager.loadSettings();
         }
     }
-
-
 }

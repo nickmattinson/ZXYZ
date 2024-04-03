@@ -12,10 +12,9 @@ public class AIPathfinding : MonoBehaviour
 
     void Start()
     {
-        // Instantiate the player prefab and assign a reference to the instantiated object
         player = FindObjectOfType<Player>();
     }
-    // Update is called once per frame
+    
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);

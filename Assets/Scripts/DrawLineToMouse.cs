@@ -7,7 +7,6 @@ public class DrawLineToMouse : MonoBehaviour
     public Player player; // Reference to the player's Transform component
     public LineRenderer lineRenderer; // Reference to the LineRenderer component
     private float lineDuration = 0.1f;
-
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -36,7 +35,6 @@ public class DrawLineToMouse : MonoBehaviour
             StartCoroutine(DisableLineRendererAfterDelay());
         }
     }
-
     // Coroutine to disable LineRenderer after specified duration
     private IEnumerator DisableLineRendererAfterDelay()
     {

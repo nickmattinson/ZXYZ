@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class StateManager : MonoBehaviour
 {
-
     public bool gameEnded;
     [SerializeField] GameObject mainMenuCanvas;
     [SerializeField] GameObject settingsCanvas;
@@ -19,12 +18,6 @@ public class StateManager : MonoBehaviour
         mainMenuCanvas.SetActive(true);
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void loadGame()
