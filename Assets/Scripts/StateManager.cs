@@ -24,7 +24,8 @@ public class StateManager : MonoBehaviour
 
     public void loadGame()
     {
-        if(gameEnded == true) {
+        if (gameEnded == true)
+        {
             player.health = 100;
             gameEnded = false;
         }
@@ -40,12 +41,16 @@ public class StateManager : MonoBehaviour
         gameEnded = true;
         Time.timeScale = 0f;
         gameOverCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
+        settingsCanvas.SetActive(false);
     }
 
     public void loadSettings()
     {
         Time.timeScale = 0f;
         settingsCanvas.SetActive(true);
+        gameOverCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(false);
     }
 
     public void quitGame()
