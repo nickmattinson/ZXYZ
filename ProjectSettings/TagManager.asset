@@ -63,6 +63,9 @@ TagManager:
   - name: Player
     uniqueID: 1395417523
     locked: 0
-  - name: HUD
+  - name: HUD_Background
     uniqueID: 1297879805
+    locked: 0
+  - name: HUD_Foreground
+    uniqueID: 36067381
     locked: 0
