@@ -7,6 +7,7 @@ public class AIPathfinding : MonoBehaviour
     public Player player; // Reference to the player prefab
     [SerializeField] float speed;
     [SerializeField] float distanceBetween;
+    [SerializeField] float minimumDistance;
     private float distance;
     [SerializeField] Rigidbody2D rb2dEnemy;
     [SerializeField] float waitTime;
@@ -27,10 +28,17 @@ public class AIPathfinding : MonoBehaviour
         direction.Normalize();
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        if (distance < distanceBetween)
+        if (distance <= distanceBetween && distance >= minimumDistance)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        }
+        else
+        {
+            rb2dEnemy.velocity = Vector2.zero;
+            //transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
+        if(distance <= distanceBetween){
             if (timer <= 0)
             {
                 enemy.attackPlayer();
@@ -40,11 +48,6 @@ public class AIPathfinding : MonoBehaviour
             {
                 timer -= Time.deltaTime;
             }
-        }
-        else
-        {
-            rb2dEnemy.velocity = Vector2.zero;
-            //transform.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }

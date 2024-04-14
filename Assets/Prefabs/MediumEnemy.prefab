@@ -120,6 +120,7 @@ MonoBehaviour:
   player: {fileID: 1219565040742012555, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
   speed: 2
   distanceBetween: 6
+  minimumDistance: 2
   rb2dEnemy: {fileID: 2423566743525873356}
   waitTime: 1
 --- !u!61 &8981216864285716322

@@ -9,6 +9,7 @@ public class StateManager : MonoBehaviour
     [SerializeField] GameObject mainMenuCanvas;
     [SerializeField] GameObject settingsCanvas;
     [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] GameObject gameCanvas;
     private Player player;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class StateManager : MonoBehaviour
         mainMenuCanvas.SetActive(true);
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        gameCanvas.SetActive(false);
     }
 
     public void loadGame()
@@ -31,6 +33,7 @@ public class StateManager : MonoBehaviour
         }
         Debug.Log("playing game");
         Time.timeScale = 1f;
+        gameCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
@@ -43,6 +46,7 @@ public class StateManager : MonoBehaviour
         gameOverCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
+        gameCanvas.SetActive(false);
     }
 
     public void loadSettings()
@@ -51,6 +55,7 @@ public class StateManager : MonoBehaviour
         settingsCanvas.SetActive(true);
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
+        gameCanvas.SetActive(false);
     }
 
     public void quitGame()

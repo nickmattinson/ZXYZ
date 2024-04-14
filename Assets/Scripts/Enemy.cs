@@ -10,7 +10,7 @@ public class Enemy : Entity
         player = FindObjectOfType<Player>();
      }
     public void attackPlayer(){
-        Debug.Log("This enemy has this attack: " +this.attack);
+        Debug.Log("This enemy has this attack: " + this.attack);
         player.TakeDamage(this.attack);
         
     }
