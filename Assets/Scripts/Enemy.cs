@@ -16,6 +16,7 @@ public class Enemy : Entity
     }
     protected override void Die()
     {
+        player.score += 1;
         Destroy(gameObject);
         // Implement enemy-specific death behavior here
     }

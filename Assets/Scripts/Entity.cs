@@ -7,8 +7,8 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] protected int level;
     [SerializeField] public int health;
-    [SerializeField] protected int attack;
-    [SerializeField] protected int defense;
+    [SerializeField] public int attack;
+    [SerializeField] public int defense;
     public GameObject damageNumberPrefab;
     public void TakeDamage(int damage)
     {

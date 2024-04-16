@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public StateManager stateManager;
     [SerializeField] GameObject player;
     protected GameObject backgroundMusic;
-    
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();

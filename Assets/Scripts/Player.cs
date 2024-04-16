@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Entity
 {
     public StateManager stateManager;
+    public int score;
     
     void Start()
     {
