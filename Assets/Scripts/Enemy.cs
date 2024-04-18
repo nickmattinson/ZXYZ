@@ -25,6 +25,9 @@ public class Enemy : Entity
 
     public override string ToString()
     {
-        return $"Enemy: {name}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}, Position: {transform.position}, Spawnpoint: {"hello"}";
+        string temp = $"{base.ToString()}";
+        temp += $", Enemy: {name}";
+        temp += $", Spawnpoint: {"TBD"}";
+        return temp;
     }
 }

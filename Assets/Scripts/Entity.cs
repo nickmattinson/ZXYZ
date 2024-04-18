@@ -42,4 +42,15 @@ public class Entity : MonoBehaviour
         // Override this method in derived classes
         Debug.Log("Entity died!");
     }
+
+
+    public override string ToString()
+    {
+        string temp = $", Level: {level}";
+        temp += $", Health: {health}";
+        temp += $", Defense: {defense}";
+        temp += $", Attack: {attack}";
+        temp += $", Position: {transform.position}";
+        return temp;
+    }
 }
