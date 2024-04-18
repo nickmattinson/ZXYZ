@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  health: 200
+  health: 100
   attack: 5
   defense: 2
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
   stateManager: {fileID: 0}
+  score: 0
 --- !u!114 &6018516841086903793
 MonoBehaviour:
   m_ObjectHideFlags: 0
