@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
         Instantiate(mediumTutorialEnemy, mediumTutorialEnemyv2, Quaternion.identity);
         Instantiate(medium2TutorialEnemy, medium2TutorialEnemyv2, Quaternion.identity);
         Instantiate(player, Vector2.zero, Quaternion.identity);
+
+
+
     }
     
     void Update()

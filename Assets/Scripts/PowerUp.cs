@@ -17,10 +17,16 @@ public class PowerUp : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            // Apply the power-up ability to the player
-            ApplyAbility(player, this.powerUpName);
-            // Destroy the power-up GameObject once the ability is applied
-            Destroy(gameObject);
+            // Apply the power-up ability to non-healthy player
+            if(player.health<100 && this.powerUpName == "HealthUp") {
+                ApplyAbility(player, this.powerUpName);
+                Destroy(gameObject);
+                
+            } else if(this.powerUpName != "HealthUp") {
+                ApplyAbility(player, this.powerUpName); 
+                Destroy(gameObject);
+
+            }
         }
     }
 }

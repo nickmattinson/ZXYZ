@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Entity
@@ -14,6 +15,8 @@ public class Player : Entity
         vector2d.y = 90f;
         stateManager = FindObjectOfType<StateManager>();
         this.transform.position = vector2d;
+
+        Debug.Log(this);
     }
     
     void Update()
@@ -41,10 +44,36 @@ public class Player : Entity
         if(powerUp == "AttackUp"){
             this.attack += 3;
         }
+        if(powerUp == "HealthUp"){
+
+            // check no more than 100
+            this.health += 20;
+
+            if(this.health > 100) {
+                this.health = 100;
+            }
+                
+        }
+
+        if(powerUp == "DefenseUp"){
+
+            // check no more than 100
+            this.defense += 2;
+                
+        }
+
+
+
     }
     protected override void Die()
     {
         Debug.Log("Player died!");
         stateManager.loadGameOver();
+    }
+
+
+    public override string ToString()
+    {
+        return $"Player: {name}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
     }
 }
