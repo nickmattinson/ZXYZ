@@ -61,10 +61,8 @@ public class Player : Entity
             this.defense += 2;
                 
         }
-
-
-
     }
+
     protected override void Die()
     {
         Debug.Log("Player died!");
