@@ -4,17 +4,49 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-     private Player player;
+    private Player player;
+    public LineRenderer lineRenderer;
+    private float lineDuration = 0.1f;
     //[SerializeField] List<Transform> enemySpawnPoints;
 
-     void Start(){
-        player = FindObjectOfType<Player>();
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Player object not found!");
+        }
         Debug.Log(this);
-     }
-    public void attackPlayer(){
+    }
+    public void attackPlayer(Vector3 enemyPosition)
+    {
+        Debug.Log(enemyPosition);
         Debug.Log("This enemy has this attack: " + this.attack);
         player.TakeDamage(this.attack);
-        
+        drawLineToPlayer(enemyPosition);
+
+    }
+    public void drawLineToPlayer(Vector3 enemyPosition)
+    {
+        // Set the positions for the LineRenderer (start and end points)
+        lineRenderer.SetPosition(0, enemyPosition); // Start position: enemy's position
+        lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
+
+        // Enable the LineRenderer to make the line visible
+        lineRenderer.enabled = true;
+
+        // Start coroutine to disable LineRenderer after duration
+        StartCoroutine(DisableLineRendererAfterDelay());
+    }
+    // Coroutine to disable LineRenderer after specified duration
+    private IEnumerator DisableLineRendererAfterDelay()
+    {
+        yield return new WaitForSeconds(lineDuration);
+        lineRenderer.enabled = false;
+    }
+    public void SetPlayerReference(Player player)
+    {
+        this.player = player;
     }
     protected override void Die()
     {
@@ -22,7 +54,6 @@ public class Enemy : Entity
         Destroy(gameObject);
         // Implement enemy-specific death behavior here
     }
-
     public override string ToString()
     {
         string temp = $"{base.ToString()}";

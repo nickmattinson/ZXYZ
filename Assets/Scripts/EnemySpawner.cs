@@ -9,12 +9,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [SerializeField] List<GameObject> enemies;
     protected int numberOfSpawns;
-    
+    private Player player;
+
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
 
-    if (stateManager.gameEnded != true)
+        if (stateManager.gameEnded != true)
         {
             numberOfSpawns = enemySpawnPoints.Count;
             for (int i = 0; i < numberOfSpawns; i++)
@@ -22,11 +23,22 @@ public class EnemySpawner : MonoBehaviour
                 //retrieving spawn point 
                 Transform spawnPoint = enemySpawnPoints[i];
 
-                //THIS LINE WILL BE MODIFIED LATER TO ADJUST FOR DIFFICULTY IF EVER ADDED
-                GameObject currentEnemy = enemies[Random.Range(0, enemies.Count)];
+                // Randomly select an enemy prefab
+                GameObject currentEnemyPrefab = enemies[Random.Range(0, enemies.Count)];
 
-                //create enemy
-                Instantiate(currentEnemy, spawnPoint.position, spawnPoint.rotation);
+                // Create enemy instance
+                GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
+
+                // Set player reference for the enemy
+                Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.SetPlayerReference(player);
+                }
+                else
+                {
+                    Debug.LogWarning("Enemy component not found on instantiated enemy!");
+                }
             }
         }
     }

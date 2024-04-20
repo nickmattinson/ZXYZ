@@ -41,7 +41,7 @@ public class AIPathfinding : MonoBehaviour
         if(distance <= distanceBetween){
             if (timer <= 0)
             {
-                enemy.attackPlayer();
+                enemy.attackPlayer(transform.position);
                 timer = waitTime;
             }
             else
