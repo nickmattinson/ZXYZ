@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
     {
         if (damage > defense)
         {
-            Debug.Log("damage: " + damage + " and defense: " + defense); 
+            //Debug.Log("damage: " + damage + " and defense: " + defense); 
             int actualDamage = damage - defense;
             health -= (actualDamage);
             // Instantiate damage number prefab at enemy's position

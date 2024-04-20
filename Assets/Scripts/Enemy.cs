@@ -20,10 +20,17 @@ public class Enemy : Entity
     }
     public void attackOther(Entity other)
     {
-        //Debug.Log(enemyPosition);
-        Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
-        other.TakeDamage(attack);
-        drawLineToPlayer();
+        
+        // if attack > other.defense then attack
+        if(this.attack > other.defense) {
+            Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
+
+            // call TakeDamage()
+            other.TakeDamage(attack);
+
+            // draw attack line from enemy to other
+            drawLineToPlayer();
+        }
 
     }
     public void drawLineToPlayer()
