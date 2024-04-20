@@ -23,13 +23,13 @@ public class Enemy : Entity
         //Debug.Log(enemyPosition);
         Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
         other.TakeDamage(attack);
-        //drawLineToPlayer(enemyPosition);
+        drawLineToPlayer();
 
     }
-    public void drawLineToPlayer(Vector3 enemyPosition)
+    public void drawLineToPlayer()
     {
         // Set the positions for the LineRenderer (start and end points)
-        lineRenderer.SetPosition(0, enemyPosition); // Start position: enemy's position
+        lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
         lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
 
         // Enable the LineRenderer to make the line visible
