@@ -18,18 +18,25 @@ public class Enemy : Entity
         }
         Debug.Log(this);
     }
-    public void attackPlayer(Vector3 enemyPosition)
+    public void attackOther(Entity other)
     {
-        Debug.Log(enemyPosition);
-        Debug.Log("This enemy has this attack: " + this.attack);
-        player.TakeDamage(this.attack);
-        drawLineToPlayer(enemyPosition);
+        
+        // if attack > other.defense then attack
+        if(this.attack > other.defense) {
+            Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
+
+            // call TakeDamage()
+            other.TakeDamage(attack);
+
+            // draw attack line from enemy to other
+            drawLineToPlayer();
+        }
 
     }
-    public void drawLineToPlayer(Vector3 enemyPosition)
+    public void drawLineToPlayer()
     {
         // Set the positions for the LineRenderer (start and end points)
-        lineRenderer.SetPosition(0, enemyPosition); // Start position: enemy's position
+        lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
         lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
 
         // Enable the LineRenderer to make the line visible

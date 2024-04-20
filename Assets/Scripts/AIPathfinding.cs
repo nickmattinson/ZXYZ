@@ -12,13 +12,13 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] Rigidbody2D rb2dEnemy;
     [SerializeField] float waitTime;
     private float timer = 0f;
-    private Enemy enemy;
+    private List<Enemy> enemies = new List<Enemy>(); // List to store active Enemy objects
 
     void Start()
     {
         timer = waitTime;
         player = FindObjectOfType<Player>();
-        enemy = FindObjectOfType<Enemy>();
+        FindActiveEnemies(); // Find all active Enemy objects at the start
     }
 
     void Update()
@@ -36,18 +36,43 @@ public class AIPathfinding : MonoBehaviour
         else
         {
             rb2dEnemy.velocity = Vector2.zero;
-            //transform.rotation = Quaternion.Euler(Vector3.zero);
         }
-        if(distance <= distanceBetween){
-            if (timer <= 0)
+
+        // Check each enemy in the list
+        FindActiveEnemies();
+        foreach (Enemy enemy in enemies)
+        {
+            if (distance <= distanceBetween)
             {
-                enemy.attackPlayer(transform.position);
-                timer = waitTime;
-            }
-            else
-            {
-                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    enemy.attackOther(player);
+                    timer = waitTime;
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
             }
         }
     }
+
+void FindActiveEnemies()
+{
+    // Find all Enemy objects in the scene
+    Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+
+    // Clear the current list of enemies
+    enemies.Clear();
+
+    // Loop through each enemy to check if it's within range of the player
+    foreach (Enemy enemy in allEnemies)
+    {
+        float distanceToPlayer = Vector2.Distance(enemy.transform.position, player.transform.position);
+        if (distanceToPlayer <= distanceBetween)
+        {
+            enemies.Add(enemy); // Add the enemy to the list if it's within range
+        }
+    }
+}
 }
