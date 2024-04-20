@@ -18,12 +18,12 @@ public class Enemy : Entity
         }
         Debug.Log(this);
     }
-    public void attackPlayer(Vector3 enemyPosition)
+    public void attackOther(Entity other)
     {
-        Debug.Log(enemyPosition);
-        Debug.Log("This enemy has this attack: " + this.attack);
-        player.TakeDamage(this.attack);
-        drawLineToPlayer(enemyPosition);
+        //Debug.Log(enemyPosition);
+        Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
+        other.TakeDamage(attack);
+        //drawLineToPlayer(enemyPosition);
 
     }
     public void drawLineToPlayer(Vector3 enemyPosition)
