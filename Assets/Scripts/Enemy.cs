@@ -9,6 +9,9 @@ public class Enemy : Entity
     private float lineDuration = 0.1f;
     
     [SerializeField] List<GameObject> powerupList;
+    [SerializeField] List<GameObject> enemyTypeList;
+
+    [SerializeField] int randomNumber;
 
     private Vector3 spawnPosition;
 
@@ -45,6 +48,11 @@ public class Enemy : Entity
         this.spawnPosition = spawnPosition;
     }
 
+
+    public Vector3 GetSpawnPosition() {
+        return spawnPosition;
+    }
+
     public void drawLineToPlayer()
     {
         // Set the positions for the LineRenderer (start and end points)
@@ -79,20 +87,30 @@ public class Enemy : Entity
 
 
         // step 2 - drop a random buf at death position randomly
-        GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
-        GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
-        Debug.Log($"Power up {powerupInstance} created.");
+        int rn = Random.Range(0,100);
+        //Debug.Log($"Random number: {randomNumber}");
+        if(rn>=randomNumber) {
+            GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
+            GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
+            Debug.Log($"Power up {powerupInstance} created.");
+        }
 
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
+        SpawnEnemy();
+
 
 
 
         // destroy object
-        Destroy(gameObject);
+        //Destroy(gameObject);
         // Implement enemy-specific death behavior here
     }
 
-
+    public void SpawnEnemy(){
+        GameObject currentEnemyPrefab = enemyTypeList[Random.Range(0, enemyTypeList.Count)];
+        GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
+        Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
+    }
 
     public override string ToString()
     {
