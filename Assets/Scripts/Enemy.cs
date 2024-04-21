@@ -102,7 +102,7 @@ public class Enemy : Entity
 
 
         // destroy object
-        //Destroy(gameObject);
+        Destroy(gameObject);
         // Implement enemy-specific death behavior here
     }
 
