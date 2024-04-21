@@ -9,6 +9,9 @@ public class Enemy : Entity
     private float lineDuration = 0.1f;
     //[SerializeField] List<Transform> enemySpawnPoints;
 
+    private Vector3 spawnPosition;
+
+    private Vector3 deathPosition;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -17,6 +20,9 @@ public class Enemy : Entity
             Debug.LogError("Player object not found!");
         }
         Debug.Log(this);
+
+        // set the spawn position
+        //spawnPosition = transform.position;
     }
     public void attackOther(Entity other)
     {
@@ -33,6 +39,11 @@ public class Enemy : Entity
         }
 
     }
+
+    public void SetSpawnPosition(Vector3 spawnPosition) {
+        this.spawnPosition = spawnPosition;
+    }
+
     public void drawLineToPlayer()
     {
         // Set the positions for the LineRenderer (start and end points)
@@ -65,7 +76,7 @@ public class Enemy : Entity
     {
         string temp = $"{base.ToString()}";
         temp += $", Enemy: {name}";
-        temp += $", Spawnpoint: {"TBD"}";
+        temp += $", Spawnpoint: {spawnPosition}";
         return temp;
     }
 }

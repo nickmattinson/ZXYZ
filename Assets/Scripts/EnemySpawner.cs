@@ -31,8 +31,11 @@ public class EnemySpawner : MonoBehaviour
 
                 // Set player reference for the enemy
                 Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
+
+                // set player reference
                 if (enemyComponent != null)
                 {
+                    enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
                     enemyComponent.SetPlayerReference(player);
                 }
                 else
