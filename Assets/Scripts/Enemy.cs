@@ -109,6 +109,20 @@ public class Enemy : Entity
     public void SpawnEnemy(){
         GameObject currentEnemyPrefab = enemyTypeList[Random.Range(0, enemyTypeList.Count)];
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
+ // Set player reference for the enemy
+        Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
+
+        // set player reference
+        if (enemyComponent != null)
+        {
+            enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
+            enemyComponent.SetPlayerReference(player);
+        }
+        else
+        {
+            Debug.LogWarning("Enemy component not found on instantiated enemy!");
+        }
+
         Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
     }
 
