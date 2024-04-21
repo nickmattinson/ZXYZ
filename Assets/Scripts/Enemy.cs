@@ -26,9 +26,10 @@ public class Enemy : Entity
     }
     public void attackOther(Entity other)
     {
-        
+
         // if attack > other.defense then attack
-        if(this.attack > other.defense) {
+        if (this.attack > other.defense)
+        {
             Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
 
             // call TakeDamage()
@@ -40,12 +41,14 @@ public class Enemy : Entity
 
     }
 
-    public void SetSpawnPosition(Vector3 spawnPosition) {
+    public void SetSpawnPosition(Vector3 spawnPosition)
+    {
         this.spawnPosition = spawnPosition;
     }
 
 
-    public Vector3 GetSpawnPosition() {
+    public Vector3 GetSpawnPosition()
+    {
         return spawnPosition;
     }
 
@@ -76,15 +79,16 @@ public class Enemy : Entity
     protected override void Die()
     {
         player.score += 1;
-        
+
         // step 1 - set death position
         deathPosition = transform.position;
         Debug.Log($"Enemy {name} was killed by player {player.name} at position {deathPosition}.");
 
         // step 2 - drop a random buf at death position randomly
-        int rn = Random.Range(0,100);
+        int rn = Random.Range(0, 100);
         //Debug.Log($"Random number: {randomNumber}");
-        if(rn>=randomNumber) {
+        if (rn >= randomNumber)
+        {
             GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
             Debug.Log($"Power up {powerupInstance} created.");
@@ -106,10 +110,11 @@ public class Enemy : Entity
         Destroy(gameObject);
     }
 
-    public void SpawnEnemy(){
+    public void SpawnEnemy()
+    {
         GameObject currentEnemyPrefab = enemyTypeList[Random.Range(0, enemyTypeList.Count)];
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
- 
+
         // Set player reference for the enemy
         Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
 
