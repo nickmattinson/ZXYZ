@@ -84,8 +84,53 @@ PrefabInstance:
       propertyPath: defense
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: randomNumber
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: enemyTypeList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: c3f35f06799bfdf439b08bd7f8bc435f, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[1]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: 0e3e0c59de22adf4eaa33e40c0e8b49e, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: enemyTypeList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: enemyTypeList.Array.data[1]
+      value: 
+      objectReference: {fileID: 3181638798745600734}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: enemyTypeList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: enemyTypeList.Array.data[3]
+      value: 
+      objectReference: {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+--- !u!1 &3181638798745600734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+  m_PrefabInstance: {fileID: 6387086689855423303}
+  m_PrefabAsset: {fileID: 0}
