@@ -85,6 +85,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: spawnDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
       propertyPath: randomNumber
       value: 75
       objectReference: {fileID: 0}

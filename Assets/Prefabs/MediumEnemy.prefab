@@ -117,6 +117,7 @@ MonoBehaviour:
   - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
   - {fileID: 8395851137816740249}
   randomNumber: 75
+  spawnDelay: 2
 --- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0
