@@ -84,6 +84,22 @@ PrefabInstance:
       propertyPath: defense
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: c3f35f06799bfdf439b08bd7f8bc435f, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[1]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: 0e3e0c59de22adf4eaa33e40c0e8b49e, type: 3}
+    - target: {fileID: 8485421051505106814, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: powerupList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

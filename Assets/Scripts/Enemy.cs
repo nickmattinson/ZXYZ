@@ -7,7 +7,8 @@ public class Enemy : Entity
     private Player player;
     public LineRenderer lineRenderer;
     private float lineDuration = 0.1f;
-    //[SerializeField] List<Transform> enemySpawnPoints;
+    
+    [SerializeField] List<GameObject> powerupList;
 
     private Vector3 spawnPosition;
 
@@ -66,12 +67,33 @@ public class Enemy : Entity
     {
         this.player = player;
     }
+
+
     protected override void Die()
     {
         player.score += 1;
+        
+        // step 1 - set death position
+        deathPosition = transform.position;
+        Debug.Log($"Enemy {name} was killed by player {player.name} at position {deathPosition}.");
+
+
+        // step 2 - drop a random buf at death position randomly
+        GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
+        GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
+        Debug.Log($"Power up {powerupInstance} created.");
+
+        // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
+
+
+
+        // destroy object
         Destroy(gameObject);
         // Implement enemy-specific death behavior here
     }
+
+
+
     public override string ToString()
     {
         string temp = $"{base.ToString()}";
