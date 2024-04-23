@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             activeMoveSpeed = dashSpeed;
             dashCounter = dashLength;
+            //dashIcon.interactable = true;
         }
     }
     private Vector2 GetMoveInput()

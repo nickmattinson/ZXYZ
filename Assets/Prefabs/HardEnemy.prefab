@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 3
-  health: 30
+  health: 25
   attack: 7
-  defense: 7
+  defense: 6
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
   lineRenderer: {fileID: 5739143513441457547}
   powerupList:

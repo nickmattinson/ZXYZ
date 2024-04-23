@@ -10,11 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3384500580506265234, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
       propertyPath: waitTime
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3384500580506265234, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
       propertyPath: distanceBetween
-      value: 5
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384500580506265234, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: minimumDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5561803267936174639, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
       propertyPath: m_Color.b
