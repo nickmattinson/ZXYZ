@@ -37,6 +37,14 @@ public class Player : Entity
                     Debug.Log("Player's attack is " + attack);
                     enemy.TakeDamage(this.attack);
                 }
+
+                TutorialEnemy tutorialEnemy = hit.collider.GetComponent<TutorialEnemy>();
+                if (tutorialEnemy != null)
+                {
+                    // Deal damage to the enemy
+                    Debug.Log("Player's attack is " + attack);
+                    tutorialEnemy.TakeDamage(this.attack);
+                }
             }
         }
     }

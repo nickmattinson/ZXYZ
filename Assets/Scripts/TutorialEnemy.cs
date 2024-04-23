@@ -59,7 +59,8 @@ public class TutorialEnemy : Entity
 
     protected override void Die()
     {
-        Destroy(this);
+        Destroy(gameObject);
+        Debug.Log("Tutorial enemy died.");
     }
 
     public override string ToString()
