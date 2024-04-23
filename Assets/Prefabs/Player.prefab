@@ -125,7 +125,7 @@ MonoBehaviour:
   rb2d: {fileID: 375280075916820702}
   dashSpeed: 10
   dashLength: 0.5
-  dashCooldown: 2
+  dashCooldown: 0.5
   dashIcon: {fileID: 3908099175971792065, guid: 8d962d445b753dd499c1d1ec84cae9d5, type: 3}
 --- !u!50 &375280075916820702
 Rigidbody2D:
