@@ -7,7 +7,7 @@ public class Player : Entity
 {
     public StateManager stateManager;
     public int score;
-    
+
     void Start()
     {
         Vector2 vector2d = new Vector2();
@@ -18,7 +18,7 @@ public class Player : Entity
 
         Debug.Log(this);
     }
-    
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -37,29 +37,42 @@ public class Player : Entity
                     Debug.Log("Player's attack is " + attack);
                     enemy.TakeDamage(this.attack);
                 }
+
+                TutorialEnemy tutorialEnemy = hit.collider.GetComponent<TutorialEnemy>();
+                if (tutorialEnemy != null)
+                {
+                    // Deal damage to the enemy
+                    Debug.Log("Player's attack is " + attack);
+                    tutorialEnemy.TakeDamage(this.attack);
+                }
             }
         }
     }
-    public void ActivatePowerUp(string powerUp){
-        if(powerUp == "AttackUp"){
-            this.attack += 3;
+    public void ActivatePowerUp(string powerUp)
+    {
+        if (powerUp == "AttackUp")
+        {
+            this.attack += 2;
         }
-        if(powerUp == "HealthUp"){
+        if (powerUp == "HealthUp")
+        {
 
             // check no more than 100
-            this.health += 20;
+            this.health += 100;
 
-            if(this.health > 100) {
-                this.health = 100;
+            if (this.health > 1000)
+            {
+                this.health = 1000;
             }
-                
+
         }
 
-        if(powerUp == "DefenseUp"){
+        if (powerUp == "DefenseUp")
+        {
 
             // check no more than 100
             this.defense += 2;
-                
+
         }
     }
 

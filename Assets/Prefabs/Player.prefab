@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  health: 10000
+  health: 1000
   attack: 5
   defense: 2
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
@@ -125,8 +125,8 @@ MonoBehaviour:
   rb2d: {fileID: 375280075916820702}
   dashSpeed: 10
   dashLength: 0.5
-  dashCooldown: 1.5
-  dashIcon: {fileID: 0}
+  dashCooldown: 0.5
+  dashIcon: {fileID: 3908099175971792065, guid: 8d962d445b753dd499c1d1ec84cae9d5, type: 3}
 --- !u!50 &375280075916820702
 Rigidbody2D:
   serializedVersion: 4
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
