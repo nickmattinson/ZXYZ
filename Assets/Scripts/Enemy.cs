@@ -99,16 +99,24 @@ public class Enemy : Entity
         transform.position = new Vector3(1000f, 1000f, transform.position.z);
     }
 
-    IEnumerator SpawnEnemyWithDelay()
-    {
-        float spawnDelay = 2f;
-        // Wait for the specified delay
-        yield return new WaitForSeconds(spawnDelay);
-        // Spawn the enemy after the delay
-        SpawnEnemy();
-        // destroy object
-        Destroy(gameObject);
-    }
+IEnumerator SpawnEnemyWithDelay()
+{
+    float minimum = 4f; // 4 seconds
+    float maximum = 10f; // 10 seconds
+
+    // Generate a random spawn delay within the specified range
+    float spawnDelay = Random.Range(minimum, maximum);
+
+    // Wait for the specified delay
+    yield return new WaitForSeconds(spawnDelay);
+
+    // Spawn the enemy after the delay
+    SpawnEnemy();
+
+    // Destroy the object (assuming this script is attached to the object you want to destroy)
+    Destroy(gameObject);
+}
+
 
     public void SpawnEnemy()
     {
