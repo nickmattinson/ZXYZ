@@ -80,7 +80,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        Debug.Log("Player died!");
+        Debug.Log($"Player has died. Score: {score}");
         scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
