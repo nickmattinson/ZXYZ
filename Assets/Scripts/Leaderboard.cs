@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -19,7 +18,7 @@ public class Leaderboard : MonoBehaviour
         LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, ((msg) =>
         {
             int loopLength = (msg.Length < names.Count) ? msg.Length : names.Count;
-            for (int i = 0; i < loopLength; i++)
+            for (int i = 0; i < loopLength; ++i)
             {
                 names[i].text = msg[i].Username;
                 scores[i].text = msg[i].Score.ToString();
@@ -31,6 +30,11 @@ public class Leaderboard : MonoBehaviour
     {
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username, score, ((msg) =>
         {
+            // limit username length...
+
+            // check for and remove bad words
+
+            // update leader board
             GetLeaderboard();
         }));
     }

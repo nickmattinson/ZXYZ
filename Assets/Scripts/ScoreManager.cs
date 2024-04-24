@@ -4,8 +4,8 @@ using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI inputScore;
-    [SerializeField] TextMeshProUGUI inputName;
+    [SerializeField] private TextMeshProUGUI inputScore;
+    [SerializeField] private TMP_InputField inputName;
     public UnityEvent<string, int> submitScoreEvent;
 
     public void SubmitScore(){
