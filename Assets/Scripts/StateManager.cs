@@ -10,6 +10,7 @@ public class StateManager : MonoBehaviour
     [SerializeField] GameObject settingsCanvas;
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] GameObject gameCanvas;
+    [SerializeField] GameObject leaderboardCanvas;
     private Player player;
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class StateManager : MonoBehaviour
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
         gameCanvas.SetActive(false);
+        leaderboardCanvas.SetActive(false);
     }
 
     public void loadGame()
@@ -37,6 +39,8 @@ public class StateManager : MonoBehaviour
         mainMenuCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
+        leaderboardCanvas.SetActive(false);
+
     }
 
     public void loadGameOver()
@@ -47,12 +51,24 @@ public class StateManager : MonoBehaviour
         mainMenuCanvas.SetActive(false);
         settingsCanvas.SetActive(false);
         gameCanvas.SetActive(false);
+        leaderboardCanvas.SetActive(false);
+
     }
 
     public void loadSettings()
     {
         Time.timeScale = 0f;
         settingsCanvas.SetActive(true);
+        gameOverCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(false);
+        gameCanvas.SetActive(false);
+        leaderboardCanvas.SetActive(false);
+
+    }
+
+    public void loadLeaderboard(){
+        leaderboardCanvas.SetActive(true);
+        settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
         gameCanvas.SetActive(false);

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class Player : Entity
 {
     public StateManager stateManager;
     public int score;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     void Start()
     {
@@ -79,6 +81,7 @@ public class Player : Entity
     protected override void Die()
     {
         Debug.Log("Player died!");
+        scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
 
