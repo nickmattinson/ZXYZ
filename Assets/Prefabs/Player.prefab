@@ -108,7 +108,6 @@ MonoBehaviour:
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
   stateManager: {fileID: 0}
   score: 0
-  scoreText: {fileID: 5214031460032258787, guid: 30f1a91f3d17c5648a7596b651d18347, type: 3}
 --- !u!114 &6018516841086903793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +126,7 @@ MonoBehaviour:
   dashSpeed: 10
   dashLength: 0.5
   dashCooldown: 0.5
-  dashIcon: {fileID: 3908099175971792065, guid: 8d962d445b753dd499c1d1ec84cae9d5, type: 3}
+  dashIcon: {fileID: 0}
 --- !u!50 &375280075916820702
 Rigidbody2D:
   serializedVersion: 4
