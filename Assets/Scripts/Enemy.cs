@@ -100,6 +100,13 @@ public class Enemy : Entity
     }
 
 IEnumerator SpawnEnemyWithDelay()
+/*
+    Modify random spawn rate
+    Randomly respawn between 4 and 10 seconds.
+    Author: ChatGPT3.5
+    Author: Mike M
+    Modified: 23/Apr/24
+*/
 {
     float minimum = 4f; // 4 seconds
     float maximum = 10f; // 10 seconds
