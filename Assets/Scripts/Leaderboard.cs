@@ -6,8 +6,10 @@ public class Leaderboard : MonoBehaviour
 {
     [SerializeField] List<TextMeshProUGUI> names;
     [SerializeField] List<TextMeshProUGUI> scores;
+
+    [SerializeField] private Player player;
     
-    private string publicLeaderboardKey = "92239d73401c9a75f4c7fbd1faa2e13537dc51181ac7746d9384de4580a05ccc";
+    private string publicLeaderboardKey = "93f3cc82eca0ca333cde25f1d919a35511cf3653ec219ac03c9dfdc903008ad8";
 
     private void Start(){
         GetLeaderboard();
@@ -28,6 +30,13 @@ public class Leaderboard : MonoBehaviour
 
     public void SetLeaderboardEntry(string username, int score)
     {
+        // get player score
+        player = FindObjectOfType<Player>();
+        score = player.score;
+
+        // set score to player's score
+
+
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username, score, ((msg) =>
         {
             // limit username length...

@@ -8,8 +8,17 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputName;
     public UnityEvent<string, int> submitScoreEvent;
 
+    [SerializeField] private Player player;
+
     public void SubmitScore(){
-        submitScoreEvent.Invoke(inputName.text, int.Parse(inputScore.text));
+
+        // use player's score
+        player = FindObjectOfType<Player>();
+
+        // update the input for score to player's score
+        inputScore.text = $"{player.score}";
+
+        submitScoreEvent.Invoke(inputName.text, player.score);
     }
 
 }
