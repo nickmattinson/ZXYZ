@@ -30,7 +30,7 @@ public class StateManager : MonoBehaviour
     {
         if (gameEnded == true)
         {
-            player.health = 100;
+            player.health = 1000;
             gameEnded = false;
         }
         Debug.Log("playing game");
