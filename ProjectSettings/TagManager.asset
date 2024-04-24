@@ -8,6 +8,8 @@ TagManager:
   - Spawner
   - GameManager
   - DamageNumber
+  - TutorialEnemy
+  - Score
   layers:
   - Default
   - TransparentFX
