@@ -18,7 +18,7 @@ public class PowerUp : MonoBehaviour
         if (player != null)
         {
             // Apply the power-up ability to non-healthy player
-            if(player.health<100 && this.powerUpName == "HealthUp") {
+            if(player.health<1000 && this.powerUpName == "HealthUp") {
                 ApplyAbility(player, this.powerUpName);
                 Destroy(gameObject);
                 

@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class Player : Entity
 {
     public StateManager stateManager;
     public int score;
 
+    public string username;
+
+    private TextMeshProUGUI scoreText;
+
     void Start()
     {
+        //scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
         Vector2 vector2d = new Vector2();
         vector2d.x = 0f;
         vector2d.y = 90f;
@@ -78,13 +84,14 @@ public class Player : Entity
 
     protected override void Die()
     {
-        Debug.Log("Player died!");
+        Debug.Log($"Player: {username} has died. Score: {score}");
+        //scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
 
 
     public override string ToString()
     {
-        return $"Player: {name}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
+        return $"Player: {username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
     }
 }

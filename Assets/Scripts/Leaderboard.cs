@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -7,8 +6,10 @@ public class Leaderboard : MonoBehaviour
 {
     [SerializeField] List<TextMeshProUGUI> names;
     [SerializeField] List<TextMeshProUGUI> scores;
+
+    [SerializeField] private Player player;
     
-    private string publicLeaderboardKey = "afda8d145818a69398e545172431bec149c265b4520798e13ef476a097d950f3";
+    private string publicLeaderboardKey = "93f3cc82eca0ca333cde25f1d919a35511cf3653ec219ac03c9dfdc903008ad8";
 
     private void Start(){
         GetLeaderboard();
@@ -19,7 +20,7 @@ public class Leaderboard : MonoBehaviour
         LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, ((msg) =>
         {
             int loopLength = (msg.Length < names.Count) ? msg.Length : names.Count;
-            for (int i = 0; i < loopLength; i++)
+            for (int i = 0; i < loopLength; ++i)
             {
                 names[i].text = msg[i].Username;
                 scores[i].text = msg[i].Score.ToString();
@@ -29,8 +30,14 @@ public class Leaderboard : MonoBehaviour
 
     public void SetLeaderboardEntry(string username, int score)
     {
+
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username, score, ((msg) =>
         {
+            // limit username length...
+
+            // check for and remove bad words
+
+            // update leader board
             GetLeaderboard();
         }));
     }

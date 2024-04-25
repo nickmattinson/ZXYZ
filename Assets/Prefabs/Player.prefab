@@ -126,7 +126,7 @@ MonoBehaviour:
   dashSpeed: 10
   dashLength: 0.5
   dashCooldown: 0.5
-  dashIcon: {fileID: 3908099175971792065, guid: 8d962d445b753dd499c1d1ec84cae9d5, type: 3}
+  dashIcon: {fileID: 0}
 --- !u!50 &375280075916820702
 Rigidbody2D:
   serializedVersion: 4
