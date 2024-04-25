@@ -8,6 +8,9 @@ public class Player : Entity
 {
     public StateManager stateManager;
     public int score;
+
+    public string username;
+
     private TextMeshProUGUI scoreText;
 
     void Start()
@@ -81,7 +84,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        Debug.Log($"Player has died. Score: {score}");
+        Debug.Log($"Player: {username} has died. Score: {score}");
         //scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
@@ -89,6 +92,6 @@ public class Player : Entity
 
     public override string ToString()
     {
-        return $"Player: {name}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
+        return $"Player: {username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
     }
 }
