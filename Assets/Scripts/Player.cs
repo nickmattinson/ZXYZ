@@ -13,6 +13,20 @@ public class Player : Entity
 
     private TextMeshProUGUI scoreText;
 
+
+    public Player(){
+        // Player constructor
+        
+        score = 0;
+        level = 1;
+        attack = 2;
+        defense = 1;
+        username = "Unknown player";
+        Debug.Log($"Player constructor - {this}");
+
+    }
+
+
     void Start()
     {
         //scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
@@ -22,7 +36,9 @@ public class Player : Entity
         stateManager = FindObjectOfType<StateManager>();
         this.transform.position = vector2d;
 
-        Debug.Log(this);
+        // get player prefs PlayerUserName
+        username = PlayerPrefs.GetString("PlayerUserName");
+
     }
 
     void Update()

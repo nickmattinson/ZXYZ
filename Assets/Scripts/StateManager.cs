@@ -53,9 +53,9 @@ public class StateManager : MonoBehaviour
 
     public void loadGame()
     {
-        // Make sure inputName is assigned correctly in the Unity Editor
+        // Check if inputName is assigned and not empty
         if (inputName != null && !string.IsNullOrEmpty(inputName.text)) {
-            player.username = playerprefText.text;
+            player.username = inputName.text;
             PlayerPrefs.SetString("PlayerUserName", player.username);
             usernameText.text = player.username; // Update UI
         } else {
@@ -64,12 +64,11 @@ public class StateManager : MonoBehaviour
             usernameText.text = player.username; // Update UI
         }
 
-        if (gameEnded == true)
-        {
-            player.health = 1000;
-            gameEnded = false;
-        }
-        Debug.Log($"{player.username} playing game.");
+        // Debug logs to check values
+        Debug.Log("Player Username to save: " + player.username);
+        Debug.Log("Player Username saved in PlayerPrefs: " + PlayerPrefs.GetString("PlayerUserName"));
+
+        // Rest of your code...
         Time.timeScale = 1f;
         gameCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
