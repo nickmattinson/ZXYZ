@@ -22,7 +22,8 @@ public class Player : Entity
         attack = 2;
         defense = 1;
         username = "Unknown player";
-        Debug.Log($"Player constructor - {this}");
+
+        Debug.Log($"Construct Player: {this}"); // debug
 
     }
 
@@ -37,7 +38,9 @@ public class Player : Entity
         this.transform.position = vector2d;
 
         // get player prefs PlayerUserName
-        username = PlayerPrefs.GetString("PlayerUserName");
+        username = "";
+
+        Debug.Log($"Start Player: {this}"); // debug
 
     }
 
@@ -100,7 +103,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        Debug.Log($"Player: {username} has died. Score: {score}");
+        Debug.Log($"Player {username} has died. Score: {score}");
         //scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
@@ -108,6 +111,6 @@ public class Player : Entity
 
     public override string ToString()
     {
-        return $"Player: {username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
+        return $"{username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
     }
 }
