@@ -9,7 +9,7 @@ public class Leaderboard : MonoBehaviour
 
     //[SerializeField] private Player player;
     
-    private string publicLeaderboardKey = "4e342c57b59361ed80aa395ca3829dd871cbba198a90e1f4a05d11143cdebeed";
+    private string publicLeaderboardKey = "e3ba01794dd0b95ea3dd5b187b2ec726b9ce525067840c327b0a780e8261344f";
 
     private void Start(){
         GetLeaderboard();

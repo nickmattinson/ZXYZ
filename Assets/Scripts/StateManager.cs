@@ -84,9 +84,6 @@ public class StateManager : MonoBehaviour
 
     public void loadGameOver()
     {
-
-
-
         gameEnded = true;
         Time.timeScale = 0f;
         gameOverCanvas.SetActive(true);
