@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,8 @@ public class StateManager : MonoBehaviour
     [SerializeField] GameObject gameCanvas;
     [SerializeField] GameObject leaderboardCanvas;
     private Player player;
+
+    [SerializeField] private TextMeshProUGUI inputScore;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +75,9 @@ public class StateManager : MonoBehaviour
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
         gameCanvas.SetActive(false);
+
+        // update the input for score to player's score
+        inputScore.text = $"{player.score}";
     }
 
     public void quitGame()

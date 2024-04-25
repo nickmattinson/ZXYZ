@@ -31,8 +31,8 @@ public class Leaderboard : MonoBehaviour
     public void SetLeaderboardEntry(string username, int score)
     {
         // get player score
-        player = FindObjectOfType<Player>();
-        score = player.score;
+        //player = FindObjectOfType<Player>();
+        //score = player.score;
 
         // set score to player's score
 
