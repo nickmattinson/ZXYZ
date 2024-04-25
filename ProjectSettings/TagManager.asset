@@ -8,6 +8,7 @@ TagManager:
   - Spawner
   - GameManager
   - DamageNumber
+  - TutorialEnemy
   layers:
   - Default
   - TransparentFX
@@ -54,11 +55,11 @@ TagManager:
   - name: Structures
     uniqueID: 427011861
     locked: 0
-  - name: Enemy
-    uniqueID: 2322165293
-    locked: 0
   - name: PowerUps
     uniqueID: 1217463591
+    locked: 0
+  - name: Enemy
+    uniqueID: 2322165293
     locked: 0
   - name: Player
     uniqueID: 1395417523
