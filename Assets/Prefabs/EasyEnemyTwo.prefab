@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2423566743525873356, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423566743525873356, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2423566743525873356, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3384500580506265234, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
       propertyPath: waitTime
       value: 3

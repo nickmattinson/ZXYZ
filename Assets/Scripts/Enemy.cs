@@ -12,6 +12,8 @@ public class Enemy : Entity
     [SerializeField] int randomNumber;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
+
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
