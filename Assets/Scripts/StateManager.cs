@@ -14,32 +14,28 @@ public class StateManager : MonoBehaviour
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] GameObject gameCanvas;
     [SerializeField] GameObject leaderboardCanvas;
-    private Player player;
+    [SerializeField] private Player player;
 
     public UnityEvent<string, int> submitScoreEvent;
 
-    //[SerializeField] private TextMeshProUGUI inputScore;
+    //[SerializeField] private TextMeshProUGUI scoreValue;
 
-    [SerializeField] private TextMeshProUGUI inputName;
-    [SerializeField] private TextMeshProUGUI usernameText;
-
-    [SerializeField] private TextMeshProUGUI playerprefText;
+    [SerializeField] private TMP_InputField usernameInput;
+    [SerializeField] private TextMeshProUGUI usernameIngame; // display
+    //[SerializeField] private TextMeshProUGUI playerprefText;
 
     // Start is called before the first frame update
     void Start()
     {
-        // player reference
+        // Check if PlayerPrefs has a stored username
         player = FindObjectOfType<Player>();
-
-        // look for current player pref
-        //if(!string.IsNullOrEmpty(PlayerPrefs.GetString("PlayerUserName")))
-        Debug.Log($"Starting StateManager before - PlayerPrefs Username: {PlayerPrefs.GetString("PlayerUserName")}");
-        if(!string.IsNullOrEmpty(PlayerPrefs.GetString("PlayerUserName"))){
-            player.username = PlayerPrefs.GetString("PlayerUserName");
-            playerprefText.text = PlayerPrefs.GetString("PlayerUserName");
-            //usernameText.text = player.username;
-        }       
-        Debug.Log($"Starting StateManager after - PlayerPrefs Username: {PlayerPrefs.GetString("PlayerUserName")}");
+        string storedUsername = PlayerPrefs.GetString("PlayerUserName");
+        if (!string.IsNullOrEmpty(storedUsername))
+        {
+            // Set usernameInput and usernameIngame
+            usernameInput.text = storedUsername;
+            usernameIngame.text = storedUsername;
+        }
 
         // setup the canvas
         gameEnded = false;
@@ -53,23 +49,30 @@ public class StateManager : MonoBehaviour
 
     public void loadGame()
     {
-        // Make sure inputName is assigned correctly in the Unity Editor
-        if (inputName != null && !string.IsNullOrEmpty(inputName.text)) {
-            player.username = playerprefText.text;
+
+        //Check if input is provided in usernameInput
+        if (!string.IsNullOrEmpty(usernameInput.text))
+        {
+            // Set player.username using usernameInput
+            player.username = usernameInput.text;
             PlayerPrefs.SetString("PlayerUserName", player.username);
-            usernameText.text = player.username; // Update UI
-        } else {
-            player.username = "Player"; // Default username
+        }
+        else
+        {
+            // Set a default username
+            player.username = "Player";
             PlayerPrefs.SetString("PlayerUserName", player.username);
-            usernameText.text = player.username; // Update UI
         }
 
-        if (gameEnded == true)
-        {
-            player.health = 1000;
-            gameEnded = false;
-        }
-        Debug.Log($"{player.username} playing game.");
+        // Update usernameIngame
+        usernameIngame.text = player.username;
+
+        // Debug logs to check values
+        Debug.Log("Player Username to save: " + player.username);
+        Debug.Log("Player Username saved in PlayerPrefs: " + PlayerPrefs.GetString("PlayerUserName"));
+
+
+        // Rest of your code...
         Time.timeScale = 1f;
         gameCanvas.SetActive(true);
         mainMenuCanvas.SetActive(false);
