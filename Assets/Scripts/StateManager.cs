@@ -105,19 +105,39 @@ public class StateManager : MonoBehaviour
 
     }
 
-    public void loadLeaderboard(){
+public void loadLeaderboard()
+{
+    //Check if input is provided in usernameInput
+    if (!string.IsNullOrEmpty(usernameInput.text))
+    {
+        // Set player.username using usernameInput
+        player.username = usernameInput.text;
+        PlayerPrefs.SetString("PlayerUserName", player.username);
+    }
+    else
+    {
+        // Set a default username
+        player.username = "Player";
+        PlayerPrefs.SetString("PlayerUserName", player.username);
+    }
 
-        // update high score
+    if (!string.IsNullOrEmpty(player.username))
+    {
+        // Update high score
         submitScoreEvent.Invoke(player.username, player.score);
         Debug.Log($"Loading leaderboard - Player: {player.username}, Score: {player.score}");
-    
+
         leaderboardCanvas.SetActive(true);
         settingsCanvas.SetActive(false);
         gameOverCanvas.SetActive(false);
         mainMenuCanvas.SetActive(false);
         gameCanvas.SetActive(false);
-
     }
+    else
+    {
+        Debug.LogError("Player username is null or empty when loading leaderboard!");
+    }
+}
 
     public void quitGame()
     {
