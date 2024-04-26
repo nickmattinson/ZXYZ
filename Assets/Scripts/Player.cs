@@ -13,6 +13,21 @@ public class Player : Entity
 
     private TextMeshProUGUI scoreText;
 
+
+    public Player(){
+        // Player constructor
+        
+        score = 0;
+        level = 1;
+        attack = 2;
+        defense = 1;
+        username = "Unknown player";
+
+        Debug.Log($"Construct Player: {this}"); // debug
+
+    }
+
+
     void Start()
     {
         //scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
@@ -22,7 +37,11 @@ public class Player : Entity
         stateManager = FindObjectOfType<StateManager>();
         this.transform.position = vector2d;
 
-        Debug.Log(this);
+        // get player prefs PlayerUserName
+        username = "";
+
+        Debug.Log($"Start Player: {this}"); // debug
+
     }
 
     void Update()
@@ -84,7 +103,7 @@ public class Player : Entity
 
     protected override void Die()
     {
-        Debug.Log($"Player: {username} has died. Score: {score}");
+        Debug.Log($"Player {username} has died. Score: {score}");
         //scoreText.text = score.ToString();
         stateManager.loadGameOver();
     }
@@ -92,6 +111,6 @@ public class Player : Entity
 
     public override string ToString()
     {
-        return $"Player: {username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
+        return $"{username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
     }
 }
