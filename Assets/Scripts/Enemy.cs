@@ -138,7 +138,6 @@ IEnumerator SpawnEnemyWithDelay()
     public override string ToString()
     {
         string temp = $"{base.ToString()}";
-        temp += $", Enemy: {name}";
         temp += $", Spawnpoint: {spawnPosition}";
         return temp;
     }

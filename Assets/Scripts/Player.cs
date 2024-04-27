@@ -25,10 +25,10 @@ public class Player : Entity
 
         SetLevel(1);
         SetAttack(3);
-        SetHealth(9999);
+        SetHealth(199);
         SetDefense(2);
         username = "Unknown player";
-        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
+        //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
