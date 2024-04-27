@@ -19,12 +19,16 @@ public class Player : Entity
         // used for initial setup that
         // doesn't rely on other objects
         // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
         SetLevel(1);
         SetAttack(3);
         SetHealth(9999);
         SetDefense(2);
         username = "Unknown player";
-        Debug.Log($"Player {name} awake at {this.transform.position}");
+        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
@@ -33,12 +37,9 @@ public class Player : Entity
         // does rely on other objects
         // or components being initialized.
 
-        // get rid of the Clone reference    
-        this.name = this.name.Replace("(Clone)","").Trim();
-
         stateManager = FindObjectOfType<StateManager>();
         this.transform.position = new Vector2(0f,90f);
-        Debug.Log($"Player {name} started at {this.transform.position}");
+        Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
 

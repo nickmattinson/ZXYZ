@@ -17,11 +17,15 @@ public class Enemy : Entity
         // used for initial setup that
         // doesn't rely on other objects
         // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
         SetLevel(1);
         SetAttack(3);
         SetHealth(10);
         SetDefense(2);
-        Debug.Log($"Player {name} awake at {this.transform.position}");
+        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
@@ -31,18 +35,12 @@ public class Enemy : Entity
         // does rely on other objects
         // or components being initialized.
 
-        // get rid of the Clone reference    
-        this.name = this.name.Replace("(Clone)","").Trim();
-
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player == null)
         {
             Debug.LogError("Player object not found!");
         }
-        Debug.Log(this);
-
-        // set the spawn position
-        //spawnPosition = transform.position;
+        Debug.Log($"[{this.name}] {this} ____ STARTED.");
     }
 
 
