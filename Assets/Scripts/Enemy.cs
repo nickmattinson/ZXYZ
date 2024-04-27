@@ -25,7 +25,7 @@ public class Enemy : Entity
         SetAttack(3);
         SetHealth(10);
         SetDefense(2);
-        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
+        //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
@@ -35,11 +35,13 @@ public class Enemy : Entity
         // does rely on other objects
         // or components being initialized.
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        if (player == null)
-        {
-            Debug.LogError("Player object not found!");
-        }
+        // set player reference
+        player = FindObjectOfType<Player>();
+        SetPlayerReference(player);
+
+        // set spawn position
+        SetSpawnPosition(this.transform.position);
+
         Debug.Log($"[{this.name}] {this} ____ STARTED.");
     }
 
