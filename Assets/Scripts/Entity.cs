@@ -17,11 +17,15 @@ public class Entity : MonoBehaviour
         // used for initial setup that
         // doesn't rely on other objects
         // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
         SetLevel(1);
         SetAttack(1);
         SetHealth(5);
         SetDefense(1);
-        Debug.Log($"Entity {name} awake at {this.transform.position}");
+        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
@@ -30,10 +34,7 @@ public class Entity : MonoBehaviour
         // does rely on other objects
         // or components being initialized.
 
-        // get rid of the Clone reference    
-        this.name = this.name.Replace("(Clone)","").Trim();
-            
-        Debug.Log($"Entity {name} started at {this.transform.position}");
+        Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
 
