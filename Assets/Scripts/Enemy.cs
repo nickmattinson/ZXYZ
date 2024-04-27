@@ -6,16 +6,34 @@ public class Enemy : Entity
 {
     private Player player;
     public LineRenderer lineRenderer;
-    private float lineDuration = 0.1f;
+    //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
     [SerializeField] List<GameObject> enemyTypeList;
     [SerializeField] int randomNumber;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
 
+    public new void Awake(){
+        // used for initial setup that
+        // doesn't rely on other objects
+        // or components being initialized.
+        SetLevel(1);
+        SetAttack(3);
+        SetHealth(10);
+        SetDefense(2);
+        Debug.Log($"Player {name} awake at {this.transform.position}");
 
-    void Start()
+    }
+
+    new void Start()
     {
+        // used for initial setup that
+        // does rely on other objects
+        // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player == null)
         {
@@ -26,22 +44,7 @@ public class Enemy : Entity
         // set the spawn position
         //spawnPosition = transform.position;
     }
-    public void attackOther(Entity other)
-    {
 
-        // if attack > other.defense then attack
-        if (this.attack > other.defense)
-        {
-            Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
-
-            // call TakeDamage()
-            other.TakeDamage(attack);
-
-            // draw attack line from enemy to other
-            drawLineToPlayer();
-        }
-
-    }
 
     public void SetSpawnPosition(Vector3 spawnPosition)
     {
@@ -54,24 +57,7 @@ public class Enemy : Entity
         return spawnPosition;
     }
 
-    public void drawLineToPlayer()
-    {
-        // Set the positions for the LineRenderer (start and end points)
-        lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
-        lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
 
-        // Enable the LineRenderer to make the line visible
-        lineRenderer.enabled = true;
-
-        // Start coroutine to disable LineRenderer after duration
-        StartCoroutine(DisableLineRendererAfterDelay());
-    }
-    // Coroutine to disable LineRenderer after specified duration
-    private IEnumerator DisableLineRendererAfterDelay()
-    {
-        yield return new WaitForSeconds(lineDuration);
-        lineRenderer.enabled = false;
-    }
     public void SetPlayerReference(Player player)
     {
         this.player = player;
