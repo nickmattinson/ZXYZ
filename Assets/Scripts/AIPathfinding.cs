@@ -13,6 +13,7 @@ public class AIPathfinding : MonoBehaviour
     [SerializeField] float waitTime;
     private float timer = 0f;
     private List<Enemy> enemies = new List<Enemy>(); // List to store active Enemy objects
+    private bool isrotating = true;
 
     void Start()
     {
@@ -31,7 +32,9 @@ public class AIPathfinding : MonoBehaviour
         if (distance <= distanceBetween && distance >= minimumDistance)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            if(isrotating){
+                transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            }
         }
         else
         {
@@ -46,7 +49,7 @@ public class AIPathfinding : MonoBehaviour
             {
                 if (timer <= 0)
                 {
-                    enemy.attackOther(player);
+                    enemy.Attack(player, Color.yellow);
                     timer = waitTime;
                 }
                 else
@@ -57,6 +60,10 @@ public class AIPathfinding : MonoBehaviour
         }
     }
 
+
+public void OnCollisionEnter(Collision collision){
+    isrotating = ! collision.gameObject.CompareTag("Player");
+}
 void FindActiveEnemies()
 {
     // Find all Enemy objects in the scene
