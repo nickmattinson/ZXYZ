@@ -106,7 +106,7 @@ public void SetAttack(int attack)
         SetHealth(Math.Min(GetHealth()+increase,200));        
     }    
 
-    public void Attack(Entity other)
+    public void Attack(Entity other, Color color)
     {
 
         // if attack > other.defense then attack
@@ -118,7 +118,7 @@ public void SetAttack(int attack)
             other.TakeDamage(this);
 
             // draw attack line from enemy to other
-            DrawLineTo(other, Color.red); // Draw a red line when attacking
+            DrawLineTo(other, color); // Draw a red line when attacking
 
         }
 
