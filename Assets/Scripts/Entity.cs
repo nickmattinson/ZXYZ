@@ -11,7 +11,8 @@ public class Entity : MonoBehaviour
     private int attack;
     private int defense;
     public GameObject damageNumberPrefab;
-
+    [SerializeField] private LineRenderer lineRenderer; // Reference to LineRenderer component
+    private float lineDuration = 0.1f;
 
     public void Awake(){
         // used for initial setup that
@@ -20,6 +21,9 @@ public class Entity : MonoBehaviour
 
         // get rid of the Clone reference    
         this.name = this.name.Replace("(Clone)","").Trim();
+
+        // Initialize LineRenderer component
+        lineRenderer = gameObject.AddComponent(typeof(LineRenderer)) as LineRenderer;
 
         SetLevel(1);
         SetAttack(1);
@@ -114,7 +118,8 @@ public void SetAttack(int attack)
             other.TakeDamage(this);
 
             // draw attack line from enemy to other
-            //drawLineToPlayer();
+            DrawLineTo(other, Color.red); // Draw a red line when attacking
+
         }
 
     }
@@ -161,24 +166,39 @@ public void SetAttack(int attack)
         // Override this method in derived classes
         Debug.Log($"Entity {name} died!");
     }
-    // public void drawLineToPlayer()
-    // {
-    //     // Set the positions for the LineRenderer (start and end points)
-    //     lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
-    //     lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
+    public void DrawLineTo(Entity other, Color color)
+    {
+        // Check if the LineRenderer component exists
+        if (lineRenderer != null)
+        {
+            // Set LineRenderer properties
+            lineRenderer.startWidth = 0.1f; // Adjust as needed
+            lineRenderer.endWidth = 0.1f; // Adjust as needed
+            lineRenderer.material.color = color;
 
-    //     // Enable the LineRenderer to make the line visible
-    //     lineRenderer.enabled = true;
+            // Set the positions for the LineRenderer (start and end points)
+            lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
+            lineRenderer.SetPosition(1, other.transform.position); // End position: other entity's position
 
-    //     // Start coroutine to disable LineRenderer after duration
-    //     StartCoroutine(DisableLineRendererAfterDelay());
-    // }
-    // // Coroutine to disable LineRenderer after specified duration
-    // private IEnumerator DisableLineRendererAfterDelay()
-    // {
-    //     yield return new WaitForSeconds(lineDuration);
-    //     lineRenderer.enabled = false;
-    // }
+            // Enable the LineRenderer to make the line visible
+            lineRenderer.enabled = true;
+
+            // Start coroutine to disable LineRenderer after a duration
+            StartCoroutine(DisableLineRendererAfterDelay());
+        }
+        else
+        {
+            Debug.LogError("LineRenderer component is missing!");
+        }
+    }
+
+    // Coroutine to disable LineRenderer after a specified duration
+    private IEnumerator DisableLineRendererAfterDelay()
+    {
+        // Adjust the duration as needed
+        yield return new WaitForSeconds(lineDuration); 
+        lineRenderer.enabled = false;
+    }
 
     public override string ToString()
     {

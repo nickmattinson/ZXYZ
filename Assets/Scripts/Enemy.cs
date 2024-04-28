@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : Entity
 {
     private Player player;
-    public LineRenderer lineRenderer;
     //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
     [SerializeField] List<GameObject> enemyTypeList;

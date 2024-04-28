@@ -14,6 +14,7 @@ public class Player : Entity
 
     private TextMeshProUGUI scoreText;
 
+    //[SerializeField] LineRenderer lineRenderer; // Reference to LineRenderer component
 
     public new void Awake(){
         // used for initial setup that

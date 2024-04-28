@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialEnemy : Entity
 {
     private Player player;
-    public LineRenderer lineRenderer;
+    //public LineRenderer lineRenderer;
     //private float lineDuration = 0.1f;
     private Vector3 spawnPosition;
 
