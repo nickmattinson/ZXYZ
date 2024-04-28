@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8981216864285716322}
   - component: {fileID: 2423566743525873356}
   - component: {fileID: 5059597452891364124}
-  - component: {fileID: 309098407069779415}
   - component: {fileID: -7356524217964085912}
+  - component: {fileID: -8321441276262935227}
   m_Layer: 6
   m_Name: EasyEnemy
   m_TagString: Enemy
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.062745094, b: 0.2459904, a: 1}
+  m_Color: {r: 0.9697451, g: 0.990566, b: 0.9672036, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -284,26 +284,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &309098407069779415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395851137816740249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80bb4f8777c0904e8be8df589d33b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
-  lineRenderer: {fileID: 5059597452891364124}
-  powerupList:
-  - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
-  enemyTypeList:
-  - {fileID: 8395851137816740249}
-  - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
-  randomNumber: 75
 --- !u!114 &-7356524217964085912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,3 +296,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a278be32577ff4a8723c3a92e2cc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8321441276262935227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395851137816740249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673267b8ee9be4b4e8c3928f6033c696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
+  lineRenderer: {fileID: 5059597452891364124}
+  powerupList:
+  - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
+  enemyTypeList:
+  - {fileID: 8395851137816740249}
+  - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
+  - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
+  randomNumber: 10

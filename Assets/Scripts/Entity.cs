@@ -12,9 +12,9 @@ public class Entity : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer; // Reference to LineRenderer component
     private float lineDuration = 0.1f;
 
-    private Color spriteColor = new Color(1.0f, 1.0f, 1.0f); // Color.white;
+    private Vector4 spriteColor = new Vector4(1,1,1,1); 
 
-    private Color attackColor = new Color(1.0f, 1.0f, 1.0f); // Color.white;;
+    private Vector4 attackColor = new Vector4(1,1,1,1);
 
     public void Awake(){
         // used for initial setup that
@@ -24,14 +24,7 @@ public class Entity : MonoBehaviour
         // get rid of the Clone reference    
         this.name = this.name.Replace("(Clone)","").Trim();
 
-        // Initialize LineRenderer component
-        lineRenderer = gameObject.AddComponent(typeof(LineRenderer)) as LineRenderer;
-
-        SetLevel(1);
-        SetAttack(1);
-        SetHealth(5);
-        SetDefense(1);
-        Debug.Log($"[{this.name}] {this} ____ AWAKE.");
+        //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
@@ -40,15 +33,22 @@ public class Entity : MonoBehaviour
         // does rely on other objects
         // or components being initialized.
 
-        Debug.Log($"[{this.name}] {this} ____ STARTED.");
+        // Initialize LineRenderer component
+        lineRenderer = gameObject.AddComponent(typeof(LineRenderer)) as LineRenderer;
+
+        //Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
 
-    public void SetSpriteColor(Color spriteColor){
+    public void SetRandomLevel(int max = 3){
+        this.level = UnityEngine.Random.Range(1,max+1);
+    }
+
+    public void SetSpriteColor(Vector4 spriteColor){
         this.spriteColor = spriteColor;
     }
 
-    public Color GetSpriteColor(){
+    public Vector4 GetSpriteColor(){
         return this.spriteColor;
     }
 
@@ -129,7 +129,7 @@ public class Entity : MonoBehaviour
         // if attack > other.defense then attack
         if (this.attack > other.defense)
         {
-            Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
+            //Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
 
             // call TakeDamage()
             other.TakeDamage(this);
@@ -147,7 +147,7 @@ public class Entity : MonoBehaviour
         if (other.GetAttack() > this.GetDefense())
         {
             // decrease health by actual damage.
-            Debug.Log($"Other's attack > {name} defense.");
+            //Debug.Log($"Other's attack > {name} defense.");
             int actualDamage = other.GetAttack() - this.GetDefense();
 
             health -= (actualDamage);
@@ -175,7 +175,7 @@ public class Entity : MonoBehaviour
         // other.attack < this.defense
         else
         {
-            Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.GetDefense()}.");
+            //Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.GetDefense()}.");
         }
     }
     
@@ -183,7 +183,7 @@ public class Entity : MonoBehaviour
 
     {
         // Override this method in derived classes
-        Debug.Log($"Entity {name} died!");
+        //Debug.Log($"Entity {name} died!");
     }
     
     private void DrawLineTo(Entity other, Color color)
@@ -227,6 +227,8 @@ public class Entity : MonoBehaviour
         temp += $", Defense: {defense}";
         temp += $", Attack: {attack}";
         temp += $", Position: {transform.position}";
+        temp += $", spriteColor: {spriteColor}";
+        temp += $", attackColor: {attackColor}";
         return temp;
     }
 }

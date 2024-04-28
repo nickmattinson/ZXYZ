@@ -18,7 +18,7 @@ public class ChangeSpriteColor : MonoBehaviour
         if (entity != null && spriteRenderer != null)
         {
             // Set the sprite's color to the spriteColor attribute from the Player class
-            spriteRenderer.color = entity.GetSpriteColor();
+            spriteRenderer.material.SetColor("_Color", entity.GetSpriteColor());
         }
         else
         {

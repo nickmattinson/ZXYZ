@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7137255, g: 0.47450984, b: 0.23137257, a: 1}
+  m_Color: {r: 0.9150943, g: 0.9086722, b: 0.90214485, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,13 +107,10 @@ MonoBehaviour:
   powerupList:
   - {fileID: 4223389478434026448, guid: c3f35f06799bfdf439b08bd7f8bc435f, type: 3}
   - {fileID: 4223389478434026448, guid: 0e3e0c59de22adf4eaa33e40c0e8b49e, type: 3}
-  - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
   enemyTypeList:
-  - {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
-  - {fileID: 3181638798745600734, guid: f648a591fdae3b54ba07267da392b7e4, type: 3}
-  - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
   - {fileID: 8395851137816740249}
-  randomNumber: 75
+  - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
+  randomNumber: 10
 --- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0

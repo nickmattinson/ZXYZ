@@ -24,7 +24,8 @@ public class EnemySpawner : MonoBehaviour
                 Transform spawnPoint = enemySpawnPoints[i];
 
                 // Randomly select an enemy prefab
-                GameObject currentEnemyPrefab = enemies[Random.Range(0, enemies.Count)];
+                int randomEnemyIndex = Random.Range(0, enemies.Count);
+                GameObject currentEnemyPrefab = enemies[randomEnemyIndex];
 
                 // Create enemy instance
                 GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -37,6 +38,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
                     //enemyComponent.SetPlayerReference(player);
+                    enemyComponent.SetLevel(randomEnemyIndex+1);
+                    enemyComponent.SetCapability();
                 }
                 else
                 {

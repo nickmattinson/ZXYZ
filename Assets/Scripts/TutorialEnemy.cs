@@ -16,7 +16,7 @@ public class TutorialEnemy : Entity
         {
             Debug.LogError("Player object not found!");
         }
-        Debug.Log(this);
+        //Debug.Log(this);
     }
 
 
@@ -29,7 +29,7 @@ public class TutorialEnemy : Entity
     public new void Die()
     {
         Destroy(gameObject);
-        Debug.Log("Tutorial enemy died.");
+        //Debug.Log("Tutorial enemy died.");
     }
 
     public override string ToString()

@@ -25,11 +25,11 @@ public class Player : Entity
         this.name = this.name.Replace("(Clone)","").Trim();
 
         SetLevel(1);
-        SetAttack(20);
-        SetHealth(9999);
+        SetAttack(4);
+        SetHealth(200);
         SetDefense(1);
-        SetSpriteColor(new Color(0.9f, 0.85f, 0.19f)); // light blue
-        SetAttackColor(new Color(0.0f, 0.0f, 1.0f)); // blue
+        SetSpriteColor(new Vector4(.8f,1,1,1));
+        SetAttackColor(new Vector4(1,1,1,1));
         username = "Unknown player";
 
 
@@ -49,7 +49,7 @@ public class Player : Entity
         // set sprite color
         //SetSpriteColor(GetSpriteColor());
 
-        Debug.Log($"[{this.name}] {this} ____ STARTED.");
+        //Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
 
@@ -69,7 +69,7 @@ public class Player : Entity
                 if (enemy != null)
                 {
                     // Deal damage to the enemy
-                    Debug.Log($"Player's attack is {this.GetAttack()}");
+                    //Debug.Log($"Player's attack is {this.GetAttack()}");
                     enemy.TakeDamage(this);
                 }
 
@@ -77,11 +77,16 @@ public class Player : Entity
                 if (tutorialEnemy != null)
                 {
                     // Deal damage to the enemy
-                    Debug.Log($"Player's attack is {this.GetAttack()}");
+                    //Debug.Log($"Player's attack is {this.GetAttack()}");
                     tutorialEnemy.TakeDamage(this);
                 }
             }
         }
+
+        // // check player health
+        // if(GetHealth()<=0){
+        //     this.Die();
+        // }
     }
     public void ActivatePowerUp(string powerUp)
     {
@@ -105,11 +110,12 @@ public class Player : Entity
         }
     }
 
-    public new void Die()
+    protected override void Die()
     {
-        Debug.Log($"Player {username} has died. Score: {score}");
+        Debug.Log($"[{username}] died with score [{score}]  ____SCORE");
         //scoreText.text = score.ToString();
         stateManager.loadGameOver();
+        //Destroy(this);
     }
 
     public void SetScore(int score){
@@ -131,6 +137,9 @@ public class Player : Entity
 
     public override string ToString()
     {
-        return $"{username}, Level: {this.GetLevel()}, Health: {this.GetHealth()}, Defense: {this.GetDefense()}, Attack: {this.GetAttack()}";
+        string temp = $"{base.ToString()}";
+        temp += $", Score: {this.GetScore()}";
+        temp += $", Username: {this.GetUsername()}";
+        return temp;
     }
 }

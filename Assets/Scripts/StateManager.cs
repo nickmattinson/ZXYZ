@@ -68,8 +68,8 @@ public class StateManager : MonoBehaviour
         usernameIngame.text = player.username;
 
         // Debug logs to check values
-        Debug.Log("Player Username to save: " + player.username);
-        Debug.Log("Player Username saved in PlayerPrefs: " + PlayerPrefs.GetString("PlayerUserName"));
+        Debug.Log($"Player Username: {player.username}  ___USERNAME");
+        //Debug.Log("Player Username saved in PlayerPrefs: " + PlayerPrefs.GetString("PlayerUserName"));
 
 
         // Rest of your code...

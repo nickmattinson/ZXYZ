@@ -20,11 +20,11 @@ public class Enemy : Entity
         // get rid of the Clone reference    
         this.name = this.name.Replace("(Clone)","").Trim();
 
-        SetLevel(1);
-        SetAttack(3);
-        SetHealth(10);
-        SetDefense(2);
+        // set enemy capability
+        SetCapability();
         //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
+
+
 
     }
 
@@ -35,12 +35,57 @@ public class Enemy : Entity
         // or components being initialized.
 
         // Get the Player component attached to the GameObject
-        player = GetComponent<Player>();
+        // player = GetComponent<Player>(); // player reference not found...
+        player = FindObjectOfType<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Player reference not found!_______ENEMY_START");
+        }
 
         // set spawn position
         SetSpawnPosition(this.transform.position);
 
-        Debug.Log($"[{this.name}] {this} ____ STARTED.");
+        //Debug.Log($"[{this.name}] {this} ____ STARTED.");
+    }
+
+    public void SetCapability(){
+        switch(GetLevel()) 
+        {
+
+        case 1: // Easy (GREEN)
+            SetAttack(2);
+            SetHealth(5);
+            SetDefense(3);
+            SetSpriteColor(new Vector4(0,1,0,1));
+            SetAttackColor(new Vector4(1,1,1,1));         
+            break;
+
+        case 2: // Medium (YELLOW)
+            SetAttack(5);
+            SetDefense(4);
+            SetHealth(30);   
+            SetSpriteColor(new Vector4(1,1,.2f,1));
+            SetAttackColor(new Vector4(1,1,1,1));          
+            break;
+            
+        case 3:
+            // Hard (RED)
+            SetAttack(8);
+            SetDefense(5);
+            SetHealth(50); 
+            SetSpriteColor(new Vector4(1,0,0,1));
+            SetAttackColor(new Vector4(1,1,1,1));                       
+            break;
+
+        default:
+            // Default GREEN - EASY
+            SetAttack(2);
+            SetHealth(5);
+            SetDefense(3);
+            SetSpriteColor(new Vector4(0,1,0,1));
+            SetAttackColor(new Vector4(1,1,1,1));  
+            break;
+        }
     }
 
 
@@ -60,8 +105,8 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-
-        Debug.Log("Bug_____ENEMY_DIE");
+        player = FindObjectOfType<Player>();
+        //Debug.Log($"Bug Enemy: {name} Player: {player.GetScore()} _____ENEMY_DIE");
         //player.SetScore(player.GetScore()+1);
         player.score++;
 
@@ -69,7 +114,7 @@ public class Enemy : Entity
 
         // step 1 - set death position
         deathPosition = transform.position;
-        Debug.Log($"Enemy {name} was killed by player {player.name} at position {deathPosition}.");
+        Debug.Log($"[{name}] killed by [{player.name}]. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
         int rn = Random.Range(0, 100);
@@ -78,7 +123,7 @@ public class Enemy : Entity
         {
             GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
-            Debug.Log($"Power up {powerupInstance} created.");
+            //Debug.Log($"Power up {powerupInstance} created.");
         }
 
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
@@ -114,7 +159,9 @@ public class Enemy : Entity
 
     public void SpawnEnemy()
     {
-        GameObject currentEnemyPrefab = enemyTypeList[Random.Range(0, enemyTypeList.Count)];
+        int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
+        GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
+
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
 
         // Set player reference for the enemy
@@ -125,13 +172,15 @@ public class Enemy : Entity
         {
             enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
             //enemyComponent.SetPlayerReference(player);
+            enemyComponent.SetLevel(randomEnemyIndex+1);
+            enemyComponent.SetCapability();
         }
         else
         {
             Debug.LogWarning("Enemy component not found on instantiated enemy!");
         }
 
-        Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
+        //Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
     }
 
     public override string ToString()
