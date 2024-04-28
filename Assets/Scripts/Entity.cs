@@ -199,6 +199,11 @@ public class Entity : MonoBehaviour
             lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
             lineRenderer.SetPosition(1, other.transform.position); // End position: other entity's position
 
+            // Set the color of the LineRenderer
+            Color customColor = this.GetAttackColor();
+            lineRenderer.startColor = customColor;
+            lineRenderer.endColor = customColor;
+
             // Enable the LineRenderer to make the line visible
             lineRenderer.enabled = true;
 
