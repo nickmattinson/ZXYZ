@@ -26,10 +26,14 @@ public class Player : Entity
 
         SetLevel(1);
         SetAttack(4);
-        SetHealth(200);
+        SetHealth(9000);
         SetDefense(1);
-        SetSpriteColor(new Vector4(.8f,1,1,1));
-        SetAttackColor(new Vector4(1,1,1,1));
+
+        // set sprite color
+        // then set attack color 30% darker
+        SetSpriteColor(new Vector4(.72f, .81f, 1.0f, 1));
+        SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
+
         username = "Unknown player";
 
 

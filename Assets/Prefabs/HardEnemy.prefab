@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2423566743525873356}
   - component: {fileID: 5739143513441457547}
   - component: {fileID: -920401278723257339}
+  - component: {fileID: 189884577749589978}
   m_Layer: 6
   m_Name: HardEnemy
   m_TagString: Enemy
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.990566, g: 0.98589355, b: 0.9887837, a: 1}
+  m_Color: {r: 0.9811321, g: 0.967559, b: 0.96724814, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,6 +109,7 @@ MonoBehaviour:
   - {fileID: 4223389478434026448, guid: c3f35f06799bfdf439b08bd7f8bc435f, type: 3}
   - {fileID: 4223389478434026448, guid: 0e3e0c59de22adf4eaa33e40c0e8b49e, type: 3}
   enemyTypeList:
+  - {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
   - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
   - {fileID: 8395851137816740249}
   chanceForPowerUp: 40
@@ -315,5 +317,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a278be32577ff4a8723c3a92e2cc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &189884577749589978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395851137816740249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81733e7d23ead9d408a623536ac8d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

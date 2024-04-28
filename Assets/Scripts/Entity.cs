@@ -135,7 +135,7 @@ public class Entity : MonoBehaviour
             other.TakeDamage(this);
 
             // draw attack line from enemy to other
-            DrawLineTo(other, color); // Draw a red line when attacking
+            DrawLineTo(other); 
 
         }
 
@@ -186,7 +186,7 @@ public class Entity : MonoBehaviour
         //Debug.Log($"Entity {name} died!");
     }
     
-    private void DrawLineTo(Entity other, Color color)
+    private void DrawLineTo(Entity other)
     {
         // Check if the LineRenderer component exists
         if (lineRenderer != null)
@@ -194,7 +194,6 @@ public class Entity : MonoBehaviour
             // Set LineRenderer properties
             lineRenderer.startWidth = 0.1f; // Adjust as needed
             lineRenderer.endWidth = 0.1f; // Adjust as needed
-            lineRenderer.material.color = color;
 
             // Set the positions for the LineRenderer (start and end points)
             lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
@@ -219,6 +218,11 @@ public class Entity : MonoBehaviour
         yield return new WaitForSeconds(lineDuration); 
         lineRenderer.enabled = false;
     }
+
+public static Color Brighten(Color color, float correctionFactor = 0.5f)
+{
+    return Color.Lerp(color, Color.black, correctionFactor);
+}
 
     public override string ToString()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,41 +50,37 @@ public class Enemy : Entity
     }
 
     public void SetCapability(){
+        player = FindObjectOfType<Player>();
         switch(GetLevel()) 
         {
 
         case 1: // Easy (GREEN)
-            SetAttack(2);
+            SetAttack(player.GetDefense()+1);
             SetHealth(5);
             SetDefense(3);
-            SetSpriteColor(new Vector4(0,1,0,1));
-            SetAttackColor(new Vector4(1,1,1,1));         
+            SetSpriteColor(new Vector4(0, 1, 0, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
             break;
 
-        case 2: // Medium (YELLOW)
-            SetAttack(5);
+        case 2: // Medium (ORANGE)
+            SetAttack(player.GetDefense()+2);
             SetDefense(4);
             SetHealth(30);   
-            SetSpriteColor(new Vector4(1,1,.2f,1));
-            SetAttackColor(new Vector4(1,1,1,1));          
+            SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
             break;
             
         case 3:
-            // Hard (RED)
-            SetAttack(8);
+            // Hard (RED)sssss
+            SetAttack(GetDefense()+3);
             SetDefense(5);
             SetHealth(50); 
-            SetSpriteColor(new Vector4(1,0,0,1));
-            SetAttackColor(new Vector4(1,1,1,1));                       
+            SetSpriteColor(new Vector4(1, 0, 0, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;
 
         default:
-            // Default GREEN - EASY
-            SetAttack(2);
-            SetHealth(5);
-            SetDefense(3);
-            SetSpriteColor(new Vector4(0,1,0,1));
-            SetAttackColor(new Vector4(1,1,1,1));  
+            // Default 
             break;
         }
     }
@@ -117,11 +114,11 @@ public class Enemy : Entity
         Debug.Log($"[{name}] killed by [{player.name}]. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
-        int rn = Random.Range(0, 100);
+        int rn = UnityEngine.Random.Range(0, 100);
         //Debug.Log($"Random number: {randomNumber}");
         if (rn >= (100-chanceForPowerUp))
         {
-            GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
+            GameObject currentPowerupPrefab = powerupList[UnityEngine.Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
             //Debug.Log($"Power up {powerupInstance} created.");
         }
@@ -144,7 +141,7 @@ public class Enemy : Entity
         float maximum = 10f; // 10 seconds
 
         // Generate a random spawn delay within the specified range
-        float spawnDelay = Random.Range(minimum, maximum);
+        float spawnDelay = UnityEngine.Random.Range(minimum, maximum);
 
         // Wait for the specified delay
         yield return new WaitForSeconds(spawnDelay);
@@ -159,7 +156,7 @@ public class Enemy : Entity
 
     public void SpawnEnemy()
     {
-        int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
+        int randomEnemyIndex = UnityEngine.Random.Range(0, enemyTypeList.Count);
         GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
 
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
@@ -180,7 +177,7 @@ public class Enemy : Entity
             Debug.LogWarning("Enemy component not found on instantiated enemy!");
         }
 
-        //Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
+        Debug.Log($"[{enemyComponent.name}] {enemyComponent} ___REPLACEMENT based on {player}, Random Enemy Index: {randomEnemyIndex+1}");
     }
 
     public override string ToString()
