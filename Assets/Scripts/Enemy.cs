@@ -34,9 +34,8 @@ public class Enemy : Entity
         // does rely on other objects
         // or components being initialized.
 
-        // set player reference
-        player = FindObjectOfType<Player>();
-        SetPlayerReference(player);
+        // Get the Player component attached to the GameObject
+        player = GetComponent<Player>();
 
         // set spawn position
         SetSpawnPosition(this.transform.position);
@@ -57,15 +56,16 @@ public class Enemy : Entity
     }
 
 
-    public void SetPlayerReference(Player player)
-    {
-        this.player = player;
-    }
 
 
     protected override void Die()
     {
-        player.score += 1;
+
+        Debug.Log("Bug_____ENEMY_DIE");
+        //player.SetScore(player.GetScore()+1);
+        player.score++;
+
+
 
         // step 1 - set death position
         deathPosition = transform.position;
@@ -86,30 +86,30 @@ public class Enemy : Entity
         transform.position = new Vector3(1000f, 1000f, transform.position.z);
     }
 
-IEnumerator SpawnEnemyWithDelay()
-/*
-    Modify random spawn rate
-    Randomly respawn between 4 and 10 seconds.
-    Author: ChatGPT3.5
-    Author: Mike M
-    Modified: 23/Apr/24
-*/
-{
-    float minimum = 4f; // 4 seconds
-    float maximum = 10f; // 10 seconds
+    IEnumerator SpawnEnemyWithDelay()
+    /*
+        Modify random spawn rate
+        Randomly respawn between 4 and 10 seconds.
+        Author: ChatGPT3.5
+        Author: Mike M
+        Modified: 23/Apr/24
+    */
+    {
+        float minimum = 4f; // 4 seconds
+        float maximum = 10f; // 10 seconds
 
-    // Generate a random spawn delay within the specified range
-    float spawnDelay = Random.Range(minimum, maximum);
+        // Generate a random spawn delay within the specified range
+        float spawnDelay = Random.Range(minimum, maximum);
 
-    // Wait for the specified delay
-    yield return new WaitForSeconds(spawnDelay);
+        // Wait for the specified delay
+        yield return new WaitForSeconds(spawnDelay);
 
-    // Spawn the enemy after the delay
-    SpawnEnemy();
+        // Spawn the enemy after the delay
+        SpawnEnemy();
 
-    // Destroy the object (assuming this script is attached to the object you want to destroy)
-    Destroy(gameObject);
-}
+        // Destroy the object (assuming this script is attached to the object you want to destroy)
+        Destroy(gameObject);
+    }
 
 
     public void SpawnEnemy()
@@ -124,7 +124,7 @@ IEnumerator SpawnEnemyWithDelay()
         if (enemyComponent != null)
         {
             enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
-            enemyComponent.SetPlayerReference(player);
+            //enemyComponent.SetPlayerReference(player);
         }
         else
         {
@@ -137,7 +137,7 @@ IEnumerator SpawnEnemyWithDelay()
     public override string ToString()
     {
         string temp = $"{base.ToString()}";
-        temp += $", Spawnpoint: {spawnPosition}";
+        temp += $", Spawnpoint: {this.GetSpawnPosition()}";
         return temp;
     }
 }

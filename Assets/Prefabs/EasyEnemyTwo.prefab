@@ -148,13 +148,43 @@ PrefabInstance:
       propertyPath: enemyTypeList.Array.data[3]
       value: 
       objectReference: {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 309098407069779415, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1362584702015900031}
   m_SourcePrefab: {fileID: 100100000, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+--- !u!120 &2203439523537016923 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 5059597452891364124, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
+  m_PrefabInstance: {fileID: 6387086689855423303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3181638798745600734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
   m_PrefabInstance: {fileID: 6387086689855423303}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1362584702015900031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3181638798745600734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c005c28198361d340a4fb7b9ab7f9d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
+  lineRenderer: {fileID: 2203439523537016923}
+  powerupList:
+  - {fileID: 4223389478434026448, guid: c3f35f06799bfdf439b08bd7f8bc435f, type: 3}
+  - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
+  enemyTypeList:
+  - {fileID: 3181638798745600734}
+  - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
+  randomNumber: 75

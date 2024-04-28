@@ -25,10 +25,15 @@ public class Player : Entity
         this.name = this.name.Replace("(Clone)","").Trim();
 
         SetLevel(1);
-        SetAttack(3);
-        SetHealth(199);
-        SetDefense(2);
+        SetAttack(20);
+        SetHealth(9999);
+        SetDefense(1);
+        SetSpriteColor(new Color(0.9f, 0.85f, 0.19f)); // light blue
+        SetAttackColor(new Color(0.0f, 0.0f, 1.0f)); // blue
         username = "Unknown player";
+
+
+
         //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
@@ -39,7 +44,11 @@ public class Player : Entity
         // or components being initialized.
 
         stateManager = FindObjectOfType<StateManager>();
-        this.transform.position = new Vector2(0f,90f);
+        this.transform.position = new Vector2(0f,10f);
+
+        // set sprite color
+        //SetSpriteColor(GetSpriteColor());
+
         Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
@@ -96,7 +105,7 @@ public class Player : Entity
         }
     }
 
-    protected override void Die()
+    public new void Die()
     {
         Debug.Log($"Player {username} has died. Score: {score}");
         //scoreText.text = score.ToString();

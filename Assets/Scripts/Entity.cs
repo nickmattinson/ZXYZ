@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using System;
 [System.Serializable]
 public class Entity : MonoBehaviour
@@ -13,6 +11,10 @@ public class Entity : MonoBehaviour
     public GameObject damageNumberPrefab;
     [SerializeField] private LineRenderer lineRenderer; // Reference to LineRenderer component
     private float lineDuration = 0.1f;
+
+    private Color spriteColor = new Color(1.0f, 1.0f, 1.0f); // Color.white;
+
+    private Color attackColor = new Color(1.0f, 1.0f, 1.0f); // Color.white;;
 
     public void Awake(){
         // used for initial setup that
@@ -42,6 +44,22 @@ public class Entity : MonoBehaviour
 
     }
 
+    public void SetSpriteColor(Color spriteColor){
+        this.spriteColor = spriteColor;
+    }
+
+    public Color GetSpriteColor(){
+        return this.spriteColor;
+    }
+
+    public void SetAttackColor(Color attackColor){
+        this.attackColor = attackColor;
+    }
+
+    public Color GetAttackColor(){
+        return this.attackColor;
+    }
+
     public void SetLevel(int level)
     {
         this.level = level;
@@ -57,7 +75,7 @@ public class Entity : MonoBehaviour
         this.level ++;  // plus 1
     }
 
-public void SetAttack(int attack)
+    public void SetAttack(int attack)
     {
         this.attack = attack;
     }
@@ -88,7 +106,6 @@ public void SetAttack(int attack)
         // max of 8
         SetDefense(Math.Min(GetDefense()+increase,8));        
     }
-
 
     public void SetHealth(int health)
     {
@@ -127,11 +144,11 @@ public void SetAttack(int attack)
     public void TakeDamage(Entity other)
     {
         // other.attack > this.defense
-        if (other.GetAttack() > this.defense)
+        if (other.GetAttack() > this.GetDefense())
         {
             // decrease health by actual damage.
             Debug.Log($"Other's attack > {name} defense.");
-            int actualDamage = other.GetAttack() - this.defense;
+            int actualDamage = other.GetAttack() - this.GetDefense();
 
             health -= (actualDamage);
             
@@ -144,7 +161,7 @@ public void SetAttack(int attack)
                 DamageNumber damageNumber = damageNumberObj.GetComponent<DamageNumber>();
 
                 damageNumber.SetDamage(actualDamage);
-                if (this.health <= 0)
+                if (this.GetHealth() <= 0)
                 {
                     Die();
                 }
@@ -158,15 +175,18 @@ public void SetAttack(int attack)
         // other.attack < this.defense
         else
         {
-            Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.defense}.");
+            Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.GetDefense()}.");
         }
     }
+    
     protected virtual void Die()
+
     {
         // Override this method in derived classes
         Debug.Log($"Entity {name} died!");
     }
-    public void DrawLineTo(Entity other, Color color)
+    
+    private void DrawLineTo(Entity other, Color color)
     {
         // Check if the LineRenderer component exists
         if (lineRenderer != null)

@@ -26,7 +26,7 @@ public class TutorialEnemy : Entity
         this.player = player;
     }
 
-    protected override void Die()
+    public new void Die()
     {
         Destroy(gameObject);
         Debug.Log("Tutorial enemy died.");
