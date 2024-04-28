@@ -8,7 +8,7 @@ public class Enemy : Entity
     //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
     [SerializeField] List<GameObject> enemyTypeList;
-    [SerializeField] int randomNumber;
+    [SerializeField] int chanceForPowerUp;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
 
@@ -119,7 +119,7 @@ public class Enemy : Entity
         // step 2 - drop a random buf at death position randomly
         int rn = Random.Range(0, 100);
         //Debug.Log($"Random number: {randomNumber}");
-        if (rn >= randomNumber)
+        if (rn >= (100-chanceForPowerUp))
         {
             GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);

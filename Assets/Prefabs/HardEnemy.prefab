@@ -110,7 +110,7 @@ MonoBehaviour:
   enemyTypeList:
   - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
   - {fileID: 8395851137816740249}
-  randomNumber: 10
+  chanceForPowerUp: 40
 --- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0
