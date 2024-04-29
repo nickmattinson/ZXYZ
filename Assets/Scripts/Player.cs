@@ -26,7 +26,7 @@ public class Player : Entity
 
         SetLevel(1);
         SetAttack(4);
-        SetHealth(9000);
+        SetHealth(200);
         SetDefense(1);
 
         // set sprite color
