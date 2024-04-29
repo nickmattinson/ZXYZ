@@ -13,6 +13,8 @@ public class Enemy : Entity
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
 
+    private bool respawn = true;
+
     public new void Awake(){
         // used for initial setup that
         // doesn't rely on other objects
@@ -124,8 +126,14 @@ public class Enemy : Entity
         }
 
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
-        StartCoroutine(SpawnEnemyWithDelay());
-        transform.position = new Vector3(1000f, 1000f, transform.position.z);
+        if(this.GetRespawn()){
+            StartCoroutine(SpawnEnemyWithDelay());
+
+        }
+        
+        // Destroy the object
+        Destroy(gameObject);
+
     }
 
     IEnumerator SpawnEnemyWithDelay()
@@ -137,20 +145,20 @@ public class Enemy : Entity
         Modified: 23/Apr/24
     */
     {
-        float minimum = 4f; // 4 seconds
-        float maximum = 10f; // 10 seconds
 
-        // Generate a random spawn delay within the specified range
-        float spawnDelay = UnityEngine.Random.Range(minimum, maximum);
+        if(this.GetRespawn()){
+            float minimum = 4f; // 4 seconds
+            float maximum = 10f; // 10 seconds
 
-        // Wait for the specified delay
-        yield return new WaitForSeconds(spawnDelay);
+            // Generate a random spawn delay within the specified range
+            float spawnDelay = UnityEngine.Random.Range(minimum, maximum);
 
-        // Spawn the enemy after the delay
-        SpawnEnemy();
+            // Wait for the specified delay
+            yield return new WaitForSeconds(spawnDelay);
 
-        // Destroy the object (assuming this script is attached to the object you want to destroy)
-        Destroy(gameObject);
+            // Spawn the enemy after the delay
+            SpawnEnemy();
+        }
     }
 
 
@@ -180,10 +188,19 @@ public class Enemy : Entity
         Debug.Log($"[{enemyComponent.name}] {enemyComponent} ___REPLACEMENT based on {player}, Random Enemy Index: {randomEnemyIndex+1}");
     }
 
+public void SetRespawn(bool respawn){
+    this.respawn = respawn;
+}
+
+public bool GetRespawn(){
+    return this.respawn;
+}
+
     public override string ToString()
     {
         string temp = $"{base.ToString()}";
         temp += $", Spawnpoint: {this.GetSpawnPosition()}";
+        temp += $", Respawn: {this.GetRespawn()}";
         return temp;
     }
 }

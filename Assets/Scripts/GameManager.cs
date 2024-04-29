@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         player = Instantiate(player, Vector2.zero, Quaternion.identity);
 
         //easyTutorialEnemy attributes
+        easyTutorialEnemy.GetComponent<Enemy>().SetRespawn(false);
         easyTutorialEnemy.GetComponent<Enemy>().SetAttack(3);
         easyTutorialEnemy.GetComponent<Enemy>().SetHealth(5);
         easyTutorialEnemy.GetComponent<Enemy>().SetDefense(2);
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         //easyTutorialEnemy.GetComponent<Enemy>().SetCapability();
 
         //medium TutorialEnemy attributes
+        mediumTutorialEnemy.GetComponent<Enemy>().SetRespawn(false);
         mediumTutorialEnemy.GetComponent<Enemy>().SetAttack(4);
         mediumTutorialEnemy.GetComponent<Enemy>().SetHealth(10);
         mediumTutorialEnemy.GetComponent<Enemy>().SetDefense(3);
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
         //mediumTutorialEnemy.GetComponent<Enemy>().SetCapability();
 
         //medium2 TutorialEnemy attributes
+        medium2TutorialEnemy.GetComponent<Enemy>().SetRespawn(false);
         medium2TutorialEnemy.GetComponent<Enemy>().SetAttack(4);
         medium2TutorialEnemy.GetComponent<Enemy>().SetHealth(10);
         medium2TutorialEnemy.GetComponent<Enemy>().SetDefense(3);
