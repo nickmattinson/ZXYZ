@@ -23,12 +23,37 @@ public class GameManager : MonoBehaviour
         mediumTutorialEnemyv2.y = 42f;
         medium2TutorialEnemyv2.x = 5f;
         medium2TutorialEnemyv2.y = 42f;
-        Instantiate(easyTutorialEnemy, easyTutorialEnemyv2, Quaternion.identity);
-        Instantiate(mediumTutorialEnemy, mediumTutorialEnemyv2, Quaternion.identity);
-        Instantiate(medium2TutorialEnemy, medium2TutorialEnemyv2, Quaternion.identity);
-        Instantiate(player, Vector2.zero, Quaternion.identity);
+        easyTutorialEnemy = Instantiate(easyTutorialEnemy, easyTutorialEnemyv2, Quaternion.identity);
+        mediumTutorialEnemy = Instantiate(mediumTutorialEnemy, mediumTutorialEnemyv2, Quaternion.identity);
+        medium2TutorialEnemy = Instantiate(medium2TutorialEnemy, medium2TutorialEnemyv2, Quaternion.identity);
+        player = Instantiate(player, Vector2.zero, Quaternion.identity);
 
+        //easyTutorialEnemy attributes
+        easyTutorialEnemy.GetComponent<Enemy>().SetAttack(3);
+        easyTutorialEnemy.GetComponent<Enemy>().SetHealth(5);
+        easyTutorialEnemy.GetComponent<Enemy>().SetDefense(2);
+        easyTutorialEnemy.GetComponent<Enemy>().SetSpriteColor(new Vector4(0, 1, 0, 1));
+        easyTutorialEnemy.GetComponent<Enemy>().SetAttackColor(new Vector4(0, 1, 0, 1));            
+        easyTutorialEnemy.GetComponent<Enemy>().SetLevel(1);
+        //easyTutorialEnemy.GetComponent<Enemy>().SetCapability();
 
+        //medium TutorialEnemy attributes
+        mediumTutorialEnemy.GetComponent<Enemy>().SetAttack(4);
+        mediumTutorialEnemy.GetComponent<Enemy>().SetHealth(10);
+        mediumTutorialEnemy.GetComponent<Enemy>().SetDefense(3);
+        mediumTutorialEnemy.GetComponent<Enemy>().SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
+        mediumTutorialEnemy.GetComponent<Enemy>().SetAttackColor(new Vector4(0.83f, 0.68f, 0.39f, 1));        
+        mediumTutorialEnemy.GetComponent<Enemy>().SetLevel(2);
+        //mediumTutorialEnemy.GetComponent<Enemy>().SetCapability();
+
+        //medium2 TutorialEnemy attributes
+        medium2TutorialEnemy.GetComponent<Enemy>().SetAttack(4);
+        medium2TutorialEnemy.GetComponent<Enemy>().SetHealth(10);
+        medium2TutorialEnemy.GetComponent<Enemy>().SetDefense(3);
+        medium2TutorialEnemy.GetComponent<Enemy>().SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
+        medium2TutorialEnemy.GetComponent<Enemy>().SetAttackColor(new Vector4(0.83f, 0.68f, 0.39f, 1));        
+        medium2TutorialEnemy.GetComponent<Enemy>().SetLevel(2);
+        //medium2TutorialEnemy.GetComponent<Enemy>().SetCapability();
 
     }
     

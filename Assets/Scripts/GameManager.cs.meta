@@ -3,7 +3,12 @@ guid: 0ea419e75fb54fa458b035d4cc63d50c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - easyTutorialEnemy: {fileID: 8395851137816740249, guid: c60cdc50dd59b5647b9e90742d8bc8fe, type: 3}
+  - mediumTutorialEnemy: {fileID: 8395851137816740249, guid: 1dfd66bf6eefe4644893f907350b55bf, type: 3}
+  - medium2TutorialEnemy: {instanceID: 0}
+  - stateManager: {instanceID: 0}
+  - player: {fileID: 861360116138784530, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
   executionOrder: -1100
   icon: {instanceID: 0}
   userData: 

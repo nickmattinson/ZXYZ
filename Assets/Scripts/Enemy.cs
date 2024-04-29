@@ -46,7 +46,7 @@ public class Enemy : Entity
         // set spawn position
         SetSpawnPosition(this.transform.position);
 
-        //Debug.Log($"[{this.name}] {this} ____ STARTED.");
+        Debug.Log($"[{this.name}] {this} ____ STARTED.");
     }
 
     public void SetCapability(){

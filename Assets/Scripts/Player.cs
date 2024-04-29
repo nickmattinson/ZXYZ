@@ -48,7 +48,7 @@ public class Player : Entity
         // or components being initialized.
 
         stateManager = FindObjectOfType<StateManager>();
-        this.transform.position = new Vector2(0f,10f);
+        this.transform.position = new Vector2(0f, 90f);
 
         // set sprite color
         //SetSpriteColor(GetSpriteColor());
