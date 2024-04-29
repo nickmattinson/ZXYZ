@@ -98,15 +98,18 @@ public class Player : Entity
         {
             case "AttackUp":
                 // code block
-                AttackUp(2);  // max of xx
+                //AttackUp(2);  // max of xx
+                this.AttackUp();
                 break;
             case "HealthUp":
                 // code block
-                HealthUp(20); // max of xxx
+                //HealthUp(20); // max of xxx
+                this.HealthUp();
                 break;
             case "DefenseUp":
                 // code block
-                DefenseUp(2);  // max of xxx
+                //DefenseUp(2);  // max of xxx
+                this.DefenseUp();
                 break;
             default:
                 // code block
