@@ -46,7 +46,7 @@ public class AIPathfindingTutorial : MonoBehaviour
             {
                 if (timer <= 0)
                 {
-                    enemy.Attack(player, Color.white);
+                    enemy.Attack(player);
                     timer = waitTime;
                 }
                 else
