@@ -14,6 +14,8 @@ public class Enemy : Entity
 
     private bool respawn = true;
 
+    private bool scoreable = true;
+
     //private bool loot = true;
 
     public new void Awake(){
@@ -57,7 +59,25 @@ public class Enemy : Entity
         switch(GetLevel()) 
         {
 
-        case 1: // Easy (GREEN)
+        case 1: // easy tutorial
+            SetAttack(player.GetDefense()+1);
+            SetHealth(5);
+            SetDefense(3);
+            SetRespawn(false);
+            SetSpriteColor(new Vector4(0, 1, 0, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
+            break;
+
+        case 2: // med tutorial
+            SetAttack(player.GetDefense()+1);
+            SetHealth(5);
+            SetDefense(3);
+            SetRespawn(false);
+            SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
+            break;
+
+        case 3: // easy
             SetAttack(player.GetDefense()+1);
             SetHealth(5);
             SetDefense(3);
@@ -65,7 +85,7 @@ public class Enemy : Entity
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
             break;
 
-        case 2: // Medium (ORANGE)
+        case 4: // med
             SetAttack(player.GetDefense()+2);
             SetDefense(4);
             SetHealth(30);   
@@ -73,8 +93,7 @@ public class Enemy : Entity
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
             break;
             
-        case 3:
-            // Hard (RED)
+        case 5: // hard)
             SetAttack(GetDefense()+3);
             SetDefense(5);
             SetHealth(50); 
@@ -127,13 +146,13 @@ public class Enemy : Entity
         }
 
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
-        if(true){
+        if(respawn){
             StartCoroutine(SpawnEnemyWithDelay());
+            transform.position = new Vector3(1000f, 1000f, transform.position.z);
 
         }
         
-        // Destroy the object
-        Destroy(gameObject);
+ 
 
     }
 
@@ -147,7 +166,7 @@ public class Enemy : Entity
     */
     {
 
-        if(true){
+        if(respawn){
             float minimum = 4f; // 4 seconds
             float maximum = 10f; // 10 seconds
 
@@ -161,6 +180,9 @@ public class Enemy : Entity
 
             // Spawn the enemy after the delay
             SpawnEnemy();
+
+            // Destroy the object
+            Destroy(gameObject);
         }
     }
 
@@ -182,7 +204,10 @@ public class Enemy : Entity
         {
             enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
             //enemyComponent.SetPlayerReference(player);
-            enemyComponent.SetLevel(randomEnemyIndex+1);
+
+            // remember to bypass the 3 tutorial enemies...
+            enemyComponent.SetLevel(randomEnemyIndex+3);
+            
             enemyComponent.SetCapability();
         }
         else

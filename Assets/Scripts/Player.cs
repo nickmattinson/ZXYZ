@@ -77,13 +77,6 @@ public class Player : Entity
                     enemy.TakeDamage(this);
                 }
 
-                TutorialEnemy tutorialEnemy = hit.collider.GetComponent<TutorialEnemy>();
-                if (tutorialEnemy != null)
-                {
-                    // Deal damage to the enemy
-                    //Debug.Log($"Player's attack is {this.GetAttack()}");
-                    tutorialEnemy.TakeDamage(this);
-                }
             }
         }
 

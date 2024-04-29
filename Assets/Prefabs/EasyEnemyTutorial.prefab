@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6121448821043922581}
   - component: {fileID: 5561803267936174639}
-  - component: {fileID: 730393586589681912}
-  - component: {fileID: 8357715471196615785}
+  - component: {fileID: 3384500580506265234}
   - component: {fileID: 8981216864285716322}
   - component: {fileID: 2423566743525873356}
   - component: {fileID: 5059597452891364124}
-  - component: {fileID: -1433931523602005835}
+  - component: {fileID: -7356524217964085912}
+  - component: {fileID: -8321441276262935227}
   m_Layer: 6
-  m_Name: TutorialEnemy
-  m_TagString: TutorialEnemy
+  m_Name: EasyEnemyTutorial
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.06132078, g: 1, b: 0.1332982, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &730393586589681912
+--- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,21 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8395851137816740249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618eb4eb0a475d24a8ff8ce96efe330b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
-  lineRenderer: {fileID: 5059597452891364124}
---- !u!114 &8357715471196615785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8395851137816740249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9089140e09d83534d8145f3ad748201c, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f2c1ae398889141a7a1a57a9b0c791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1219565040742012555, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
@@ -298,15 +284,36 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &-1433931523602005835
+--- !u!114 &-7356524217964085912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8395851137816740249}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a278be32577ff4a8723c3a92e2cc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8321441276262935227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395851137816740249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673267b8ee9be4b4e8c3928f6033c696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
+  lineRenderer: {fileID: 5059597452891364124}
+  powerupList:
+  - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
+  enemyTypeList:
+  - {fileID: 8395851137816740249}
+  - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
+  - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
+  chanceForPowerUp: 90

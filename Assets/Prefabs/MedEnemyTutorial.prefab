@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -190402784406194915}
   - component: {fileID: -8313439523479913980}
   m_Layer: 6
-  m_Name: MediumEnemy
+  m_Name: MedEnemyTutorial
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

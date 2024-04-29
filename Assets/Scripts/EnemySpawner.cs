@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
+        int randomEnemyIndex;
 
         if (stateManager.gameEnded != true)
         {
@@ -23,8 +24,30 @@ public class EnemySpawner : MonoBehaviour
                 //retrieving spawn point 
                 Transform spawnPoint = enemySpawnPoints[i];
 
+                // first three are tutorials, else normal
+                switch(i) 
+                {
+
+                case 0: // Tutorial
+                    randomEnemyIndex = 0;     
+                    break;
+
+                case 1: // Tutorial
+                    randomEnemyIndex = 1;     
+                    break;
+
+
+                case 2: // Tutorial
+                    randomEnemyIndex = 1;     
+                    break;
+
+
+                default: // all other enemy
+                    randomEnemyIndex = Random.Range(2, enemies.Count);
+                    break;
+                }
+
                 // Randomly select an enemy prefab
-                int randomEnemyIndex = Random.Range(0, enemies.Count);
                 GameObject currentEnemyPrefab = enemies[randomEnemyIndex];
 
                 // Create enemy instance
