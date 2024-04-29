@@ -10,7 +10,6 @@ public class Entity : MonoBehaviour
     private int defense;
     public GameObject damageNumberPrefab;
     [SerializeField] private LineRenderer lineRenderer; // Reference to LineRenderer component
-    private float lineDuration = 0.1f;
 
     private Vector4 spriteColor = new Vector4(1,1,1,1); 
 
@@ -123,7 +122,7 @@ public class Entity : MonoBehaviour
         SetHealth(Math.Min(GetHealth()+increase,200));        
     }    
 
-    public void Attack(Entity other, Color color)
+    public void Attack(Entity other)
     {
 
         // if attack > other.defense then attack
@@ -217,16 +216,16 @@ public class Entity : MonoBehaviour
     }
 
     // Coroutine to disable LineRenderer after a specified duration
-    private IEnumerator DisableLineRendererAfterDelay()
+    private IEnumerator DisableLineRendererAfterDelay(float lineDuration = 0.1f)
     {
         // Adjust the duration as needed
         yield return new WaitForSeconds(lineDuration); 
         lineRenderer.enabled = false;
     }
 
-public static Color Brighten(Color color, float correctionFactor = 0.5f)
+public static Color Brighten(Color color, float factor = 0.5f)
 {
-    return Color.Lerp(color, Color.black, correctionFactor);
+    return Color.Lerp(color, Color.black, factor);
 }
 
     public override string ToString()
