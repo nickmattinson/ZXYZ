@@ -15,6 +15,8 @@ public class Enemy : Entity
 
     private bool respawn = true;
 
+    private bool loot = true;
+
     public new void Awake(){
         // used for initial setup that
         // doesn't rely on other objects
@@ -73,7 +75,7 @@ public class Enemy : Entity
             break;
             
         case 3:
-            // Hard (RED)sssss
+            // Hard (RED)
             SetAttack(GetDefense()+3);
             SetDefense(5);
             SetHealth(50); 

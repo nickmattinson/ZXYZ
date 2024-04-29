@@ -84,10 +84,10 @@ public class Entity : MonoBehaviour
         return attack;
     }
 
-    public void AttackUp(int increase = 1){
+    public void AttackUp(int increase = 1, int max = 6){
         // default attack increase is 1
-        // max of 8
-        SetAttack(Math.Min(GetAttack()+increase,8));
+        // max of 6
+        SetAttack(Math.Min(GetAttack()+increase, max));
     }
 
     public void SetDefense(int defense)
@@ -100,10 +100,10 @@ public class Entity : MonoBehaviour
         return defense;
     }
 
-    public void DefenseUp(int increase = 1){
+    public void DefenseUp(int increase = 1, int max = 6){
         // default defense increase is 1
-        // max of 8
-        SetDefense(Math.Min(GetDefense()+increase,8));        
+        // max of 6
+        SetDefense(Math.Min(GetDefense()+increase, max));        
     }
 
     public void SetHealth(int health)
@@ -116,10 +116,10 @@ public class Entity : MonoBehaviour
         return health;
     }
 
-    public void HealthUp(int increase = 5){
+    public void HealthUp(int increase = 5, int max = 200){
         // default health increase is 5
         // max of 200
-        SetHealth(Math.Min(GetHealth()+increase,200));        
+        SetHealth(Math.Min(GetHealth()+increase, max));        
     }    
 
     public void Attack(Entity other)
