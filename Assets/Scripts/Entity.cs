@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using System;
+
 [System.Serializable]
 public class Entity : MonoBehaviour
 {
@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
     }
 
     public void SetRandomLevel(int max = 3){
-        this.level = UnityEngine.Random.Range(1,max+1);
+        this.level = Random.Range(1,max+1);
     }
 
     public void SetSpriteColor(Vector4 spriteColor){
@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour
     public void AttackUp(int increase = 1, int max = 6){
         // default attack increase is 1
         // max of 6
-        SetAttack(Math.Min(GetAttack()+increase, max));
+        SetAttack(Mathf.Min(GetAttack()+increase, max));
     }
 
     public void SetDefense(int defense)
@@ -103,7 +103,7 @@ public class Entity : MonoBehaviour
     public void DefenseUp(int increase = 1, int max = 6){
         // default defense increase is 1
         // max of 6
-        SetDefense(Math.Min(GetDefense()+increase, max));        
+        SetDefense(Mathf.Min(GetDefense()+increase, max));        
     }
 
     public void SetHealth(int health)
@@ -119,7 +119,7 @@ public class Entity : MonoBehaviour
     public void HealthUp(int increase = 5, int max = 200){
         // default health increase is 5
         // max of 200
-        SetHealth(Math.Min(GetHealth()+increase, max));        
+        SetHealth(Mathf.Min(GetHealth()+increase, max));        
     }    
 
     public void Attack(Entity other)

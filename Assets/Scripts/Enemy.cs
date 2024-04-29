@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -118,17 +117,19 @@ public class Enemy : Entity
         Debug.Log($"[{name}] killed by [{player.name}]. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
-        int rn = UnityEngine.Random.Range(0, 100);
+        int rn = Random.Range(0, 100);
         //Debug.Log($"Random number: {randomNumber}");
         if (rn >= (100-chanceForPowerUp))
         {
-            GameObject currentPowerupPrefab = powerupList[UnityEngine.Random.Range(0, powerupList.Count)];
+            GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
             //Debug.Log($"Power up {powerupInstance} created.");
         }
 
+        Debug.Log($"{this.name} about to respawn.   ____RESPAWN");
+
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
-        if(this.GetRespawn()){
+        if(true){
             StartCoroutine(SpawnEnemyWithDelay());
 
         }
@@ -148,12 +149,12 @@ public class Enemy : Entity
     */
     {
 
-        if(this.GetRespawn()){
+        if(true){
             float minimum = 4f; // 4 seconds
             float maximum = 10f; // 10 seconds
 
             // Generate a random spawn delay within the specified range
-            float spawnDelay = UnityEngine.Random.Range(minimum, maximum);
+            float spawnDelay = Random.Range(minimum, maximum);
 
             // Wait for the specified delay
             yield return new WaitForSeconds(spawnDelay);
@@ -166,7 +167,7 @@ public class Enemy : Entity
 
     public void SpawnEnemy()
     {
-        int randomEnemyIndex = UnityEngine.Random.Range(0, enemyTypeList.Count);
+        int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
         GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
 
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
