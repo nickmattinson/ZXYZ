@@ -14,7 +14,7 @@ public class Enemy : Entity
 
     private bool respawn = true;
 
-    private bool loot = true;
+    //private bool loot = true;
 
     public new void Awake(){
         // used for initial setup that
@@ -126,8 +126,6 @@ public class Enemy : Entity
             //Debug.Log($"Power up {powerupInstance} created.");
         }
 
-        Debug.Log($"{this.name} about to respawn.   ____RESPAWN");
-
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
         if(true){
             StartCoroutine(SpawnEnemyWithDelay());
@@ -156,6 +154,8 @@ public class Enemy : Entity
             // Generate a random spawn delay within the specified range
             float spawnDelay = Random.Range(minimum, maximum);
 
+            Debug.Log($"{this.name} about to respawn Delay [{spawnDelay}].   ____RESPAWN");
+
             // Wait for the specified delay
             yield return new WaitForSeconds(spawnDelay);
 
@@ -167,6 +167,8 @@ public class Enemy : Entity
 
     public void SpawnEnemy()
     {
+        Debug.Log($"{this.name}.   ____ SPAWNENEMY");
+
         int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
         GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
 
