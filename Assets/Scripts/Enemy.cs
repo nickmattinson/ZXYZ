@@ -60,25 +60,25 @@ public class Enemy : Entity
         {
 
         case 1: // easy
-            SetAttack(player.GetDefense()+1);
-            SetHealth(5);
+            SetAttack(2);
+            SetHealth(10);
             SetDefense(3);
             SetSpriteColor(new Vector4(0, 1, 0, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
             break;
 
         case 2: // med
-            SetAttack(player.GetDefense()+2);
+            SetAttack(3);
             SetDefense(4);
-            SetHealth(30);            
+            SetHealth(16);            
             SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
             break;
             
         case 3: // hard)
-            SetAttack(GetDefense()+3);
-            SetDefense(5);
-            SetHealth(50); 
+            SetAttack(5);  // at least
+            SetDefense(4); // at least
+            SetHealth(24); 
             SetSpriteColor(new Vector4(1, 0, 0, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;

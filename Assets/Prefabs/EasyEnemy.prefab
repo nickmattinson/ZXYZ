@@ -316,4 +316,4 @@ MonoBehaviour:
   - {fileID: 8395851137816740249}
   - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
   - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
-  chanceForPowerUp: 90
+  chanceForPowerUp: 60
