@@ -28,6 +28,11 @@ public class DrawLineToMouse : MonoBehaviour
             lineRenderer.SetPosition(0, playerPosition);
             lineRenderer.SetPosition(1, mousePosition);
 
+            // Set the color of the LineRenderer
+            Color customColor = player.GetAttackColor();
+            lineRenderer.startColor = customColor;
+            lineRenderer.endColor = customColor;
+
             // Enable the LineRenderer to make the line visible
             lineRenderer.enabled = true;
 

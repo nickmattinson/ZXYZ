@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8981216864285716322}
   - component: {fileID: 2423566743525873356}
   - component: {fileID: 5739143513441457547}
+  - component: {fileID: -920401278723257339}
   m_Layer: 6
   m_Name: HardEnemy
   m_TagString: Enemy
@@ -76,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1972802003
-  m_SortingLayer: 4
-  m_SortingOrder: 3
+  m_SortingLayer: 5
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6981132, g: 0.31941974, b: 0.5517999, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,10 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673267b8ee9be4b4e8c3928f6033c696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
-  health: 25
-  attack: 7
-  defense: 6
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
   lineRenderer: {fileID: 5739143513441457547}
   powerupList:
@@ -113,10 +110,13 @@ MonoBehaviour:
   - {fileID: 4223389478434026448, guid: 7cb14acefcc6a954c96b2f526adc15b6, type: 3}
   enemyTypeList:
   - {fileID: 8395851137816740249, guid: 46692faee40f11e44af24e3318c2af4b, type: 3}
-  - {fileID: 3181638798745600734, guid: f648a591fdae3b54ba07267da392b7e4, type: 3}
-  - {fileID: 8395851137816740249}
   - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
-  randomNumber: 75
+  - {fileID: 8395851137816740249}
+  - {fileID: 8395851137816740249, guid: 08110d7e344982a41a7c02ca0d8134d6, type: 3}
+  - {fileID: 8395851137816740249, guid: 9dc0ac3ad0a2ac440a70ff487b7fe66d, type: 3}
+  - {fileID: 8395851137816740249, guid: ec7e02bf4e11a0d47a1a95fc36535b6a, type: 3}
+  - {fileID: 8395851137816740249, guid: 065046e213d17bd43b87ba2cda4c5e3e, type: 3}
+  chanceForPowerUp: 45
 --- !u!114 &3384500580506265234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,11 +188,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8395851137816740249}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -311,3 +311,15 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-920401278723257339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395851137816740249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a278be32577ff4a8723c3a92e2cc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

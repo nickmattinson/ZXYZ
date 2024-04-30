@@ -20,10 +20,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = player.health.ToString();
-        attackText.text = player.attack.ToString();
-        defenseText.text = player.defense.ToString();
-        scoreText.text = player.score.ToString();
-        scoreTextGameOver.text = player.score.ToString();
+        healthText.text = player.GetHealth().ToString();
+        attackText.text = player.GetAttack().ToString();
+        defenseText.text = player.GetDefense().ToString();
+        scoreText.text = player.GetScore().ToString();
+        scoreTextGameOver.text = player.GetScore().ToString();
     }
 }

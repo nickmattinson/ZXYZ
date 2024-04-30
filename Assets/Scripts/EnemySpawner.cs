@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
+        int randomEnemyIndex;
 
         if (stateManager.gameEnded != true)
         {
@@ -23,8 +24,31 @@ public class EnemySpawner : MonoBehaviour
                 //retrieving spawn point 
                 Transform spawnPoint = enemySpawnPoints[i];
 
+                // first three are tutorials, else normal
+                switch(i) 
+                {
+
+                case 0: // Tutorial easy
+                    randomEnemyIndex = 0;     
+                    break;
+
+                case 1: // Tutorial easy
+                    randomEnemyIndex = 0;     
+                    break;
+
+
+                case 2: // Tutorial med
+                    randomEnemyIndex = 1;     
+                    break;
+
+
+                default: // all other enemy
+                    randomEnemyIndex = Random.Range(0, enemies.Count);
+                    break;
+                }
+
                 // Randomly select an enemy prefab
-                GameObject currentEnemyPrefab = enemies[Random.Range(0, enemies.Count)];
+                GameObject currentEnemyPrefab = enemies[randomEnemyIndex];
 
                 // Create enemy instance
                 GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -36,7 +60,15 @@ public class EnemySpawner : MonoBehaviour
                 if (enemyComponent != null)
                 {
                     enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
-                    enemyComponent.SetPlayerReference(player);
+                    //enemyComponent.SetPlayerReference(player);
+
+
+                    if(i<3){
+                        enemyComponent.SetRespawn(false);
+                    }
+
+                    enemyComponent.SetLevel(randomEnemyIndex+1);
+                    enemyComponent.SetCapability();
                 }
                 else
                 {
