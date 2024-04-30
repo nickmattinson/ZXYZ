@@ -84,9 +84,7 @@ public class Entity : MonoBehaviour
         return attack;
     }
 
-    public void AttackUp(int increase = 1, int max = 10){
-        // default attack increase is 1
-        // max of 6
+    public void AttackUp(int increase = 1, int max = 20){
         SetAttack(Mathf.Min(GetAttack()+increase, max));
     }
 
@@ -100,9 +98,7 @@ public class Entity : MonoBehaviour
         return defense;
     }
 
-    public void DefenseUp(int increase = 1, int max = 10){
-        // default defense increase is 1
-        // max of 6
+    public void DefenseUp(int increase = 1, int max = 15){
         SetDefense(Mathf.Min(GetDefense()+increase, max));        
     }
 
