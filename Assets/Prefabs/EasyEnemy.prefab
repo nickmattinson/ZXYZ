@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -316,4 +316,8 @@ MonoBehaviour:
   - {fileID: 8395851137816740249}
   - {fileID: 8395851137816740249, guid: 8e2a8ccbf0ef2344e99de4ca3f756c47, type: 3}
   - {fileID: 8395851137816740249, guid: 33134d6e25696834e99948deef48ac9e, type: 3}
+  - {fileID: 8395851137816740249, guid: 08110d7e344982a41a7c02ca0d8134d6, type: 3}
+  - {fileID: 8395851137816740249, guid: 9dc0ac3ad0a2ac440a70ff487b7fe66d, type: 3}
+  - {fileID: 8395851137816740249, guid: ec7e02bf4e11a0d47a1a95fc36535b6a, type: 3}
+  - {fileID: 8395851137816740249, guid: 065046e213d17bd43b87ba2cda4c5e3e, type: 3}
   chanceForPowerUp: 60
