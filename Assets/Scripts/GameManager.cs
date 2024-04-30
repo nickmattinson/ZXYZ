@@ -69,19 +69,22 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void CalculateEnemyStats(int playerLevel, int playerScore, int playerAttack, int playerDefense,
-        out int enemyLevel, out int enemyAttack, out int enemyDefense)
-    {
-        // Initialize enemy stats to default values
-        enemyLevel = 1;
-        enemyAttack = 2;
-        enemyDefense = 1;
+public void CalculateEnemyStats(int playerLevel, int playerScore, int playerAttack, int playerDefense,
+    out int enemyLevel, out int enemyAttack, out int enemyDefense)
+{
+    // Initialize enemy stats to default values
+    enemyLevel = 1;
+    enemyAttack = 2;
+    enemyDefense = 1;
 
-        // Calculate enemy level based on player level and score
-        enemyLevel = Mathf.Clamp(playerLevel + Mathf.FloorToInt(playerScore / 100), 1, 7);
+    // Calculate base enemy level based on player level and score
+    int baseEnemyLevel = Mathf.Clamp(playerLevel + Mathf.FloorToInt(playerScore / 100), 1, 7);
 
-        // Calculate enemy attack and defense based on player attack and defense
-        enemyAttack = Mathf.Clamp(playerAttack + (enemyLevel * 2), 2, 20);
-        enemyDefense = Mathf.Clamp(playerDefense + (enemyLevel * 1), 1, 15);
-    }
+    // Add a random factor for enemy level variation (+/- 1)
+    enemyLevel = Mathf.Clamp(baseEnemyLevel + Random.Range(-1, 3), 1, 7);
+
+    // Calculate enemy attack and defense based on player attack and defense
+    enemyAttack = Mathf.Clamp(playerAttack + (enemyLevel * 2), 2, 20);
+    enemyDefense = Mathf.Clamp(playerDefense + (enemyLevel * 1), 1, 15);
+}
 }

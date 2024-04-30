@@ -26,27 +26,15 @@ public class EnemySpawner : MonoBehaviour
                 //retrieving spawn point 
                 Transform spawnPoint = enemySpawnPoints[i];
 
-                // first three are tutorials, else normal
-                switch(i) 
+                if (i >= 0 && i < 3)  // First three spawn points
                 {
-
-                case 0: // Tutorial easy
-                    randomEnemyIndex = 0;     
-                    break;
-
-                case 1: // Tutorial easy
-                    randomEnemyIndex = 0;     
-                    break;
-
-
-                case 2: // Tutorial med
-                    randomEnemyIndex = 1;     
-                    break;
-
-
-                default: // all other enemy
+                    // Randomly select between level 1 and level 2 enemy
+                    randomEnemyIndex = Random.Range(0, 2); // 0 or 1
+                }
+                else
+                {
+                    // Randomly select from all available enemies for other spawn points
                     randomEnemyIndex = Random.Range(0, enemies.Count);
-                    break;
                 }
 
                 // Create enemy instance
