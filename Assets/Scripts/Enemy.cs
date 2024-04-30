@@ -59,25 +59,7 @@ public class Enemy : Entity
         switch(GetLevel()) 
         {
 
-        case 1: // easy tutorial
-            SetAttack(player.GetDefense()+1);
-            SetHealth(5);
-            SetDefense(3);
-            SetRespawn(false);
-            SetSpriteColor(new Vector4(0, 1, 0, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
-            break;
-
-        case 2: // med tutorial
-            SetAttack(player.GetDefense()+1);
-            SetHealth(5);
-            SetDefense(3);
-            SetRespawn(false);
-            SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
-            break;
-
-        case 3: // easy
+        case 1: // easy
             SetAttack(player.GetDefense()+1);
             SetHealth(5);
             SetDefense(3);
@@ -85,15 +67,15 @@ public class Enemy : Entity
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
             break;
 
-        case 4: // med
+        case 2: // med
             SetAttack(player.GetDefense()+2);
             SetDefense(4);
-            SetHealth(30);   
+            SetHealth(30);            
             SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
             break;
             
-        case 5: // hard)
+        case 3: // hard)
             SetAttack(GetDefense()+3);
             SetDefense(5);
             SetHealth(50); 
@@ -150,8 +132,10 @@ public class Enemy : Entity
             StartCoroutine(SpawnEnemyWithDelay());
             transform.position = new Vector3(1000f, 1000f, transform.position.z);
 
+        } else {
+            Destroy(gameObject);
         }
-        
+    
  
 
     }
@@ -205,8 +189,7 @@ public class Enemy : Entity
             enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
             //enemyComponent.SetPlayerReference(player);
 
-            // remember to bypass the 3 tutorial enemies...
-            enemyComponent.SetLevel(randomEnemyIndex+3);
+            enemyComponent.SetLevel(randomEnemyIndex+1);
             
             enemyComponent.SetCapability();
         }

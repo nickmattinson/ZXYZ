@@ -28,22 +28,22 @@ public class EnemySpawner : MonoBehaviour
                 switch(i) 
                 {
 
-                case 0: // Tutorial
+                case 0: // Tutorial easy
                     randomEnemyIndex = 0;     
                     break;
 
-                case 1: // Tutorial
-                    randomEnemyIndex = 1;     
+                case 1: // Tutorial easy
+                    randomEnemyIndex = 0;     
                     break;
 
 
-                case 2: // Tutorial
+                case 2: // Tutorial med
                     randomEnemyIndex = 1;     
                     break;
 
 
                 default: // all other enemy
-                    randomEnemyIndex = Random.Range(2, enemies.Count);
+                    randomEnemyIndex = Random.Range(0, enemies.Count);
                     break;
                 }
 
@@ -61,6 +61,12 @@ public class EnemySpawner : MonoBehaviour
                 {
                     enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
                     //enemyComponent.SetPlayerReference(player);
+
+
+                    if(i<3){
+                        enemyComponent.SetRespawn(false);
+                    }
+
                     enemyComponent.SetLevel(randomEnemyIndex+1);
                     enemyComponent.SetCapability();
                 }
