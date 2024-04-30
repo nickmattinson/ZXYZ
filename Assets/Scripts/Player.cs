@@ -3,46 +3,60 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class Player : Entity
 {
     public StateManager stateManager;
-    public int score;
+    public int score;  // should be private
 
-    public string username;
+    public string username;  // should be private
 
     private TextMeshProUGUI scoreText;
 
+    //[SerializeField] LineRenderer lineRenderer; // Reference to LineRenderer component
 
-    public Player(){
-        // Player constructor
-        
-        score = 0;
-        level = 1;
-        attack = 2;
-        defense = 1;
+    public new void Awake(){
+        // used for initial setup that
+        // doesn't rely on other objects
+        // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
+        SetLevel(1);
+        SetAttack(4);
+        SetHealth(200);
+        SetDefense(1);
+
+        // set sprite color
+        // then set attack color 30% darker
+        SetSpriteColor(new Vector4(.72f, .81f, 1.0f, 1));
+        SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
+
         username = "Unknown player";
 
-        Debug.Log($"Construct Player: {this}"); // debug
+
+
+        //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
 
+    public new void Start(){
+        // used for initial setup that
+        // does rely on other objects
+        // or components being initialized.
 
-    void Start()
-    {
-        //scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
-        Vector2 vector2d = new Vector2();
-        vector2d.x = 0f;
-        vector2d.y = 90f;
         stateManager = FindObjectOfType<StateManager>();
-        this.transform.position = vector2d;
+        this.transform.position = new Vector2(0f, 90f);
 
-        // get player prefs PlayerUserName
-        username = "";
+        // set sprite color
+        //SetSpriteColor(GetSpriteColor());
 
-        Debug.Log($"Start Player: {this}"); // debug
+        //Debug.Log($"[{this.name}] {this} ____ STARTED.");
 
     }
+
 
     void Update()
     {
@@ -59,58 +73,73 @@ public class Player : Entity
                 if (enemy != null)
                 {
                     // Deal damage to the enemy
-                    Debug.Log("Player's attack is " + attack);
-                    enemy.TakeDamage(this.attack);
+                    //Debug.Log($"Player's attack is {this.GetAttack()}");
+                    enemy.TakeDamage(this);
                 }
 
-                TutorialEnemy tutorialEnemy = hit.collider.GetComponent<TutorialEnemy>();
-                if (tutorialEnemy != null)
-                {
-                    // Deal damage to the enemy
-                    Debug.Log("Player's attack is " + attack);
-                    tutorialEnemy.TakeDamage(this.attack);
-                }
             }
         }
+
+        // // check player health
+        // if(GetHealth()<=0){
+        //     this.Die();
+        // }
     }
     public void ActivatePowerUp(string powerUp)
     {
-        if (powerUp == "AttackUp")
+        switch(powerUp) 
         {
-            this.attack += 2;
-        }
-        if (powerUp == "HealthUp")
-        {
-
-            // check no more than 100
-            this.health += 100;
-
-            if (this.health > 1000)
-            {
-                this.health = 1000;
-            }
-
-        }
-
-        if (powerUp == "DefenseUp")
-        {
-
-            // check no more than 100
-            this.defense += 2;
-
+            case "AttackUp":
+                // code block
+                //AttackUp(2);  // max of xx
+                this.AttackUp();
+                break;
+            case "HealthUp":
+                // code block
+                //HealthUp(20); // max of xxx
+                this.HealthUp();
+                break;
+            case "DefenseUp":
+                // code block
+                //DefenseUp(2);  // max of xxx
+                this.DefenseUp();
+                break;
+            default:
+                // code block
+                break;
         }
     }
 
     protected override void Die()
     {
-        Debug.Log($"Player {username} has died. Score: {score}");
+        Debug.Log($"[{username}] died with score [{score}]  ____SCORE");
         //scoreText.text = score.ToString();
         stateManager.loadGameOver();
+        //Destroy(this);
+    }
+
+    public void SetScore(int score){
+        this.score = score;
+    }
+
+    public int GetScore(){
+        return this.score;
     }
 
 
+    public void SetUsername(string username){
+        this.username = username;
+    }
+
+    public string GetUsername(){
+        return username;
+    }
+
     public override string ToString()
     {
-        return $"{username}, Level: {level}, Health: {health}, Defense: {defense}, Attack: {attack}";
+        string temp = $"{base.ToString()}";
+        temp += $", Score: {this.GetScore()}";
+        temp += $", Username: {this.GetUsername()}";
+        return temp;
     }
 }

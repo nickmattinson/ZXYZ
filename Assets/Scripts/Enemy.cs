@@ -5,43 +5,90 @@ using UnityEngine;
 public class Enemy : Entity
 {
     private Player player;
-    public LineRenderer lineRenderer;
-    private float lineDuration = 0.1f;
+    //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
     [SerializeField] List<GameObject> enemyTypeList;
-    [SerializeField] int randomNumber;
+    [SerializeField] int chanceForPowerUp;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
 
+    private bool respawn = true;
 
-    void Start()
+    private bool scoreable = true;
+
+    //private bool loot = true;
+
+    public new void Awake(){
+        // used for initial setup that
+        // doesn't rely on other objects
+        // or components being initialized.
+
+        // get rid of the Clone reference    
+        this.name = this.name.Replace("(Clone)","").Trim();
+
+        // set enemy capability
+        SetCapability();
+        //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
+
+
+
+    }
+
+    new void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        // used for initial setup that
+        // does rely on other objects
+        // or components being initialized.
+
+        // Get the Player component attached to the GameObject
+        // player = GetComponent<Player>(); // player reference not found...
+        player = FindObjectOfType<Player>();
         if (player == null)
         {
-            Debug.LogError("Player object not found!");
+            Debug.LogError("Player reference not found!_______ENEMY_START");
         }
-        Debug.Log(this);
 
-        // set the spawn position
-        //spawnPosition = transform.position;
+        // set spawn position
+        SetSpawnPosition(this.transform.position);
+
+        Debug.Log($"[{this.name}] {this} ____ STARTED.");
     }
-    public void attackOther(Entity other)
-    {
 
-        // if attack > other.defense then attack
-        if (this.attack > other.defense)
+    public void SetCapability(){
+        player = FindObjectOfType<Player>();
+        switch(GetLevel()) 
         {
-            Debug.Log($"{name} at {transform.position} attacks {other.name} at {other.transform.position} with Attack: {attack}");
 
-            // call TakeDamage()
-            other.TakeDamage(attack);
+        case 1: // easy
+            SetAttack(2);
+            SetHealth(10);
+            SetDefense(3);
+            SetSpriteColor(new Vector4(0, 1, 0, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
+            break;
 
-            // draw attack line from enemy to other
-            drawLineToPlayer();
+        case 2: // med
+            SetAttack(3);
+            SetDefense(4);
+            SetHealth(16);            
+            SetSpriteColor(new Vector4(0.83f, 0.68f, 0.39f, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
+            break;
+            
+        case 3: // hard)
+            SetAttack(5);  // at least
+            SetDefense(4); // at least
+            SetHealth(24); 
+            SetSpriteColor(new Vector4(1, 0, 0, 1));
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            break;
+
+        default:
+            // Default 
+            break;
         }
-
     }
+
 
     public void SetSpawnPosition(Vector3 spawnPosition)
     {
@@ -54,82 +101,83 @@ public class Enemy : Entity
         return spawnPosition;
     }
 
-    public void drawLineToPlayer()
-    {
-        // Set the positions for the LineRenderer (start and end points)
-        lineRenderer.SetPosition(0, transform.position); // Start position: enemy's position
-        lineRenderer.SetPosition(1, player.transform.position);    // End position: player's position
 
-        // Enable the LineRenderer to make the line visible
-        lineRenderer.enabled = true;
-
-        // Start coroutine to disable LineRenderer after duration
-        StartCoroutine(DisableLineRendererAfterDelay());
-    }
-    // Coroutine to disable LineRenderer after specified duration
-    private IEnumerator DisableLineRendererAfterDelay()
-    {
-        yield return new WaitForSeconds(lineDuration);
-        lineRenderer.enabled = false;
-    }
-    public void SetPlayerReference(Player player)
-    {
-        this.player = player;
-    }
 
 
     protected override void Die()
     {
-        player.score += 1;
+        player = FindObjectOfType<Player>();
+        //Debug.Log($"Bug Enemy: {name} Player: {player.GetScore()} _____ENEMY_DIE");
+        //player.SetScore(player.GetScore()+1);
+        player.score++;
+
+
 
         // step 1 - set death position
         deathPosition = transform.position;
-        Debug.Log($"Enemy {name} was killed by player {player.name} at position {deathPosition}.");
+        Debug.Log($"[{name}] killed by [{player.name}]. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
         int rn = Random.Range(0, 100);
         //Debug.Log($"Random number: {randomNumber}");
-        if (rn >= randomNumber)
+        if (rn >= (100-chanceForPowerUp))
         {
             GameObject currentPowerupPrefab = powerupList[Random.Range(0, powerupList.Count)];
             GameObject powerupInstance = Instantiate(currentPowerupPrefab, deathPosition, Quaternion.identity);
-            Debug.Log($"Power up {powerupInstance} created.");
+            //Debug.Log($"Power up {powerupInstance} created.");
         }
 
         // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
-        StartCoroutine(SpawnEnemyWithDelay());
-        transform.position = new Vector3(1000f, 1000f, transform.position.z);
+        if(respawn){
+            StartCoroutine(SpawnEnemyWithDelay());
+            transform.position = new Vector3(1000f, 1000f, transform.position.z);
+
+        } else {
+            Destroy(gameObject);
+        }
+    
+ 
+
     }
 
-IEnumerator SpawnEnemyWithDelay()
-/*
-    Modify random spawn rate
-    Randomly respawn between 4 and 10 seconds.
-    Author: ChatGPT3.5
-    Author: Mike M
-    Modified: 23/Apr/24
-*/
-{
-    float minimum = 4f; // 4 seconds
-    float maximum = 10f; // 10 seconds
+    IEnumerator SpawnEnemyWithDelay()
+    /*
+        Modify random spawn rate
+        Randomly respawn between 4 and 10 seconds.
+        Author: ChatGPT3.5
+        Author: Mike M
+        Modified: 23/Apr/24
+    */
+    {
 
-    // Generate a random spawn delay within the specified range
-    float spawnDelay = Random.Range(minimum, maximum);
+        if(respawn){
+            float minimum = 4f; // 4 seconds
+            float maximum = 10f; // 10 seconds
 
-    // Wait for the specified delay
-    yield return new WaitForSeconds(spawnDelay);
+            // Generate a random spawn delay within the specified range
+            float spawnDelay = Random.Range(minimum, maximum);
 
-    // Spawn the enemy after the delay
-    SpawnEnemy();
+            Debug.Log($"{this.name} about to respawn Delay [{spawnDelay}].   ____RESPAWN");
 
-    // Destroy the object (assuming this script is attached to the object you want to destroy)
-    Destroy(gameObject);
-}
+            // Wait for the specified delay
+            yield return new WaitForSeconds(spawnDelay);
+
+            // Spawn the enemy after the delay
+            SpawnEnemy();
+
+            // Destroy the object
+            Destroy(gameObject);
+        }
+    }
 
 
     public void SpawnEnemy()
     {
-        GameObject currentEnemyPrefab = enemyTypeList[Random.Range(0, enemyTypeList.Count)];
+        Debug.Log($"{this.name}.   ____ SPAWNENEMY");
+
+        int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
+        GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
+
         GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
 
         // Set player reference for the enemy
@@ -139,21 +187,33 @@ IEnumerator SpawnEnemyWithDelay()
         if (enemyComponent != null)
         {
             enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
-            enemyComponent.SetPlayerReference(player);
+            //enemyComponent.SetPlayerReference(player);
+
+            enemyComponent.SetLevel(randomEnemyIndex+1);
+            
+            enemyComponent.SetCapability();
         }
         else
         {
             Debug.LogWarning("Enemy component not found on instantiated enemy!");
         }
 
-        Debug.Log($"Replace Enemy {enemyInstance} created at position {spawnPosition}.");
+        Debug.Log($"[{enemyComponent.name}] {enemyComponent} ___REPLACEMENT based on {player}, Random Enemy Index: {randomEnemyIndex+1}");
     }
+
+public void SetRespawn(bool respawn){
+    this.respawn = respawn;
+}
+
+public bool GetRespawn(){
+    return this.respawn;
+}
 
     public override string ToString()
     {
         string temp = $"{base.ToString()}";
-        temp += $", Enemy: {name}";
-        temp += $", Spawnpoint: {spawnPosition}";
+        temp += $", Spawnpoint: {this.GetSpawnPosition()}";
+        temp += $", Respawn: {this.GetRespawn()}";
         return temp;
     }
 }
