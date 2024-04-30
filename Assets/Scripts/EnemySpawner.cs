@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     protected int numberOfSpawns;
     private Player player;
 
+    GameObject enemyRef;
+
     void Start()
     {
         stateManager = FindObjectOfType<StateManager>();
@@ -47,13 +49,9 @@ public class EnemySpawner : MonoBehaviour
                     break;
                 }
 
-                // Randomly select an enemy prefab
-                GameObject currentEnemyPrefab = enemies[randomEnemyIndex];
-
                 // Create enemy instance
-                GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
-
-                // Set player reference for the enemy
+                enemyRef = (GameObject)Resources.Load("Enemy");
+                GameObject enemyInstance = Instantiate(enemyRef, spawnPoint.position, spawnPoint.rotation);
                 Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
 
                 // set player reference
@@ -62,12 +60,33 @@ public class EnemySpawner : MonoBehaviour
                     enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
                     //enemyComponent.SetPlayerReference(player);
 
-
                     if(i<3){
                         enemyComponent.SetRespawn(false);
                     }
 
-                    enemyComponent.SetLevel(randomEnemyIndex+1);
+                    // Get player reference
+                    player = FindObjectOfType<Player>();
+
+                    // Get a reference to the GameManager
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+
+                    // Calculate enemy stats based on player stats
+                    int playerLevel = player.GetLevel();
+                    int playerScore = player.score;
+                    int playerAttack = player.GetAttack();
+                    int playerDefense = player.GetDefense();
+
+                    int enemyLevel, enemyAttack, enemyDefense;
+                    
+                    gameManager.CalculateEnemyStats(playerLevel, playerScore, playerAttack, playerDefense,
+                        out enemyLevel, out enemyAttack, out enemyDefense);
+
+                    // Set enemy stats
+                    enemyComponent.SetLevel(enemyLevel);
+                    enemyComponent.SetAttack(enemyAttack);
+                    enemyComponent.SetDefense(enemyDefense);
+
+                    // set enemy color and health
                     enemyComponent.SetCapability();
                 }
                 else
@@ -77,4 +96,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+    // Function to calculate enemy stats based on player stats
+
 }

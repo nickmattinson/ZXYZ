@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    private Player player;
+    //private Player player;
     //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
     [SerializeField] List<GameObject> enemyTypeList;
     [SerializeField] int chanceForPowerUp;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
+
+    GameObject enemyRef;
+
+
+
+    public int scoreCredit = 1;
 
     private bool respawn = true;
 
@@ -29,9 +35,6 @@ public class Enemy : Entity
         // set enemy capability
         SetCapability();
         //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
-
-
-
     }
 
     new void Start()
@@ -41,8 +44,7 @@ public class Enemy : Entity
         // or components being initialized.
 
         // Get the Player component attached to the GameObject
-        // player = GetComponent<Player>(); // player reference not found...
-        player = FindObjectOfType<Player>();
+        Player player = FindObjectOfType<Player>();
         if (player == null)
         {
             Debug.LogError("Player reference not found!_______ENEMY_START");
@@ -55,61 +57,66 @@ public class Enemy : Entity
     }
 
     public void SetCapability(){
-        player = FindObjectOfType<Player>();
+        // player reference
+        Player player = FindObjectOfType<Player>();
+
+        // score credit as function of level
+        this.scoreCredit = GetLevel();
+
         switch(GetLevel()) 
         {
 
         case 1: // easy - light gray
-            SetAttack(2);
+            //SetAttack(2);
             SetHealth(10);
-            SetDefense(3);
+            //SetDefense(3);
             SetSpriteColor(new Vector4(.88f, .88f, .88f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
             break;
 
         case 2: // med - light blue
-            SetAttack(3);
-            SetDefense(4);
+            //SetAttack(3);
+            //SetDefense(4);
             SetHealth(16);            
             SetSpriteColor(new Vector4(.36f, .55f, 1, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
             break;
             
         case 3: // hard - green
-            SetAttack(5);  // at least
-            SetDefense(4); // at least
+            //SetAttack(5);  // at least
+            //SetDefense(4); // at least
             SetHealth(24); 
             SetSpriteColor(new Vector4(.4f, 1, .59f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;
 
         case 4: // super - yellow
-            SetAttack(7);  // at least
-            SetDefense(5); // at least
+            //SetAttack(7);  // at least
+            //SetDefense(5); // at least
             SetHealth(30); 
             SetSpriteColor(new Vector4(.91f, .91f, .31f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;
 
         case 5: // mega - orange
-            SetAttack(9);  // at least
-            SetDefense(7); // at least
+            //SetAttack(9);  // at least
+            //SetDefense(7); // at least
             SetHealth(36); 
             SetSpriteColor(new Vector4(1, .83f, .27f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;
 
         case 6: // ultra - red
-            SetAttack(13);  // at least
-            SetDefense(9); // at least
+            //SetAttack(13);  // at least
+            //SetDefense(9); // at least
             SetHealth(45); 
             SetSpriteColor(new Vector4(1, 0.27f, 0.34f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
             break;
 
         case 7: // boss - purple
-            SetAttack(20);  // at least
-            SetDefense(15); // at least
+            //SetAttack(20);  // at least
+            //SetDefense(15); // at least
             SetHealth(60); 
             SetSpriteColor(new Vector4(.55f, .37f, 1, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
@@ -138,12 +145,11 @@ public class Enemy : Entity
 
     protected override void Die()
     {
-        player = FindObjectOfType<Player>();
-        //Debug.Log($"Bug Enemy: {name} Player: {player.GetScore()} _____ENEMY_DIE");
-        //player.SetScore(player.GetScore()+1);
-        player.score++;
+        // Get player reference
+        Player player = FindObjectOfType<Player>();
 
-
+        // update player's score based on enemy score credit
+        player.score += this.scoreCredit;
 
         // step 1 - set death position
         deathPosition = transform.position;
@@ -205,33 +211,39 @@ public class Enemy : Entity
 
     public void SpawnEnemy()
     {
-        Debug.Log($"{this.name}.   ____ SPAWNENEMY");
+        // Get a reference to the GameManager
+        GameManager gameManager = FindObjectOfType<GameManager>();
 
-        int randomEnemyIndex = Random.Range(0, enemyTypeList.Count);
-        GameObject currentEnemyPrefab = enemyTypeList[randomEnemyIndex];
+        // Get player reference
+        Player player = FindObjectOfType<Player>();
 
-        GameObject enemyInstance = Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
+        // Calculate enemy stats based on player stats
+        int playerLevel = player.GetLevel();
+        int playerScore = player.score;
+        int playerAttack = player.GetAttack();
+        int playerDefense = player.GetDefense();
 
-        // Set player reference for the enemy
+        int enemyLevel, enemyAttack, enemyDefense;
+        gameManager.CalculateEnemyStats(playerLevel, playerScore, playerAttack, playerDefense,
+            out enemyLevel, out enemyAttack, out enemyDefense);
+
+        // create Enemy
+        enemyRef = (GameObject)Resources.Load("Enemy");
+        GameObject enemyInstance = Instantiate(enemyRef, spawnPosition, Quaternion.identity);
         Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
-
-        // set player reference
         if (enemyComponent != null)
         {
-            enemyComponent.SetSpawnPosition(enemyComponent.transform.position);
-            //enemyComponent.SetPlayerReference(player);
-
-            enemyComponent.SetLevel(randomEnemyIndex+1);
-            
+            enemyComponent.SetLevel(enemyLevel);
+            enemyComponent.SetAttack(enemyAttack);
+            enemyComponent.SetDefense(enemyDefense);
             enemyComponent.SetCapability();
         }
         else
         {
             Debug.LogWarning("Enemy component not found on instantiated enemy!");
         }
-
-        Debug.Log($"[{enemyComponent.name}] {enemyComponent} ___REPLACEMENT based on {player}, Random Enemy Index: {randomEnemyIndex+1}");
     }
+
 
 public void SetRespawn(bool respawn){
     this.respawn = respawn;
