@@ -239,13 +239,9 @@ public static Color Brighten(Color color, float factor = 0.5f)
 
     public override string ToString()
     {
-        string temp = $", Level: {level}";
-        temp += $", Health: {health}";
-        temp += $", Defense: {defense}";
-        temp += $", Attack: {attack}";
-        temp += $", Position: {transform.position}";
-        temp += $", spriteColor: {spriteColor}";
-        temp += $", attackColor: {attackColor}";
+        string temp = $" {level}-{health}-{defense}-{attack}";
+        temp += $", position: {transform.position}";
+        temp += $", color: {spriteColor}";
         return temp;
     }
 }

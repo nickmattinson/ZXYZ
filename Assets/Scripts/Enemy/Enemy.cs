@@ -158,7 +158,7 @@ public class Enemy : Entity
 
         // step 1 - set death position
         deathPosition = transform.position;
-        Debug.Log($"Level: {this.GetLevel()} [{name}] killed by [{player.name}] scoreCredit: {this.scoreCredit}. ____KILL");
+        Debug.Log($"[{name}-{this.GetLevel()}] killed by [{player.name}]. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
         int rn = Random.Range(0, 100);
@@ -262,7 +262,6 @@ public bool GetRespawn(){
     {
         string temp = $"{base.ToString()}";
         temp += $", Spawnpoint: {this.GetSpawnPosition()}";
-        temp += $", Respawn: {this.GetRespawn()}";
         return temp;
     }
 }
