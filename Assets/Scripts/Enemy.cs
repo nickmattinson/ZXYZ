@@ -150,10 +150,11 @@ public class Enemy : Entity
 
         // update player's score based on enemy score credit
         player.score += this.scoreCredit;
+        player.SetLevel(Mathf.Max(player.score/5,1));
 
         // step 1 - set death position
         deathPosition = transform.position;
-        Debug.Log($"[{name}] killed by [{player.name}]. ____KILL");
+        Debug.Log($"Level: {this.GetLevel()} [{name}] killed by [{player.name}] scoreCredit: {this.scoreCredit}. ____KILL");
 
         // step 2 - drop a random buf at death position randomly
         int rn = Random.Range(0, 100);
