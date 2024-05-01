@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class Entity : MonoBehaviour
 {
+
+    public GameObject JerseyNumberPrefab;
     private int level;
     private int health;
     private int attack;
@@ -138,6 +140,12 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(Entity other)
     {
+
+        // show jersey number
+        if(JerseyNumberPrefab != null){
+            this.ShowJerseyNumber();
+        }
+
         // other.attack > this.defense
         if (other.GetAttack() > this.GetDefense())
         {
@@ -172,6 +180,11 @@ public class Entity : MonoBehaviour
         {
             //Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.GetDefense()}.");
         }
+    }
+
+    public void ShowJerseyNumber(){
+        Instantiate(JerseyNumberPrefab, transform.position, Quaternion.identity, transform);
+
     }
     
     protected virtual void Die()

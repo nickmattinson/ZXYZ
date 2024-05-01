@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781245e2875679b40a0f98048894f7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JerseyNumberPrefab: {fileID: 4137955479257398664, guid: 78038e5a69cd45749882ece9f3afb4d5, type: 3}
   damageNumberPrefab: {fileID: 511069470146900207, guid: e296012e34781ef429ad2843d621b7b4, type: 3}
   lineRenderer: {fileID: 793097868785156182}
   stateManager: {fileID: 0}
