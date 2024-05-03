@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - DamageNumber
   - TutorialEnemy
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Enemy
   - Background
   - Foreground
-  - 
+  - Powerup
   - 
   - 
   - 

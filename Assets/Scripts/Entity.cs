@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class Entity : MonoBehaviour
 {
+
+    public GameObject JerseyNumberPrefab;
     private int level;
     private int health;
     private int attack;
@@ -121,6 +123,8 @@ public class Entity : MonoBehaviour
     public void Attack(Entity other)
     {
 
+        Debug.Log($"{this} attacks {other}___ATTACK");
+
         // if attack > other.defense then attack
         if (this.attack > other.defense)
         {
@@ -138,11 +142,17 @@ public class Entity : MonoBehaviour
 
     public void TakeDamage(Entity other)
     {
+
+        // show jersey number
+        if(JerseyNumberPrefab != null){
+            this.ShowJerseyNumber();
+        }
+
         // other.attack > this.defense
         if (other.GetAttack() > this.GetDefense())
         {
             // decrease health by actual damage.
-            //Debug.Log($"Other's attack > {name} defense.");
+
             int actualDamage = other.GetAttack() - this.GetDefense();
 
             health -= (actualDamage);
@@ -172,6 +182,11 @@ public class Entity : MonoBehaviour
         {
             //Debug.Log($"{other.name}'s attack of {other.GetAttack()} < {name} defense of {this.GetDefense()}.");
         }
+    }
+
+    public void ShowJerseyNumber(){
+        Instantiate(JerseyNumberPrefab, transform.position, Quaternion.identity, transform);
+
     }
     
     protected virtual void Die()
@@ -226,13 +241,9 @@ public static Color Brighten(Color color, float factor = 0.5f)
 
     public override string ToString()
     {
-        string temp = $", Level: {level}";
-        temp += $", Health: {health}";
-        temp += $", Defense: {defense}";
-        temp += $", Attack: {attack}";
-        temp += $", Position: {transform.position}";
-        temp += $", spriteColor: {spriteColor}";
-        temp += $", attackColor: {attackColor}";
+        string temp = $"[{this.name}]";
+        temp +=  $" {level}-{health}-{defense}-{attack}";
+        temp += $", position: {transform.position}";
         return temp;
     }
 }
