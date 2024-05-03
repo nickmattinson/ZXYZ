@@ -123,6 +123,8 @@ public class Entity : MonoBehaviour
     public void Attack(Entity other)
     {
 
+        Debug.Log($"{this} attacks {other}___ATTACK");
+
         // if attack > other.defense then attack
         if (this.attack > other.defense)
         {
@@ -150,7 +152,7 @@ public class Entity : MonoBehaviour
         if (other.GetAttack() > this.GetDefense())
         {
             // decrease health by actual damage.
-            //Debug.Log($"Other's attack > {name} defense.");
+
             int actualDamage = other.GetAttack() - this.GetDefense();
 
             health -= (actualDamage);
@@ -239,9 +241,9 @@ public static Color Brighten(Color color, float factor = 0.5f)
 
     public override string ToString()
     {
-        string temp = $" {level}-{health}-{defense}-{attack}";
+        string temp = $"[{this.name}]";
+        temp +=  $" {level}-{health}-{defense}-{attack}";
         temp += $", position: {transform.position}";
-        temp += $", color: {spriteColor}";
         return temp;
     }
 }

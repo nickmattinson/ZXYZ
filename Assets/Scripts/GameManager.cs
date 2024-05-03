@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // [SerializeField] GameObject easyTutorialEnemy;
-    // [SerializeField] GameObject mediumTutorialEnemy;
-    // [SerializeField] GameObject medium2TutorialEnemy;
     public StateManager stateManager;
     [SerializeField] GameObject player;
     protected GameObject backgroundMusic;
