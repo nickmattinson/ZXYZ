@@ -8,22 +8,12 @@ public class Enemy : Entity
     //private Player player;
     //private float lineDuration = 0.1f;
     [SerializeField] List<GameObject> powerupList;
-
     [SerializeField] int chanceForPowerUp;
     private Vector3 spawnPosition;
     private Vector3 deathPosition;
-
     GameObject enemyRef;
-
-
-
     public int scoreCredit = 1;
-
-    private bool respawn = false;
-
     private bool scoreable = true;
-
-    //private bool loot = true;
 
     public new void Awake(){
         // used for initial setup that
@@ -170,93 +160,9 @@ public class Enemy : Entity
             //Debug.Log($"Power up {powerupInstance} created.");
         }
 
-        // step 3 - after random short delay, spawn new enemy at the spawn position as function of the game level and player health
-        if(respawn){
-            StartCoroutine(SpawnEnemyWithDelay());
-            transform.position = new Vector3(1000f, 1000f, transform.position.z);
-
-        } else {
-            Destroy(gameObject);
-        }
-    
- 
-
+        // step 3 - destroy object
+        Destroy(gameObject);
     }
-
-    IEnumerator SpawnEnemyWithDelay()
-    /*
-        Modify random spawn rate
-        Randomly respawn between 4 and 10 seconds.
-        Author: ChatGPT3.5
-        Author: Mike M
-        Modified: 23/Apr/24
-    */
-    {
-
-        if(respawn){
-            float minimum = 4f; // 4 seconds
-            float maximum = 10f; // 10 seconds
-
-            // Generate a random spawn delay within the specified range
-            float spawnDelay = Random.Range(minimum, maximum);
-
-            Debug.Log($"{this.name} about to respawn Delay [{spawnDelay}].   ____RESPAWN");
-
-            // Wait for the specified delay
-            yield return new WaitForSeconds(spawnDelay);
-
-            // Spawn the enemy after the delay
-            SpawnEnemy();
-
-            // Destroy the object
-            Destroy(gameObject);
-        }
-    }
-
-
-    public void SpawnEnemy()
-    {
-        // Get a reference to the GameManager
-        GameManager gameManager = FindObjectOfType<GameManager>();
-
-        // Get player reference
-        Player player = FindObjectOfType<Player>();
-
-        // Calculate enemy stats based on player stats
-        int playerLevel = player.GetLevel();
-        int playerScore = player.score;
-        int playerAttack = player.GetAttack();
-        int playerDefense = player.GetDefense();
-
-        int enemyLevel, enemyAttack, enemyDefense;
-        gameManager.CalculateEnemyStats(1, 7, playerLevel, playerScore, playerAttack, playerDefense,
-            out enemyLevel, out enemyAttack, out enemyDefense);
-
-        // create Enemy
-        enemyRef = (GameObject)Resources.Load("Enemy");
-        GameObject enemyInstance = Instantiate(enemyRef, spawnPosition, Quaternion.identity);
-        Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
-        if (enemyComponent != null)
-        {
-            enemyComponent.SetLevel(enemyLevel);
-            enemyComponent.SetAttack(enemyAttack);
-            enemyComponent.SetDefense(enemyDefense);
-            enemyComponent.SetCapability();
-        }
-        else
-        {
-            Debug.LogWarning("Enemy component not found on instantiated enemy!");
-        }
-    }
-
-
-public void SetRespawn(bool respawn){
-    this.respawn = respawn;
-}
-
-public bool GetRespawn(){
-    return this.respawn;
-}
 
     public override string ToString()
     {

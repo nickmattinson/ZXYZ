@@ -7,11 +7,10 @@ using UnityEngine.AI;
 
 public class Player : Entity
 {
+    public ShootingController shootingController;
     public StateManager stateManager;
     public int score;  // should be private
-
     public string username;  // should be private
-
     private TextMeshProUGUI scoreText;
 
     //[SerializeField] LineRenderer lineRenderer; // Reference to LineRenderer component
@@ -25,7 +24,7 @@ public class Player : Entity
         this.name = this.name.Replace("(Clone)","").Trim();
 
         SetLevel(1);
-        SetAttack(4);
+        SetAttack(7);
         SetHealth(200);
         SetDefense(1);
 
@@ -35,9 +34,6 @@ public class Player : Entity
         SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
 
         username = "Unknown player";
-
-
-
         //Debug.Log($"[{this.name}] {this} ____ AWAKE.");
 
     }
@@ -62,29 +58,37 @@ public class Player : Entity
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // Convert mouse position to world space in 2D
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // Perform a raycast in 2D from the mouse position
-            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            // Find the ShootingController in the scene
+            ShootingController shootingController = FindObjectOfType<ShootingController>();
 
-            if (hit.collider != null)
+            if (shootingController != null)
             {
-                Enemy enemy = hit.collider.GetComponent<Enemy>();
-                if (enemy != null)
-                {
-                    // Deal damage to the enemy
-                    //Debug.Log($"Player's attack is {this.GetAttack()}");
-                    enemy.TakeDamage(this);
-                }
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
+                if (hit.collider != null)
+                {
+                    Enemy enemy = hit.collider.GetComponent<Enemy>();
+                    if (enemy != null)
+                    {
+                        // Check if the line of sight between player and enemy is clear
+                        Vector3 playerPos = transform.position;
+                        Vector3 enemyPos = enemy.transform.position;
+
+                        // Perform raycast and adjust aim if needed
+                        shootingController.ShootAtEnemy(playerPos, mousePosition);
+
+                        // If the line of sight is clear (no obstacles), then attack
+                        if (shootingController.IsLineOfSightClear(playerPos, enemyPos))
+                        {
+                            Attack(enemy);
+                        }
+                    }
+                }
             }
         }
-
-        // // check player health
-        // if(GetHealth()<=0){
-        //     this.Die();
-        // }
     }
+
     public void ActivatePowerUp(string powerUp)
     {
         switch(powerUp) 

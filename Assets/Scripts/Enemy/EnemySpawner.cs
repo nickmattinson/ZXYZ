@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool _spawnerActive = true;
 
+    private EnemyCapability enemyCapability;
 
     private float _timeUntilNextSpawn;
 
@@ -51,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
                 Player player = FindObjectOfType<Player>();
 
                 // Get a reference to the GameManager
-                GameManager gameManager = FindObjectOfType<GameManager>();
+                enemyCapability = FindObjectOfType<EnemyCapability>();
 
                 // Calculate enemy stats based on player stats
                 int playerLevel = player.GetLevel();
@@ -61,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
 
                 int enemyLevel, enemyAttack, enemyDefense;
                 
-                gameManager.CalculateEnemyStats(_minEnemyLevel, _maxEnemyLevel, playerLevel, playerScore, playerAttack, playerDefense,
+                enemyCapability.SetEnemyCapability(_minEnemyLevel, _maxEnemyLevel, playerLevel, playerScore, playerAttack, playerDefense,
                     out enemyLevel, out enemyAttack, out enemyDefense);
 
                 // Set enemy stats

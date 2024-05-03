@@ -3,36 +3,29 @@ using UnityEngine;
 public class ShootingController : MonoBehaviour
 {
     public Transform playerTransform;
-    
     public Transform enemyTransform;
     public LayerMask foregroundLayer;
     public LineRenderer lineRenderer;
 
-
-    public bool IsLineOfSightClear()
+    public bool IsLineOfSightClear(Vector3 start, Vector3 end)
     {
-        // Perform a raycast from player to enemy to check for obstacles
-        RaycastHit2D hit = Physics2D.Linecast(playerTransform.position, enemyTransform.position, foregroundLayer);
-        
-        // If the raycast hits something, there's an obstacle in the way
+        RaycastHit2D hit = Physics2D.Linecast(start, end, foregroundLayer);
         return hit.collider == null;
     }
 
     public void ShootAtEnemy(Vector3 playerPos, Vector3 mousePos)
     {
-        //Debug.Log($"{playerPos} - {mousePos}______SHOOTER");
-        RaycastHit2D hit = Physics2D.Linecast(playerPos, mousePos, foregroundLayer);
-
-        if (hit.collider != null)
+        if (IsLineOfSightClear(playerPos, mousePos))
         {
-            Debug.Log($"hit.collider not null: {hit.point}______OBSTACLE");
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, mousePos);
+            Debug.Log("Clear line of sight. Shooting...");
+            // Add your shooting logic here
         }
         else
         {
-            Debug.Log($"hit.collider null: {hit}______CLEAR LINE OF SIGHT");
-            lineRenderer.SetPosition(1, mousePos);
+            RaycastHit2D hit = Physics2D.Linecast(playerPos, mousePos, foregroundLayer);
+            lineRenderer.SetPosition(1, hit.point);
+            Debug.Log($"Obstacle detected at {hit.point}. Adjusting aim...");
         }
     }
-
 }
