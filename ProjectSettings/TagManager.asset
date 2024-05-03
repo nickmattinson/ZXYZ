@@ -21,7 +21,7 @@ TagManager:
   - Background
   - Foreground
   - Powerup
-  - 
+  - Level
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Structures
     uniqueID: 427011861
+    locked: 0
+  - name: Level
+    uniqueID: 1302576059
     locked: 0
   - name: PowerUps
     uniqueID: 1217463591

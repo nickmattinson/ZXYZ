@@ -142,9 +142,6 @@ public class Enemy : Entity
         // update player's score based on enemy score credit
         player.score += this.scoreCredit;
         player.SetLevel(Mathf.Max(player.score/5,1));
-        if(JerseyNumberPrefab != null){
-            player.ShowJerseyNumber();
-        }
 
         // step 1 - set death position
         deathPosition = transform.position;
