@@ -15,6 +15,11 @@ public class Enemy : Entity
     public int scoreCredit = 1;
     private bool scoreable = true;
 
+    public float enemySpeed { get; private set; }
+    public float minEngagementDistance { get; private set; }
+    public float maxEngagementDistance { get; private set; }
+    public float waitTime { get; private set; }
+
     public new void Awake(){
         // used for initial setup that
         // doesn't rely on other objects
@@ -51,8 +56,14 @@ public class Enemy : Entity
         // player reference
         Player player = FindObjectOfType<Player>();
 
-        // score credit as function of level
-        this.scoreCredit = GetLevel();
+        // Score credit as a function of level, defense, and attack
+        int level = GetLevel();
+        int defense = GetDefense(); // Assume GetDefense() returns the enemy's defense value
+        int attack = GetAttack(); // Assume GetAttack() returns the enemy's attack value
+
+        // Adjust scoreCredit based on level, defense, and attack
+        // You can modify this formula based on your game's logic
+        this.scoreCredit = level * (defense + attack);
 
         switch(GetLevel()) 
         {
@@ -62,7 +73,11 @@ public class Enemy : Entity
             SetHealth(10);
             //SetDefense(3);
             SetSpriteColor(new Vector4(.88f, .88f, .88f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));  
+            enemySpeed = 5f;
+            minEngagementDistance = 5f;
+            maxEngagementDistance = 20f;
+            waitTime = .1f;     
             break;
 
         case 2: // med - light blue
@@ -70,7 +85,11 @@ public class Enemy : Entity
             //SetDefense(4);
             SetHealth(16);            
             SetSpriteColor(new Vector4(.36f, .55f, 1, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f)); 
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+            enemySpeed = 7f;
+            minEngagementDistance = 7f;
+            maxEngagementDistance = 20f;
+            waitTime = 1.5f;
             break;
             
         case 3: // hard - green
@@ -78,7 +97,11 @@ public class Enemy : Entity
             //SetDefense(4); // at least
             SetHealth(24); 
             SetSpriteColor(new Vector4(.4f, 1, .59f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));  
+            enemySpeed = 9f;
+            minEngagementDistance = 10f;
+            maxEngagementDistance = 25f;
+            waitTime = 1f;                     
             break;
 
         case 4: // super - yellow
@@ -86,7 +109,11 @@ public class Enemy : Entity
             //SetDefense(5); // at least
             SetHealth(30); 
             SetSpriteColor(new Vector4(.91f, .91f, .31f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+            enemySpeed = 11f;
+            minEngagementDistance = 12f;
+            maxEngagementDistance = 30f;
+            waitTime = 0.8f;                       
             break;
 
         case 5: // mega - orange
@@ -94,7 +121,11 @@ public class Enemy : Entity
             //SetDefense(7); // at least
             SetHealth(36); 
             SetSpriteColor(new Vector4(1, .83f, .27f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+            enemySpeed = 13f;
+            minEngagementDistance = 15f;
+            maxEngagementDistance = 35f;
+            waitTime = 0.6f;                       
             break;
 
         case 6: // ultra - red
@@ -102,7 +133,11 @@ public class Enemy : Entity
             //SetDefense(9); // at least
             SetHealth(45); 
             SetSpriteColor(new Vector4(1, 0.27f, 0.34f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+            enemySpeed = 15f;
+            minEngagementDistance = 17f;
+            maxEngagementDistance = 40f;
+            waitTime = 0.4f;                       
             break;
 
         case 7: // boss - purple
@@ -110,7 +145,11 @@ public class Enemy : Entity
             //SetDefense(15); // at least
             SetHealth(60); 
             SetSpriteColor(new Vector4(.55f, .37f, 1, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));                       
+            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+            enemySpeed = 17f;
+            minEngagementDistance = 20f;
+            maxEngagementDistance = 45f;
+            waitTime = 0.2f;                       
             break;
 
         default:
@@ -142,9 +181,6 @@ public class Enemy : Entity
         // update player's score based on enemy score credit
         player.score += this.scoreCredit;
         player.SetLevel(Mathf.Max(player.score/5,1));
-        if(JerseyNumberPrefab != null){
-            player.ShowJerseyNumber();
-        }
 
         // step 1 - set death position
         deathPosition = transform.position;

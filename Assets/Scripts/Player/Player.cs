@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class Player : Entity
 {
+    private Jersey jersey;
+
     public ShootingController shootingController;
     public StateManager stateManager;
     public int score;  // should be private
@@ -46,6 +48,10 @@ public class Player : Entity
         stateManager = FindObjectOfType<StateManager>();
         this.transform.position = new Vector2(0f, 90f);
 
+        // setup player jersey
+        jersey = FindAnyObjectByType<Jersey>();
+
+
         // set sprite color
         //SetSpriteColor(GetSpriteColor());
 
@@ -56,6 +62,10 @@ public class Player : Entity
 
     void Update()
     {
+
+        // update jersey
+        jersey.SetJersey(this.GetHealth().ToString());
+
         if (Input.GetMouseButtonDown(0))
         {
             // Find the ShootingController in the scene
