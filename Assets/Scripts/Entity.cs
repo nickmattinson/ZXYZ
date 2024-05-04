@@ -135,6 +135,18 @@ public class Entity : MonoBehaviour
             // draw attack line from enemy to other
             DrawLineTo(other); 
 
+        } else {
+            Debug.Log($"[{this}] attack is less than [{other}] defense _________TEST");
+            // Instantiate damage number prefab at this position
+            GameObject damageNumberObj = Instantiate(damageNumberPrefab, other.transform.position, Quaternion.identity);
+
+            if (damageNumberPrefab != null)
+            {
+                // Set the damage value on the damage number
+                DamageNumber damageNumber = damageNumberObj.GetComponent<DamageNumber>();
+
+                damageNumber.SetDamage(0);
+            }
         }
 
     }
