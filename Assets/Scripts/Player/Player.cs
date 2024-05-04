@@ -49,7 +49,7 @@ public class Player : Entity
         this.transform.position = new Vector2(0f, 90f);
 
         // setup player jersey
-        jersey = FindAnyObjectByType<Jersey>();
+        //jersey = FindAnyObjectByType<Jersey>();
 
 
         // set sprite color
@@ -64,7 +64,7 @@ public class Player : Entity
     {
 
         // update jersey
-        jersey.SetJersey(this.GetHealth().ToString());
+        //jersey.SetJersey(this.GetHealth().ToString());
 
         if (Input.GetMouseButtonDown(0))
         {
