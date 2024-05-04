@@ -15,8 +15,9 @@ public class Enemy : Entity
     public int scoreCredit = 1;
     //private bool scoreable = true;
     public float enemySpeed { get; private set; }
-    public float minEngagementDistance { get; private set; }
-    public float maxEngagementDistance { get; private set; }
+    public float minManeuverDistance { get; private set; } // zone 1
+    public float minEngagementDistance { get; private set; } // zone 2
+    public float minVisibilityRange {get; private set;}   // zone 3
     public float waitTime { get; private set; }
 
     public new void Awake(){
@@ -71,9 +72,10 @@ public class Enemy : Entity
             SetHealth(10);
             SetSpriteColor(new Vector4(.88f, .88f, .88f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));  
-            enemySpeed = 5f;
-            minEngagementDistance = 5f;
-            maxEngagementDistance = 20f;
+            enemySpeed = 3f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
             waitTime = .1f;     
             //SetAttack(10);        THESE ARE FOR DEBUGGING TEST CASE
             //SetDefense(10);
@@ -83,50 +85,55 @@ public class Enemy : Entity
             SetHealth(16);            
             SetSpriteColor(new Vector4(.36f, .55f, 1, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
-            enemySpeed = 7f;
-            minEngagementDistance = 7f;
-            maxEngagementDistance = 20f;
-            waitTime = 1.5f;
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;
             break;
             
         case 3: // hard - green
             SetHealth(24); 
             SetSpriteColor(new Vector4(.4f, 1, .59f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));  
-            enemySpeed = 9f;
-            minEngagementDistance = 10f;
-            maxEngagementDistance = 25f;
-            waitTime = 1f;                     
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;                     
             break;
 
         case 4: // super - yellow
             SetHealth(30); 
             SetSpriteColor(new Vector4(.91f, .91f, .31f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
-            enemySpeed = 11f;
-            minEngagementDistance = 12f;
-            maxEngagementDistance = 30f;
-            waitTime = 0.8f;                       
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;                       
             break;
 
         case 5: // mega - orange
             SetHealth(36); 
             SetSpriteColor(new Vector4(1, .83f, .27f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
-            enemySpeed = 13f;
-            minEngagementDistance = 15f;
-            maxEngagementDistance = 35f;
-            waitTime = 0.6f;                       
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;                       
             break;
 
         case 6: // ultra - red
             SetHealth(45); 
             SetSpriteColor(new Vector4(1, 0.27f, 0.34f, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
-            enemySpeed = 15f;
-            minEngagementDistance = 17f;
-            maxEngagementDistance = 40f;
-            waitTime = 0.4f;                       
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;                       
             break;
 
         case 7: // boss - purple
@@ -134,9 +141,11 @@ public class Enemy : Entity
             SetSpriteColor(new Vector4(.55f, .37f, 1, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
             enemySpeed = 17f;
-            minEngagementDistance = 20f;
-            maxEngagementDistance = 45f;
-            waitTime = 0.2f;                       
+            enemySpeed = 5f;
+            minManeuverDistance = 2f;
+            minEngagementDistance = 4f;
+            minVisibilityRange = 10f;
+            waitTime = .1f;                      
             break;
 
         default:
