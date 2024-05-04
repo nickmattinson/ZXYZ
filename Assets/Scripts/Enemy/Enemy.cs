@@ -15,6 +15,11 @@ public class Enemy : Entity
     public int scoreCredit = 1;
     private bool scoreable = true;
 
+    public float enemySpeed { get; private set; }
+    public float minEngagementDistance { get; private set; }
+    public float maxEngagementDistance { get; private set; }
+    public float waitTime { get; private set; }
+
     public new void Awake(){
         // used for initial setup that
         // doesn't rely on other objects
@@ -51,8 +56,14 @@ public class Enemy : Entity
         // player reference
         Player player = FindObjectOfType<Player>();
 
-        // score credit as function of level
-        this.scoreCredit = GetLevel();
+        // Score credit as a function of level, defense, and attack
+        int level = GetLevel();
+        int defense = GetDefense(); // Assume GetDefense() returns the enemy's defense value
+        int attack = GetAttack(); // Assume GetAttack() returns the enemy's attack value
+
+        // Adjust scoreCredit based on level, defense, and attack
+        // You can modify this formula based on your game's logic
+        this.scoreCredit = level * (defense + attack);
 
         switch(GetLevel()) 
         {
