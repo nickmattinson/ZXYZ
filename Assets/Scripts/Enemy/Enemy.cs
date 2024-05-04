@@ -18,7 +18,9 @@ public class Enemy : Entity
     public float minManeuverDistance { get; private set; } // zone 1
     public float minEngagementDistance { get; private set; } // zone 2
     public float minVisibilityRange {get; private set;}   // zone 3
-    public float waitTime { get; private set; }
+    //public float waitTime { get; private set; }
+    public float attackRate { get; set; } // attacks per second
+    public float timeToNextAttack { get; set; } // time to next attack
 
     public new void Awake(){
         // used for initial setup that
@@ -71,17 +73,17 @@ public class Enemy : Entity
         case 1: // easy - light gray
             SetHealth(10);
             SetSpriteColor(new Vector4(.88f, .88f, .88f, 1));
-            SetAttackColor(Brighten(GetSpriteColor(), 0.5f));  
-            enemySpeed = 3f;
-            minManeuverDistance = 2f;
-            minEngagementDistance = 4f;
-            minVisibilityRange = 10f;
-            waitTime = .1f;     
-            //SetAttack(10);        THESE ARE FOR DEBUGGING TEST CASE
-            //SetDefense(10);
-            break;
+                SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
+                enemySpeed = 1f;
+                minManeuverDistance = 2f;
+                minEngagementDistance = 4f;
+                minVisibilityRange = 10f;
+                attackRate = .4f; // attacks per second
+                //SetAttack(10);        THESE ARE FOR DEBUGGING TEST CASE
+                //SetDefense(10);
+                break;
 
-        case 2: // med - light blue
+            case 2: // med - light blue
             SetHealth(16);            
             SetSpriteColor(new Vector4(.36f, .55f, 1, 1));
             SetAttackColor(Brighten(GetSpriteColor(), 0.5f));
@@ -89,7 +91,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;
+            attackRate = .4f; // attacks per second
             break;
             
         case 3: // hard - green
@@ -100,7 +102,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;                     
+            attackRate = .5f; // attacks per second                     
             break;
 
         case 4: // super - yellow
@@ -111,7 +113,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;                       
+            attackRate = .6f; // attacks per second                      
             break;
 
         case 5: // mega - orange
@@ -122,7 +124,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;                       
+            attackRate = .7f; // attacks per second                      
             break;
 
         case 6: // ultra - red
@@ -133,7 +135,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;                       
+            attackRate = .8f; // attacks per second                       
             break;
 
         case 7: // boss - purple
@@ -145,7 +147,7 @@ public class Enemy : Entity
             minManeuverDistance = 2f;
             minEngagementDistance = 4f;
             minVisibilityRange = 10f;
-            waitTime = .1f;                      
+            attackRate = 1; // attacks per second                     
             break;
 
         default:
