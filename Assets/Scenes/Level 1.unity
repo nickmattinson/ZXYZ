@@ -567,23 +567,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72911323}
   m_CullTransparentMesh: 1
---- !u!1 &92127462 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 861360116138784530, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
-  m_PrefabInstance: {fileID: 191256503}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &92127473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92127462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b9fc7716c774d4d8233473b1e2b2f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &124098238
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &142703643
 Transform:
   m_ObjectHideFlags: 0
@@ -1010,11 +993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757358741807582028, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.8
+      value: 0.384
       objectReference: {fileID: 0}
     - target: {fileID: 3757358741807582028, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2
+      value: 0.516
       objectReference: {fileID: 0}
     - target: {fileID: 3757358741807582028, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1051,10 +1034,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 861360116138784530, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 92127473}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83845d42ffc465342b12a515e39d2c71, type: 3}
 --- !u!1 &211960027
 GameObject:
@@ -1524,7 +1504,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.76, y: 4.6}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.76, y: 4.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1578,7 +1558,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.76, y: 4.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -46880,6 +46860,14 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
       value: 576
       objectReference: {fileID: 0}
+    - target: {fileID: 5363231315405704255, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222138871106254337, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6907107163855509131, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 1
@@ -60116,6 +60104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 8026922992766776160, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -60318,10 +60310,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4132533554563942594, guid: cb986ee8d72fe82418295e02b372a640, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb986ee8d72fe82418295e02b372a640, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
