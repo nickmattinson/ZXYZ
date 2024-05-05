@@ -21,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private bool _spawnerActive = true;
 
+    public string spawnerLabel;
+
     private EnemyCapability enemyCapability;
 
     private float _timeUntilNextSpawn;
@@ -82,6 +84,11 @@ public class EnemySpawner : MonoBehaviour
     private void SetTimeUntilNextSpawn(){
         _timeUntilNextSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
 
+    }
+
+    public void UpdateSpawnerLabel(string newLabel)
+    {
+        spawnerLabel = newLabel;
     }
 
 }
