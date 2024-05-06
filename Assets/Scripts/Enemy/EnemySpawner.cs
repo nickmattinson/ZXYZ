@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -29,6 +30,18 @@ public class EnemySpawner : MonoBehaviour
 
     private int _counter = 0;
 
+    TextMeshProUGUI label; 
+
+    string spawnerLabelBase;
+
+    void Start(){
+        // Find the TextMeshProUGUI component in the child objects
+        label = GetComponentInChildren<TextMeshProUGUI>();
+
+        // set the spawner label base
+        spawnerLabelBase = spawnerLabel;
+    }
+
     void Awake(){
         SetTimeUntilNextSpawn();
     }
@@ -48,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
             Enemy enemyComponent = enemyInstance.GetComponent<Enemy>();
 
             // if enemy not null and enemy level is zero (not specified in inspector...)
-            if(enemyComponent != null){
+            if(enemyComponent != null && label != null){
 
                 // Get player reference
                 Player player = FindObjectOfType<Player>();
@@ -72,12 +85,28 @@ public class EnemySpawner : MonoBehaviour
                 enemyComponent.SetAttack(enemyAttack);
                 enemyComponent.SetDefense(enemyDefense);
                 enemyComponent.SetCapability(); // set remaining attributes
+            } 
+
+            // udpate spawner label
+            if(label != null){
+
+                // Set the label text to the serialized spawner label
+                UpdateSpawnerLabel(label);
+
+                // Set sorting layer and order to ensure visibility
+                label.canvas.sortingLayerName = "Enemy"; 
+                label.canvas.sortingOrder = 10; 
 
             } 
 
-
             // set time until next spawn
             SetTimeUntilNextSpawn();
+
+            // destroy if _counter <= 0
+            if(_maxSpawnCount - _counter <= 0) {
+                Die();
+            }
+
         }
     }
 
@@ -86,9 +115,18 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-    public void UpdateSpawnerLabel(string newLabel)
+    public void UpdateSpawnerLabel(TextMeshProUGUI label)
     {
-        spawnerLabel = newLabel;
+        // append enemy count remaining to label
+        int remaining = _maxSpawnCount - _counter;
+        spawnerLabel = $"{spawnerLabelBase} ({remaining.ToString()})";
+
+        // Set the label text to the serialized spawner label
+        label.text = spawnerLabel;
+    }
+
+    void Die(){
+        Destroy(gameObject);
     }
 
 }

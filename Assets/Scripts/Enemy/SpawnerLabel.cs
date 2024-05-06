@@ -24,7 +24,7 @@ public class SpawnerLabel : MonoBehaviour
             label.canvas.sortingOrder = 10; 
 
             // Update the spawner label in EnemySpawner script
-            enemySpawner.UpdateSpawnerLabel("hello world");
+            //enemySpawner.UpdateSpawnerLabel("hello world");
         }
         else
         {

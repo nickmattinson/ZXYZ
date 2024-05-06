@@ -821,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &142703643
 Transform:
   m_ObjectHideFlags: 0
@@ -2828,6 +2828,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &579221484 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7569849730136590865, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
+  m_PrefabInstance: {fileID: 1184304274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &580600714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,6 +6653,14 @@ PrefabInstance:
     - target: {fileID: 2103480028426262678, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865788384026591836, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
+      propertyPath: label
+      value: 
+      objectReference: {fileID: 579221484}
+    - target: {fileID: 2865788384026591836, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
+      propertyPath: spawnerLabel
+      value: Alpha
       objectReference: {fileID: 0}
     - target: {fileID: 5047412513040143478, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59926,7 +59945,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4132533554563942594, guid: cb986ee8d72fe82418295e02b372a640, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: cb986ee8d72fe82418295e02b372a640, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
