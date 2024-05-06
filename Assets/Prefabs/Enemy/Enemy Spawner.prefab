@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5047412513040143478}
   - component: {fileID: 2865788384026591836}
-  - component: {fileID: 2442388907570894507}
   m_Layer: 6
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -53,21 +52,7 @@ MonoBehaviour:
   _maxEnemyLevel: 2
   _maxSpawnCount: 3
   _spawnerActive: 1
-  spawnerLabel: Alpha 1_2_3
---- !u!114 &2442388907570894507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103480028426262678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb6e0cdf20c9a84a9e434f6f0b4de4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  label: {fileID: 0}
-  enemySpawner: {fileID: 0}
+  spawnerLabel: Alpha
 --- !u!1 &5389287196355883768
 GameObject:
   m_ObjectHideFlags: 0
