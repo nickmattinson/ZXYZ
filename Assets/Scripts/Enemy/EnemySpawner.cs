@@ -38,6 +38,10 @@ public class EnemySpawner : MonoBehaviour
         // Find the TextMeshProUGUI component in the child objects
         label = GetComponentInChildren<TextMeshProUGUI>();
 
+        // Set sorting layer and order to ensure visibility
+        label.canvas.sortingLayerName = "Enemy"; 
+        label.canvas.sortingOrder = 10; 
+
         // set the spawner label base
         spawnerLabelBase = spawnerLabel;
     }
@@ -47,12 +51,20 @@ public class EnemySpawner : MonoBehaviour
     }
     
     void Update(){
+        // update time remaining
         _timeUntilNextSpawn -= Time.deltaTime;
+        //Debug.Log("Time Until Next Spawn: " + _timeUntilNextSpawn);
+
+        // Update the label every frame
+        UpdateSpawnerLabel(label);
 
         if(_timeUntilNextSpawn <= 0 && _counter<_maxSpawnCount && _spawnerActive){
 
             // instantiate enemy
             GameObject enemyInstance = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+
+            // set time until next spawn
+            SetTimeUntilNextSpawn();
 
             // increment counter
             _counter++;
@@ -87,21 +99,6 @@ public class EnemySpawner : MonoBehaviour
                 enemyComponent.SetCapability(); // set remaining attributes
             } 
 
-            // udpate spawner label
-            if(label != null){
-
-                // Set the label text to the serialized spawner label
-                UpdateSpawnerLabel(label);
-
-                // Set sorting layer and order to ensure visibility
-                label.canvas.sortingLayerName = "Enemy"; 
-                label.canvas.sortingOrder = 10; 
-
-            } 
-
-            // set time until next spawn
-            SetTimeUntilNextSpawn();
-
             // destroy if _counter <= 0
             if(_maxSpawnCount - _counter <= 0) {
                 Die();
@@ -115,11 +112,17 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-    public void UpdateSpawnerLabel(TextMeshProUGUI label)
+    private void UpdateSpawnerLabel(TextMeshProUGUI label)
     {
         // append enemy count remaining to label
         int remaining = _maxSpawnCount - _counter;
-        spawnerLabel = $"{spawnerLabelBase} ({remaining.ToString()})";
+
+        // Round time remaining to the nearest whole number in seconds
+        int secondsRemaining = Mathf.RoundToInt(_timeUntilNextSpawn);
+        Debug.Log("Rounded Seconds Remaining: " + secondsRemaining);
+
+        // concatenate label components
+        spawnerLabel = $"{spawnerLabelBase} ({remaining.ToString()}) {secondsRemaining}";
 
         // Set the label text to the serialized spawner label
         label.text = spawnerLabel;
