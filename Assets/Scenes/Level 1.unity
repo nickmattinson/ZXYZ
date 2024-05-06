@@ -9746,11 +9746,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2865788384026591836, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
       propertyPath: _maxEnemyLevel
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2865788384026591836, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
       propertyPath: _maxSpawnCount
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5047412513040143478, guid: 0a45c38d0ed64804aaae97ab8f7f18c1, type: 3}
       propertyPath: m_LocalPosition.x
