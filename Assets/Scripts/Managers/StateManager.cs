@@ -20,9 +20,10 @@ public class StateManager : MonoBehaviour
 
     //[SerializeField] private TextMeshProUGUI scoreValue;
 
-    [SerializeField] private TMP_InputField usernameInput;
+    public TextMeshProUGUI output;
+    public TMP_InputField usernameInput;
     [SerializeField] private TextMeshProUGUI usernameIngame; // display
-    //[SerializeField] private TextMeshProUGUI playerprefText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class StateManager : MonoBehaviour
             // Set usernameInput and usernameIngame
             usernameInput.text = storedUsername;
             usernameIngame.text = storedUsername;
+            output.text = storedUsername;
         }
 
         // setup the canvas
