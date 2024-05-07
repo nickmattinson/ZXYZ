@@ -60245,6 +60245,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[33].Array.data[11].Y
       value: -210000000
       objectReference: {fileID: 0}
+    - target: {fileID: 6945706589191858262, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8026922992766776160, guid: 4d28793c0d3b85f4eb109b5ece6e52d3, type: 3}
       propertyPath: m_Name
       value: Grid
