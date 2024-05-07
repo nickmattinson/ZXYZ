@@ -119,7 +119,7 @@ public class EnemySpawner : MonoBehaviour
 
         // Round time remaining to the nearest whole number in seconds
         int secondsRemaining = Mathf.RoundToInt(_timeUntilNextSpawn);
-        Debug.Log("Rounded Seconds Remaining: " + secondsRemaining);
+        //Debug.Log("Rounded Seconds Remaining: " + secondsRemaining);
 
         // concatenate label components
         spawnerLabel = $"{spawnerLabelBase} ({remaining.ToString()}) {secondsRemaining}";

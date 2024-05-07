@@ -18,14 +18,14 @@ public class ShootingController : MonoBehaviour
         if (IsLineOfSightClear(playerPos, mousePos))
         {
             lineRenderer.SetPosition(1, mousePos);
-            Debug.Log("Clear line of sight. Shooting...");
+            //Debug.Log("Clear line of sight. Shooting...");
             // Add your shooting logic here
         }
         else
         {
             RaycastHit2D hit = Physics2D.Linecast(playerPos, mousePos, foregroundLayer);
             lineRenderer.SetPosition(1, hit.point);
-            Debug.Log($"Obstacle detected at {hit.point}. Adjusting aim...");
+            //Debug.Log($"Obstacle detected at {hit.point}. Adjusting aim...");
         }
     }
 }
