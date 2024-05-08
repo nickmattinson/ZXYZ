@@ -8,7 +8,7 @@ public class FinishPoint : MonoBehaviour
         if(collision.CompareTag("Player")){
 
             // go to next level
-            LevelManager.instance.NextLevel();
+            LevelManager.instance.loadNextLevel();
 
         }
     }
